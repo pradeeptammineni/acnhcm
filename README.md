@@ -1,1 +1,1 @@
-For HCM implementaiton for JW
+For HCM implementation for JW
