@@ -2,7 +2,6 @@
     <ModulePrefs title="SAP-HCM App"
                 author="Accenture"
            description="Accenture-Jive SAP-HCM App">
-        <Link rel="Icon" href="group-icon.png"/>
         <Require feature="dynamic-height"/>
         <Require feature="jive-core-v3"/>
         <Require feature="jive-connects-v1"/>
