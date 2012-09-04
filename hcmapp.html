@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link rel="stylesheet" type="text/css" href="stylesheets/hcmapp.css" media="screen" title="bbxcss" />
+  <link rel="stylesheet" type="text/css" href="stylesheets/formulaire-css3.css" media="screen" title="bbxcss" />
+  <link type="text/css" href="stylesheets/custom-theme/jquery-ui-1.8.16.custom.css" rel="stylesheet"/>
+  <link type="text/css" href="stylesheets/custom-theme/jive-elements.css" rel="stylesheet"/>
+  <link type="text/css" href="stylesheets/custom-theme/jive-icons.css" rel="stylesheet"/>
+  <link type="text/css" href="stylesheets/security-groups.css" rel="stylesheet"/>
+  
+  <title>SAP - HCM App</title>
+</head>
+
+<body>
+
+
+<!-- Welcome Banner -->
+<table class="banner" width="96%">
+	<thead>
+		<tr>
+			<th width="25%">Welcome, <b><span id="userID"></span></b> (<a id="logOut" href="#">Logout</a>)</th>
+			<th width="40%" align="center">
+				<form align="right"><a class="displayList active" href="#" title="List Opportunities">List Opportunities</a><span>  |  </span><!-- <img alt="Create New Opportunity" src="images/add.png"/> --><a class="create" href="#" title="Create New Opportunity">Create New Opportunity</a></form>
+			</th>
+			<th width="35%">
+				<!-- Pagination of the fetched records -->
+				<div id="pager" align="right" class="pager" style="display:none">
+				<form align="right">
+				<img src="images/first.png" class="first" style="padding-left: 0pt; padding-top: 3pt; padding-bottom: 0pt; padding-right: 0pt"/>
+				<img src="images/prev.png" class="prev" style="padding-left: 0pt; padding-top: 3pt; padding-bottom: 0pt; padding-right: 0pt"/>
+				<input type="text" class="pagedisplay" disabled="disabled"/>
+				<img src="images/next.png" class="next" style="padding-left: 0pt; padding-top: 3pt; padding-bottom: 0pt; padding-right: 0pt"/>
+				<img src="images/last.png" class="last" style="padding-left: 0pt; padding-top: 3pt; padding-bottom: 0pt; padding-right: 0pt"/>
+				
+				<select class="pagesize" style="font-size:10px; padding-left: 0pt; padding-top: 3pt; padding-bottom: 0pt; padding-right: 0pt">
+				<option value="5">5</option>
+				<option value="10">10</option>
+				<option selected="selected" value="15">15</option>
+				<option value="20">20</option>
+				</select><span style="font-size:11px; padding-left: 1pt; padding-top: 0pt; padding-bottom: 0pt; padding-right: 4pt"> items per page</span>
+				</form>
+				</div>
+			</th>
+		</tr>
+	</thead>
+</table>
+
+<div id="wrapper">
+	<div id="group-div" class="top-level-div">
+		<h3 id="group-header"></h3>
+		<table class="j-table">
+		    <tr>
+		        <th>First Name:</th>
+		        <td>
+		            <input id="person-first-name" class="group-input" type="text" size=20/>
+		        </td>
+		    </tr>
+		    <tr>
+		        <th>Last Name:</th>
+		        <td>
+		            <input id="person-last-name" class="group-input" type="text" size=20/>
+		        </td>
+		    </tr>		
+		    <tr>
+		        <th>&nbsp;</th>
+		        <td>
+		            <button id="search-button">Search</button>
+		        </td>
+		    </tr>
+		</table>
+	</div>
+	<div id="response-message"></div>
+</div>
+<div id="footer">&copy; Accenture 2011</div>
+
+<!-- Start off scripting -->
+	<script type="text/javascript" src="javascripts/jquery.min.js"></script>
+	<script type="text/javascript" src="javascripts/jive.js"></script>
+	<script type="text/javascript" src="javascripts/jquery.tablesorter.min.js"></script>
+	<script type="text/javascript" src="javascripts/jquery.tablesorter.pager.js"></script>
+	<script type="text/javascript" src="javascripts/jquery.xml2json.js"></script>
+	<script type="text/javascript" src="javascripts/tiny_mce.js"></script>
+	
+	<script type="text/javascript">
+	function onlyNumbers(evt) {
+	  var charCode = (evt.which) ? evt.which : event.keyCode;
+	  if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+	  return false;
+	  return true;
+	}
+	
+	function onlyChars(evt) {
+	  var charCode = (evt.which) ? evt.which : event.keyCode;
+	  if (charCode == 39)
+	  return false;
+	  return true;
+	}
+	</script>
+</body>
+</html>
