@@ -30,7 +30,7 @@ function onEmpSearch() {
         // Process the received data
         console.log("Returned: "+JSON.stringify(feedback));
     }
-}
+});
 
 // Register our on-view-load handler
 gadgets.util.registerOnLoadHandler(init);
