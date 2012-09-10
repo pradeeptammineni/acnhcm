@@ -24,7 +24,7 @@ function onEmpSearch() {
         }
         else {
             // Deal with errors other than 401
-            console.log("Error Code: "+response.error.code+" Error:"+response.error.message);
+            console.log("Error Code: "+response.error.code+" Error:"+JSON.stringify(response));
         }
     }
     else {
