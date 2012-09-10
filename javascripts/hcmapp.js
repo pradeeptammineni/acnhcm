@@ -14,8 +14,22 @@ function onEmpSearch() {
       'format' : 'text',
       'headers' : { 'Content-Type' : ['application/xml;charset=utf-8'], 'Accept-Language' : ['en-us']}
    }).execute(function(response) {
-      console.log("Response from SAP: "+JSON.stringify(response));
-   });
+    if (response.error) {
+        if (response.error.code == 401) {
+            osapi.jive.connects.reconfigure("SAPHCM", response, function(feedback) {
+                // See discussion below
+                onEmpSearch();
+            });
+        }
+        else {
+            // Deal with errors other than 401
+            console.log("Error:"+response.error.message);
+        }
+    }
+    else {
+        // Process the received data
+        console.log("Returned: "+JSON.stringify(feedback));
+    }
 }
 
 // Register our on-view-load handler
