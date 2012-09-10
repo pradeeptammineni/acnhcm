@@ -12,23 +12,24 @@ function onEmpSearch() {
       'alias' : 'SAPHCM',
       'href' : '/bapi_employee_getdata/801/bapi_employee_getdata/bind1',
       'body' : soap_envelope,
-      'format' : 'text',
-      'headers' : { 'Content-Type' : ['application/xml;charset=utf-8'], 'Accept-Language' : ['en-us']}
+      'format' : 'text'
+     // 'headers' : { 'Content-Type' : ['application/xml;charset=utf-8'], 'Accept-Language' : ['en-us']}
    }).execute(function(response) {
     if (response.error) {
         if (response.error.code == 401) {
             osapi.jive.connects.reconfigure("SAPHCM", response, function(feedback) {
-                // See discussion below
+                // First pass; no user credentials present. So, 
+                // capture the credentials of the user and retry.
                 onEmpSearch();
             });
         }
         else {
-            // Deal with errors other than 401
+            // The problem is not an HTTPBasic related one.
             console.log("Error Code: "+response.error.code+" Error:"+JSON.stringify(response));
         }
     }
     else {
-        // Process the received data
+        // You received data from the system. Parse it!
         console.log("Returned: "+JSON.stringify(feedback));
     }
 });
