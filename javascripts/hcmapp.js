@@ -31,7 +31,7 @@ function onEmpSearch() {
         console.log("Returned: "+JSON.stringify(feedback));
     }
 });
-
+}
 // Register our on-view-load handler
 gadgets.util.registerOnLoadHandler(init);
 
