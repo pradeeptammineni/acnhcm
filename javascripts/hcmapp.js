@@ -31,10 +31,10 @@ function onEmpSearch() {
     }
     else {
         // You received data from the system. Parse it!
-        console.log("Returned: "+JSON.stringify(feedback));
+        console.log("Returned: "+JSON.stringify(response));
     }
 });
 }
+
 // Register our on-view-load handler
 gadgets.util.registerOnLoadHandler(init);
-
