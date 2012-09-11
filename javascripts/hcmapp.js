@@ -13,7 +13,7 @@ function onEmpSearch() {
       'href' : '/bapi_employee_getdata/801/bapi_employee_getdata/bind1',
       'body' : soap_envelope,
       'format' : 'text',
-      'headers' : { 'Content-Type' : ['application/xml'], 'Accept-Language' : ['en-us']}
+      'headers' : { 'content-type' : ['text/xml'] }
      // 'headers' : { 'Content-Type' : ['application/xml;charset=utf-8'], 'Accept-Language' : ['en-us']}
    }).execute(function(response) {
     if (response.error) {
