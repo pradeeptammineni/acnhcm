@@ -60,7 +60,7 @@ function onEmpSearch() {
 			// If there is a message, it probably means
 			// not everything is OK!
 			if ($returnCheck.Message != '') {
-				console.log ("Returned message:"+returnCheck.Message);
+				console.log ("Returned message:"+$returnCheck.Message);
 			}
 			else { //OK, we have some records satisfying the search criteria.
 				console.log("Returned: "+JSON.stringify(response.content));
