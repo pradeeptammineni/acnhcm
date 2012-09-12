@@ -3,7 +3,7 @@ var mini;
 // On view load, wire up static actions and retrieve initial data
 function init() {
     //Set focus on the search criteria fields.
-    document.person-first-name.focus();
+    $('#person-first-name').focus();
     //Link the "Search" button to EmpSearch
     $("#emp-search-button").click(onEmpSearch);
     mini = new gadgets.MiniMessage();
