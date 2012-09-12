@@ -50,8 +50,8 @@ function onEmpSearch() {
             }
         }
         else {
-            // You received data from the system. Parse it!
-			var empData, tempData, returnCheck, personalData, orgAssigment, internalControl, communication = '';
+			// You received data from the system. Parse it!
+			var empData, tempData, returnMessage, returnCheck, personalData, orgAssigment, internalControl, communication = '';
 			//Get entire XML response, which has records!
 			empData = $.parseXML(response.content);
 			$tempData = $(empData);
@@ -59,8 +59,10 @@ function onEmpSearch() {
 			// Check if records are returned.
 			// If there is a message, it probably means
 			// not everything is OK!
-			if ($returnCheck.Message != '') {
-				console.log ("Returned message:"+$returnCheck.Message);
+			console.log("Yeah"+JSON.stringify($returnCheck));
+			returnMessage = $(returnCheck).children('Message').text();
+			if (returnMessage != '') {
+				console.log ("Returned message:"+returnMessage);
 			}
 			else { //OK, we have some records satisfying the search criteria.
 				console.log("Returned: "+JSON.stringify(response.content));
