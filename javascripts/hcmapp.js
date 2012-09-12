@@ -56,12 +56,11 @@ function onEmpSearch() {
 			empData = $.parseXML(response.content);
 			$tempData = $(empData);
 			$returnCheck = $tempData.find('Return');
-			// Check if records are returned.
-			// If there is a message, it probably means
-			// not everything is OK!
-			console.log("Yeah"+JSON.stringify($returnCheck));
+			// Check if records are returned. If there is a 
+			// message, it probably means not everything is OK!			
 			returnMessage = $(returnCheck).children('Message').text();
-			if (returnMessage != '') {
+			console.log("Putting:"+returnMessage);
+			if (returnMessage !='') {
 				console.log ("Returned message:"+returnMessage);
 			}
 			else { //OK, we have some records satisfying the search criteria.
