@@ -53,8 +53,8 @@ function onEmpSearch() {
 			// You received data from the system. Parse it!
 			var empData, tempData, returnMessage, returnCheck, personalData, orgAssigment, internalControl, communication = '';
 			//Get entire XML response, which has records!
-			$empData = $.parseXML(response.content);
-			returnMessage = $empData.find('Message').text();
+			empData = $.parseXML(response.content);
+			returnMessage = $(empData).find('Message').text();
 			// Check if records are returned. If there is a 
 			// message, it probably means not everything is OK!
 			if (returnMessage !='') {
