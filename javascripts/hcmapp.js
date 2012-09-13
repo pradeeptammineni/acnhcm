@@ -144,7 +144,7 @@ function onEmpSearch() {
 function onBackSearch () {
 	//Clear the table; hide the results table;
 	//Display Search form
-	$('#xmlTable tbody').remove();
+	$("#TableBody").html("");
 	$('#displayRecord').hide();
 	$('#search-form').show();
 }
