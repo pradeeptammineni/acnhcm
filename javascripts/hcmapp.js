@@ -8,6 +8,8 @@ function init() {
 	$('#person-first-name').focus();
 	//Link the "Search" button to EmpSearch
 	$("#emp-search-button").click(onEmpSearch);
+	//From "Search Results" -> back to "Search" form
+	$("#search-results-back").click(onBackSearch);
 	mini = new gadgets.MiniMessage();
 }
 
@@ -135,6 +137,16 @@ function onEmpSearch() {
 			}
 		}
 	});
+}
+
+// Having "Back button in Search Results.
+// Getting back to "Search" form!!
+function onBackSearch () {
+	//Clear the table; hide the results table;
+	//Display Search form
+	$('#xmlTable tbody').remove();
+	$('#displayRecord').hide();
+	$('#search-form').show();
 }
 
 // Register our on-view-load handler
