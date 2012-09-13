@@ -1,5 +1,33 @@
-/* tables */ /* add to table - table-layout:fixed; */
-table.data-grid, table.crud, table.banner, table.j-table {  border:1px solid #222; margin:20px; box-shadow:0 0 5px #888}
+/* For Footer specially - neat layout */
+html,
+body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+#container {
+   min-height:100%;
+   position:relative;
+}
+#header {
+   background:#ff0;
+   padding:10px;
+}
+#body {
+   padding:10px;
+   padding-bottom:60px;   /* Height of the footer */
+}
+#footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
+   background:#6cf;
+   text-align:center;
+}
+
+/* Record display table - ID: data-grid */
+table.data-grid, table.crud, table.banner {  border:1px solid #222; margin:20px; box-shadow:0 0 5px #888}
 table.data-grid {width:90%;/*table-layout:fixed;*/}
 table.data-grid thead tr th, table.crud thead tr th, table.banner thead tr th{ 
   color:white; padding:8px 15px 8px 8px; text-align:left; font-weight:bold
@@ -17,6 +45,7 @@ table.crud thead, table.data-grid thead tr th, table.data-grid tfoot tr th {
   border: 1px solid #222;
 }
 
+/* Search form table ID: j-table*/
 table.j-table tr td {
  padding: 10px; 
 }
@@ -27,4 +56,4 @@ table.j-table {
 
 table.j-table thead tr th{ 
   color:white; padding:8px 15px 8px 8px; text-align:left; font-weight:bold
-  }
+}
