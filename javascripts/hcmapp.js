@@ -71,6 +71,9 @@ function onEmpSearch() {
 				// OK, no problem, we have some records satisfying 
 				// the search criteria. Let's work with them...
 				tCount = 0;
+				tableData = '';
+				
+				//Get each of the structures of the response.
 				$personalData = $tempData.find('PersonalData');
 				$personalData = $personalData.find('item');
 				$orgAsgEmpData = $tempData.find('OrgAssignment');
@@ -80,7 +83,7 @@ function onEmpSearch() {
 				
 				// Cycle through the fetched records -- for each person record.
 				$personalData.each(function () {
-					fPerNo, fFirstName, fLastName, tableData = '';
+					fPerNo, fFirstName, fLastName = '';
 					
 					// Get the required details from PersonalData structure!
 					fPerNo = ($(this).children('Perno').text());
