@@ -25,6 +25,8 @@ function getTodaysDate()
 	return (todaysDate);
 }
 
+//When the user searches for an employee, we are  
+//to fetch the search results from the server.
 function onEmpSearch() {
 	var firstName = $('#person-first-name').val();
 	var lastName = $('#person-last-name').val();
