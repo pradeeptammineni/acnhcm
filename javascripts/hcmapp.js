@@ -8,7 +8,7 @@ function init() {
 	$('#person-first-name').focus();
 	//Link the "Search" button to EmpSearch
 	$("#emp-search-button").click(onEmpSearch);
-	//From "Search Results" -> back to "Search" form
+	//From "Search Results" -> BACK to "Search" form
 	$("#search-results-back").click(onBackSearch);
 	mini = new gadgets.MiniMessage();
 }
@@ -117,12 +117,14 @@ function onEmpSearch() {
 							return false;
 						}	
 					});
-					tCount++;
+					
+					tCount++; //for total number of records parsed!
 					//Add each record to the table - ready for displaying to the user.
 					tableData = tableData + "<tr id="+fPerNo+"><td>"+fFirstName+"</td><td>"+fLastName+"</td><td>"+
 											fCompCode+"</td><td>"+fOrgText+"</td><td>"+fJobText+"</td><td>"+fPosText+"</td><td>"+
 											fCostCenter+"</td><td>"+fEmailID+"</td></tr>";
 				});
+				
 				//Now, display the table ONLY when we have more than one record.
 				if (tCount>1) {
 					$("table#xmlTable tbody").append(tableData);
@@ -147,6 +149,10 @@ function onBackSearch () {
 	$("#TableBody").html("");
 	$('#displayRecord').hide();
 	$('#search-form').show();
+	
+	//Clear the search form too!
+	$('#person-first-name').val("");
+	$('#person-last-name').val("");
 }
 
 // Register our on-view-load handler
