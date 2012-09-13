@@ -89,13 +89,13 @@ function onEmpSearch() {
 							fPostext = $(this).children('Postxt').text();
 							fCostCenter = $(this).children('Costcenter').text();
 							return false;
-						}	
+						});	
 					$orgAsgEmpData.each(function () {
 						if ($(this).children('Perno').text() == fPerNo && $(this).children('Usertype').text() == "0010") {
 							fEmailID = $(this).children('UsridLong').text();
 							return false;
 						}	
-					}
+					});
 					tCount++;
 					console.log("Record "+tCount+":"+fFirstName+" "+fLastName+" "+fCompCode+" "+fOrgText+" "+fJobText+" "+fPostText+" "+fCostCenter+" "+fEmailID);
 				});
