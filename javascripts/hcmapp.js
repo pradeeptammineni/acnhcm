@@ -53,21 +53,18 @@ function onEmpSearch() {
 			// You received data from the system. Parse it!
 			var empData, tempData, returnMessage, returnCheck, personalData, orgAssigment, internalControl, communication = '';
 			//Get entire XML response, which has records!
-			empData = $.parseXML(response.content);
-			$tempData = $(empData);
-			console.log("1: "+$tempData.find('Message').text());
-			console.log("2: "+$(tempData).find('Message').text());
-			returnMessage = $tempData.find('Message').text();
+			$empData = $.parseXML(response.content);
+			returnMessage = $empData.find('Message').text();
 			// Check if records are returned. If there is a 
-			// message, it probably means not everything is OK!	
-		/*	$returnCheck = $returnCheck.find('soap-env:Body');
-			$returnCheck = $returnCheck.find('Return'); 
-			returnMessage = $(returnCheck).children('Message').text(); */
-			console.log("Putting:"+returnMessage);
+			// message, it probably means not everything is OK!
 			if (returnMessage !='') {
-				console.log ("Returned message:"+returnMessage);
+				// Some problem! Display the message!
 			}
 			else { //OK, we have some records satisfying the search criteria.
+				personalData = $empData.find('PersonalData');
+				$personalData.each(function () {
+						
+				});
 				console.log("Returned: "+JSON.stringify(response.content));
 			}
         }
