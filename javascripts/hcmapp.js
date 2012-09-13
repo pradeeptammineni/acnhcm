@@ -86,7 +86,7 @@ function onEmpSearch() {
 							fCompCode = $(this).children('CompCode').text();
 							fOrgText = $(this).children('Orgtxt').text();
 							fJobText = $(this).children('Jobtxt').text();
-							fPostext = $(this).children('Postxt').text();
+							fPosText = $(this).children('Postxt').text();
 							fCostCenter = $(this).children('Costcenter').text();
 							return false;
 						}
@@ -98,7 +98,7 @@ function onEmpSearch() {
 						}	
 					});
 					tCount++;
-					console.log("Record "+tCount+":"+fFirstName+" "+fLastName+" "+fCompCode+" "+fOrgText+" "+fJobText+" "+fPostText+" "+fCostCenter+" "+fEmailID);
+					console.log("Record "+tCount+":"+fFirstName+" "+fLastName+" "+fCompCode+" "+fOrgText+" "+fJobText+" "+fPosText+" "+fCostCenter+" "+fEmailID);
 				});
 				//console.log("Returned: "+JSON.stringify(response.content));
 			}
