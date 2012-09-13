@@ -118,7 +118,7 @@ function onEmpSearch() {
 				if (tCount>1) {
 					$("table#xmlTable tbody").append(tableData);
 					//Show the records' table and hide the search form.
-					$('#xmlTable').show();
+					$('#displayRecord').show();
 					$('#search-form').hide();
 				}
 				else { //Well, you have just one record, you may as well get to the form directly!
