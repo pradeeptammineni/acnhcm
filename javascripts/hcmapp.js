@@ -65,6 +65,7 @@ function onEmpSearch() {
 			// message, it probably means not everything is OK!
 			if (returnMessage !='') {
 				// Some problem! Display the message!
+				console.log("Message from server:"+returnMessage);
 			}
 			else { 
 				//OK, we have some records satisfying the search criteria.
