@@ -77,11 +77,14 @@ function onEmpSearch() {
 				$commEmpData = $commEmpData.find('item');
 				
 				$personalData.each(function () {
+					fPerNo, fFirstName, fLastName = '';
+					
 					fPerNo = ($(this).children('Perno').text());
 					fFirstName = ($(this).children('Firstname').text());
 					fLastName = ($(this).children('LastName').text());
 					
 					$orgAsgEmpData.each(function () {
+						fCompCode, fOrgText, fJobText, fPosText, fCostCenter = '';
 						if ($(this).children('Perno').text() == fPerNo) {
 							fCompCode = $(this).children('CompCode').text();
 							fOrgText = $(this).children('Orgtxt').text();
@@ -92,6 +95,7 @@ function onEmpSearch() {
 						}
 						});	
 					$commEmpData.each(function () {
+						fEmailID = '';
 						if ($(this).children('Perno').text() == fPerNo && $(this).children('Usertype').text() == "0010") {
 							fEmailID = $(this).children('UsridLong').text();
 							return false;
