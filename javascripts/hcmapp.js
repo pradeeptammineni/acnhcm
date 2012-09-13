@@ -51,11 +51,11 @@ function onEmpSearch() {
 		else {
 			// You received data from the system. Parse it!
 			var empData, tempData, returnMessage, 
-					returnCheck, personalData, orgAssigment, 
-					internalControl, communication = '';
+					returnCheck, personalData, orgAsgEmpData, 
+					intCtrlEmpData, commEmpData = '';
 			var fPerNo, fFirstName, fLastName, fCompCode, 
 					fOrgText, fJobText, fPosText, fCostCenter, 
-					tCount = '';
+					fEmailID, tCount = '';
 			
 			//Get entire XML response, which has records!
 			empData = $.parseXML(response.content);
@@ -71,11 +71,33 @@ function onEmpSearch() {
 				tCount = 0;
 				$personalData = $tempData.find('PersonalData');
 				$personalData = $personalData.find('item');
+				$orgAsgEmpData = $tempData.find('OrgAssignment');
+				$orgAsgEmpData = $orgAsgEmpData.find('item');
+				$commEmpData = $tempData.find('Communication');
+				$commEmpData = $commEmpData.find('item');
+				
 				$personalData.each(function () {
+					fPerNo = ($(this).children('Perno').text());
 					fFirstName = ($(this).children('Firstname').text());
 					fLastName = ($(this).children('LastName').text());
+					
+					$orgAsgEmpData.each(function () {
+						if ($(this).children('Perno').text() == fPerNo) {
+							fCompCode = $(this).children('CompCode').text();
+							fOrgText = $(this).children('Orgtxt').text();
+							fJobText = $(this).children('Jobtxt').text();
+							fPostext = $(this).children('Postxt').text();
+							fCostCenter = $(this).children('Costcenter').text();
+							break;
+						}	
+					$orgAsgEmpData.each(function () {
+						if ($(this).children('Perno').text() == fPerNo && $(this).children('Usertype').text() == "0010") {
+							fEmailID = $(this).children('UsridLong').text();
+							break;
+						}	
+					}
 					tCount++;
-					console.log("Record "+tCount+":"+fFirstName+" "+fLastName);
+					console.log("Record "+tCount+":"+fFirstName+" "+fLastName+" "+fCompCode+" "+fOrgText+" "+fJobText+" "+fPostText+" "+fCostCenter+" "+fEmailID);
 				});
 				//console.log("Returned: "+JSON.stringify(response.content));
 			}
