@@ -77,7 +77,7 @@ function onEmpSearch() {
 					tCount++;
 					console.log("Record "+tCount+":"+fFirstName+" "+fLastName);
 				});
-				console.log("Returned: "+JSON.stringify(response.content));
+				//console.log("Returned: "+JSON.stringify(response.content));
 			}
 		}
 	});
