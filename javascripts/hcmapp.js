@@ -91,7 +91,7 @@ function onEmpSearch() {
 							return false;
 						}
 						});	
-					$orgAsgEmpData.each(function () {
+					$commEmpData.each(function () {
 						if ($(this).children('Perno').text() == fPerNo && $(this).children('Usertype').text() == "0010") {
 							fEmailID = $(this).children('UsridLong').text();
 							return false;
