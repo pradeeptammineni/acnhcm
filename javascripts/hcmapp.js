@@ -123,6 +123,7 @@ function onEmpSearch() {
 					//Show the records' table and hide the search form.
 					$('#displayRecord').show();
 					$('#search-form').hide();
+					gadgets.window.adjustHeight();
 				}
 				else { //Well, you have just one record, you may as well get to the form directly!
 					//...Later!
@@ -130,7 +131,6 @@ function onEmpSearch() {
 			}
 		}
 	});
-	gadgets.window.adjustHeight();
 }
 
 // Register our on-view-load handler
