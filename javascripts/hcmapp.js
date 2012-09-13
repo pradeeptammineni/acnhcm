@@ -116,7 +116,7 @@ function onEmpSearch() {
 				});
 				//Now, display the table ONLY when we have more than one record.
 				if (tCount>1) {
-					$("table#xmlTable tbody").append(row);
+					$("table#xmlTable tbody").append(tableData);
 					//Show the records' table and hide the search form.
 					$('#xmlTable').show();
 					$('#search-form').hide();
