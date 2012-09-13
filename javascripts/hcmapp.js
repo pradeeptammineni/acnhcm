@@ -54,14 +54,15 @@ function onEmpSearch() {
 			var empData, tempData, returnMessage, returnCheck, personalData, orgAssigment, internalControl, communication = '';
 			//Get entire XML response, which has records!
 			empData = $.parseXML(response.content);
-			returnMessage = $empData.find('Message').text();
+			$tempData = $(empData);
+			returnMessage = $tempData.find('Message').text();
 			// Check if records are returned. If there is a 
 			// message, it probably means not everything is OK!
 			if (returnMessage !='') {
 				// Some problem! Display the message!
 			}
 			else { //OK, we have some records satisfying the search criteria.
-				personalData = $empData.find('PersonalData');
+				personalData = $tempData.find('PersonalData');
 				$personalData.each(function () {
 						
 				});
