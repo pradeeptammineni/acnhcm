@@ -70,7 +70,7 @@ function onEmpSearch() {
 				//OK, we have some records satisfying the search criteria.
 				tCount = 0;
 				$personalData = $tempData.find('PersonalData');
-				$personalData = $tempData.find('item');
+				$personalData = $personalData.find('item');
 				$personalData.each(function () {
 					fFirstName = ($(this).children('Firstname').text());
 					fLastName = ($(this).children('LastName').text());
