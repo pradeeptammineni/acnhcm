@@ -89,6 +89,7 @@ function onEmpSearch() {
 							fPostext = $(this).children('Postxt').text();
 							fCostCenter = $(this).children('Costcenter').text();
 							return false;
+						}
 						});	
 					$orgAsgEmpData.each(function () {
 						if ($(this).children('Perno').text() == fPerNo && $(this).children('Usertype').text() == "0010") {
