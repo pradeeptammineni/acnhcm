@@ -55,7 +55,9 @@ function onEmpSearch() {
 			//Get entire XML response, which has records!
 			empData = $.parseXML(response.content);
 			$tempData = $(empData);
-			$returnMessage = $tempData.find('Message').text();
+			console.log("1: "+$tempData.find('Message').text());
+			console.log("2: "+$(tempData).find('Message').text());
+			returnMessage = $tempData.find('Message').text();
 			// Check if records are returned. If there is a 
 			// message, it probably means not everything is OK!	
 		/*	$returnCheck = $returnCheck.find('soap-env:Body');
