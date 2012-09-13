@@ -9,6 +9,9 @@ table.data-grid tbody tr td { /* for overflow -- text-overflow:ellipsis; white-s
   text-align:left; position:relative; /*overflow: hidden; 
   text-overflow:ellipsis; white-space:nowrap; */
   } 
+table.j-table tr td {
+ padding: 3px; 
+}
 table.data-grid tbody tr:hover { background:#FFFF00}/*#F8F8D2*/
 table.data-grid tbody tr.active { background:#FFFF00; color:black}
 table.data-grid tbody tr.active a:link, table.data-grid tbody tr.active a:visited { color:#658AC3}
