@@ -9,9 +9,6 @@ table.data-grid tbody tr td { /* for overflow -- text-overflow:ellipsis; white-s
   text-align:left; position:relative; /*overflow: hidden; 
   text-overflow:ellipsis; white-space:nowrap; */
   } 
-table.j-table tr td {
- padding: 3px; 
-}
 table.data-grid tbody tr:hover { background:#FFFF00}/*#F8F8D2*/
 table.data-grid tbody tr.active { background:#FFFF00; color:black}
 table.data-grid tbody tr.active a:link, table.data-grid tbody tr.active a:visited { color:#658AC3}
@@ -19,3 +16,15 @@ table.crud thead, table.data-grid thead tr th, table.data-grid tfoot tr th {
   background-color: #12378B;/*#658AC3;*/
   border: 1px solid #222;
 }
+
+table.j-table tr td {
+ padding: 10px; 
+}
+
+table.j-table {
+ border:1px solid #222; margin:20px; box-shadow:0 0 5px #888
+}
+
+table.j-table thead tr th{ 
+  color:white; padding:8px 15px 8px 8px; text-align:left; font-weight:bold
+  }
