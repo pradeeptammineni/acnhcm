@@ -27,6 +27,10 @@ function getTodaysDate()
 	return (todaysDate);
 }
 
+$('table.data-grid tbody tr').dblclick(function() {
+	alert('Handler for .dblclick() called.');
+});
+
 //When the user searches for an employee, we are  
 //to fetch the search results from the server.
 function onEmpSearch() {
