@@ -51,7 +51,7 @@ function onEmpSearch() {
 			}
 			else {
 				// The problem is not an HTTPBasic related one.
-				$('div.response-message').html("Encountered an error. Error Code: "+response.error.code);
+				$('#response-message').html("Encountered an error. Error Code: "+response.error.code);
 				gadgets.window.adjustHeight();
 			}
 		}
@@ -73,7 +73,7 @@ function onEmpSearch() {
 			if (returnMessage !='') {
 				// Some problem! Display the message!
 				console.log(returnMessage);
-				$('div.response-message').html("<b>"+returnMessage+" for the provided value(s)</b>. <br/>Please try again.");
+				$('#response-message').html("<b>"+returnMessage+".</b> <br/>Please try again.");
 				gadgets.window.adjustHeight();
 			}
 			else { 
@@ -156,6 +156,7 @@ function onBackSearch () {
 	//Clear the search form too!
 	$('#person-first-name').val("");
 	$('#person-last-name').val("");
+	$('#response-message').html("");
 	// Adjust height!
 	gadgets.window.adjustHeight();
 }
