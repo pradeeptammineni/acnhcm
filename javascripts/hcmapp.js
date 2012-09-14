@@ -52,6 +52,7 @@ function onEmpSearch() {
 			else {
 				// The problem is not an HTTPBasic related one.
 				$('div.response-message').html("Encountered an error. Error Code: "+response.error.code);
+				gadgets.window.adjustHeight();
 			}
 		}
 		else {
@@ -73,6 +74,7 @@ function onEmpSearch() {
 				// Some problem! Display the message!
 				console.log(returnMessage);
 				$('div.response-message').html("<b>"+returnMessage+" for the provided value(s)</b>. <br/>Please try again.");
+				gadgets.window.adjustHeight();
 			}
 			else { 
 				// OK, no problem, we have some records satisfying 
