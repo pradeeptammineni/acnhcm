@@ -28,7 +28,8 @@ function getTodaysDate()
 }
 
 $('#TableBody').dblclick(function() {
-	console.log("Handler for .dblclick() called.");
+	var tr = $(this).closest('tr'), id = tr[0].id;
+	console.log(id+"Handler for .dblclick() called.");
 });
 
 //When the user searches for an employee, we are  
