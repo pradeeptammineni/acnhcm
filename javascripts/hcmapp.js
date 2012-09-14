@@ -51,7 +51,7 @@ function onEmpSearch() {
 			}
 			else {
 				// The problem is not an HTTPBasic related one.
-				console.log("Error Code: "+response.error.code+" Error:"+JSON.stringify(response));
+				$("response-message").html("Encountered an error. Error Code: "+response.error.code);
 			}
 		}
 		else {
@@ -71,7 +71,7 @@ function onEmpSearch() {
 			returnMessage = $tempData.find('Message').text();
 			if (returnMessage !='') {
 				// Some problem! Display the message!
-				console.log("Message from server:"+returnMessage);
+				$("response-message").html("<b>"+returnMessage+" for the provided value(s)</b>. <br/>Please try again.");
 			}
 			else { 
 				// OK, no problem, we have some records satisfying 
