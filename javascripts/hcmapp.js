@@ -71,7 +71,7 @@ function onEmpSearch() {
 			returnMessage = $tempData.find('Message').text();
 			if (returnMessage !='') {
 				// Some problem! Display the message!
-				console.log("returnMessage");
+				console.log(returnMessage);
 				$("response-message").html("<b>"+returnMessage+" for the provided value(s)</b>. <br/>Please try again.");
 			}
 			else { 
