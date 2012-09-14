@@ -27,8 +27,8 @@ function getTodaysDate()
 	return (todaysDate);
 }
 
-$('table.data-grid tbody tr').dblclick(function() {
-	alert('Handler for .dblclick() called.');
+$('#TableBody tr').dblclick(function() {
+	console.log("Handler for .dblclick() called.");
 });
 
 //When the user searches for an employee, we are  
