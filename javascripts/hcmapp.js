@@ -153,6 +153,8 @@ function onBackSearch () {
 	//Clear the search form too!
 	$('#person-first-name').val("");
 	$('#person-last-name').val("");
+	// Adjust height!
+	gadgets.window.adjustHeight();
 }
 
 // Register our on-view-load handler
