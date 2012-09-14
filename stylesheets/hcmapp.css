@@ -15,7 +15,7 @@ body {
 }
 #body {
    padding:10px;
-   padding-bottom:20px;   /* Height of the footer */
+   padding-bottom:25px;   /* Height of the footer */
 }
 #footer {
    position:absolute;
