@@ -28,7 +28,7 @@ function getTodaysDate()
 }
 
 $('#TableBody').dblclick(function() {
-	var tr = $(this).closest('tr'), id = tr[0].id;
+	var tr = $(this).closest('tr'), id = tr.id;
 	console.log(id+"Handler for .dblclick() called.");
 });
 
