@@ -79,6 +79,7 @@ function onEmpSearch() {
 				// Some problem! Display the message!
 				console.log(returnMessage);
 				$('#response-message').html("<b>"+returnMessage+".</b> <br/>Please try again.");
+				$('#person-first-name').focus();
 				gadgets.window.adjustHeight();
 			}
 			else { 
