@@ -27,7 +27,7 @@ function getTodaysDate()
 	return (todaysDate);
 }
 
-$('#TableBody tr').dblclick(function() {
+$('#TableBody').dblclick(function() {
 	console.log("Handler for .dblclick() called.");
 });
 
