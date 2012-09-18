@@ -29,9 +29,9 @@ function getTodaysDate()
 
 function recordLoadDetail() {
 	console.log("yes");
-	var fname = $(this).parent('tr').children('td:first-child').text();
-	console.log("first name:"+fname);
-	var tr = $(this).closest('tr'), id = tr[0].id;
+	//var fname = $(this).parent('tr').children('td:first-child').text();
+	//console.log("first name:"+fname);
+	var id = $(this).attr('id');
 	console.log("id: "+id);
 }
 
