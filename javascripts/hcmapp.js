@@ -155,9 +155,12 @@ function onEmpSearch() {
 	});
 }
 
+// On double-clicking each row, let's 
+// get the details displayed...
 $('tr.rowPerson').dblclick(function(){
 	alert ("hi");
-}
+});
+
 // Having "Back button in Search Results.
 // Getting back to "Search" form!!
 function onBackSearch () {
