@@ -154,7 +154,7 @@ function onEmpSearch() {
 	});
 }
 
-
+// The "Address" link in the top-menu
 $('a.addLink').click(function(){
 	var ;
 	$('a.annPayLink').removeClass('active');
