@@ -165,13 +165,13 @@ $('tr.rowPerson').live('dblclick',function(){
 	var costCenter = $(this).find(".cCenter").html();
 	var emailID = $(this).find(".eID").html();
 	
-	$("detailName").html(fullName);
-	$("detailCCode").html(compCode);
-	$("detailTeam").html(orgText);
-	$("detailJTitle").html(jobText);
-	$("detailPTitle").html(posText);
-	$("detailCCenter").html(costCenter);
-	$("detailEID").html(emailID);
+	$("#detailName").html(fullName);
+	$("#detailCCode").html(compCode);
+	$("#detailTeam").html(orgText);
+	$("#detailJTitle").html(jobText);
+	$("#detailPTitle").html(posText);
+	$("#detailCCenter").html(costCenter);
+	$("#detailEID").html(emailID);
 	$("#detailRecord").show();
 	$("#displayRecord").hide();
 	console.log(personID+"--"+fullName+"--"+compCode+"--"+orgText+"--"+jobText+"--"+posText+"--"+costCenter+"--"+emailID);
