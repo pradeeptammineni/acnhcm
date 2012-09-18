@@ -27,18 +27,7 @@ function getTodaysDate()
 	return (todaysDate);
 }
 
-/*
-$('tr').dblclick(function() {
-	var id = $(this).attr('id');
-	console.log(id+"Handler for .dblclick() called.");
-});
-
-$('#TableBody').on('dblclick', 'tr', function(event) {
-	event.preventdefault();
-	console.log('item anchor clicked');
-});
-*/
-function yes() {
+function recordLoadDetail() {
 	console.log("yes");
 }
 
@@ -144,7 +133,7 @@ function onEmpSearch() {
 					
 					tCount++; //for total number of records parsed!
 					//Add each record to the table - ready for displaying to the user.
-					tableData = tableData + "<tr ondblclick='yes()' id="+fPerNo+"><td>"+fFirstName+"</td><td>"+fLastName+"</td><td>"+
+					tableData = tableData + "<tr ondblclick='recordLoadDetail()' id="+fPerNo+"><td>"+fFirstName+"</td><td>"+fLastName+"</td><td>"+
 											fCompCode+"</td><td>"+fOrgText+"</td><td>"+fJobText+"</td><td>"+fPosText+"</td><td>"+
 											fCostCenter+"</td><td>"+fEmailID+"</td></tr>";
 				});
