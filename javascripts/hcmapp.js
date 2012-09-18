@@ -129,9 +129,11 @@ function onEmpSearch() {
 					
 					tCount++; //for total number of records parsed!
 					//Add each record to the table - ready for displaying to the user.
-					tableData = tableData + "<tr class='rowPerson' id="+fPerNo+"><td class='fName'>"+fFirstName+"</td><td>"+fLastName+"</td><td>"+
-											fCompCode+"</td><td>"+fOrgText+"</td><td>"+fJobText+"</td><td>"+fPosText+"</td><td>"+
-											fCostCenter+"</td><td>"+fEmailID+"</td></tr>";
+					tableData = tableData + "<tr class='rowPerson' id="+fPerNo+"><td class='fName'>"
+											+fFirstName+"</td><td class='lName'>"+fLastName+"</td><td class='cCode'>"+
+											fCompCode+"</td><td class='oText'>"+fOrgText+"</td><td class='jText'>"+fJobText+
+											"</td><td class='pText'>"+fPosText+"</td><td class='cCenter'>"+
+											fCostCenter+"</td><td class='eID'>"+fEmailID+"</td></tr>";
 				});
 				
 				//Now, display the table ONLY when we have more than one record.
@@ -155,8 +157,14 @@ function onEmpSearch() {
 $('tr.rowPerson').live('dblclick',function(){
 	var personID = $(this).attr('id');
 	console.log("id: "+personID);
-	var fName = $(this).find(".fName").html();
-	console.log("First Name:" +fName);
+	var fullName = $(this).find(".fName").html() + $(this).find(".lName").html();
+	var compCode = $(this).find(".cCode").html();
+	var orgText = $(this).find(".oText").html();
+	var jobText = $(this).find(".jText").html();
+	var posText = $(this).find(".pText").html();
+	var costCenter = $(this).find(".cCenter").html();
+	var emailID = $(this).find(".eID").html();
+	console.log(personID+"--"+fullName+"--"+compCode+"--"+orgText+"--"+jobText+"--"+posText+"--"+costCenter+"--"+emailID);
 });
 
 
