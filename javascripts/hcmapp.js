@@ -172,8 +172,8 @@ $('tr.rowPerson').live('dblclick',function(){
 	$("detailPTitle").html(posText);
 	$("detailCCenter").html(costCenter);
 	$("detailEID").html(emailID);
-	$("detailRecord").show();
-	$("displayRecord").hide();
+	$("#detailRecord").show();
+	$("#displayRecord").hide();
 	console.log(personID+"--"+fullName+"--"+compCode+"--"+orgText+"--"+jobText+"--"+posText+"--"+costCenter+"--"+emailID);
 });
 
