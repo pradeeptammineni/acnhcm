@@ -1,5 +1,6 @@
 var mini;
 var personID = '';
+var ADDRESS_SUBTYPE = '3';
 
 // On view load, wire up static actions and retrieve initial data
 function init() {
@@ -153,6 +154,32 @@ function onEmpSearch() {
 	});
 }
 
+
+$('a.addLink').click(function(){
+	var ;
+	$('a.annPayLink').removeClass('active');
+	$('a.bankLink').removeClass('active');
+	$('a.perDocLink').removeClass('active');
+	$(this).addClass('active');
+	
+	$('#addList').show();
+	$('#annPayList').hide();
+	$('#bankList').hide();
+	$('#perDocList').hide();
+	var todayDate = getTodaysDate();
+	var soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetlist><Addressempkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Addressempkey><Employeenumber>'+personID+'</Employeenumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Timeintervalhigh>'+todayDate+'</Timeintervalhigh><Timeintervallow>'+todayDate+'</Timeintervallow></urn:AddressempGetlist></soapenv:Body></soapenv:Envelope>';
+	osapi.jive.connects.post({
+		'alias' : 'SAPHCM',
+		'href' : '/z_bapi_addressemp_getlist/801/z_bapi_addressemp_getlist/bind1',
+		'body' : soap_envelope,
+		'format' : 'text',
+		'headers' : { 'content-type' : ['text/xml'] }
+	}).execute(function(response) {
+		console.log("Response from Address: "+response.content);
+	});
+	
+});
+
 // On double-clicking each row, let's 
 // get the details displayed...
 $('tr.rowPerson').live('dblclick',function(){
@@ -179,7 +206,6 @@ $('tr.rowPerson').live('dblclick',function(){
 	//console.log(personID+"--"+fullName+"--"+compCode+"--"+orgText+"--"+jobText+"--"+posText+"--"+costCenter+"--"+emailID);
 });
 
-// <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetlist><Addressempkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Addressempkey><Employeenumber>00065013</Employeenumber><Subtype>3</Subtype><Timeintervalhigh>*****</Timeintervalhigh><Timeintervallow>*****</Timeintervallow></urn:AddressempGetlist></soapenv:Body></soapenv:Envelope>
 // Having "Back button in Search Results.
 // Getting back to "Search" form!!
 function onBackSearch () {
