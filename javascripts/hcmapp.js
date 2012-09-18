@@ -157,7 +157,7 @@ function onEmpSearch() {
 $('tr.rowPerson').live('dblclick',function(){
 	var personID = $(this).attr('id');
 	console.log("id: "+personID);
-	var fullName = $(this).find(".fName").html() + $(this).find(".lName").html();
+	var fullName = $(this).find(".fName").html() +" "+ $(this).find(".lName").html();
 	var compCode = $(this).find(".cCode").html();
 	var orgText = $(this).find(".oText").html();
 	var jobText = $(this).find(".jText").html();
@@ -174,7 +174,7 @@ $('tr.rowPerson').live('dblclick',function(){
 	$("#detailEID").html(emailID);
 	$("#detailRecord").show();
 	$("#displayRecord").hide();
-	console.log(personID+"--"+fullName+"--"+compCode+"--"+orgText+"--"+jobText+"--"+posText+"--"+costCenter+"--"+emailID);
+	//console.log(personID+"--"+fullName+"--"+compCode+"--"+orgText+"--"+jobText+"--"+posText+"--"+costCenter+"--"+emailID);
 });
 
 // <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetlist><Addressempkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Addressempkey><Employeenumber>00065013</Employeenumber><Subtype>3</Subtype><Timeintervalhigh>*****</Timeintervalhigh><Timeintervallow>*****</Timeintervallow></urn:AddressempGetlist></soapenv:Body></soapenv:Envelope>
