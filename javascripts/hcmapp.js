@@ -33,8 +33,9 @@ $('tr').dblclick(function() {
 	console.log(id+"Handler for .dblclick() called.");
 });
 */
-$('#TableBody tr').on('dblclick', function() {
-console.log('item anchor clicked');
+$('#TableBody').on('dblclick', 'tr', function(event) {
+	event.preventdefault();
+	console.log('item anchor clicked');
 });
 
 //When the user searches for an employee, we are  
