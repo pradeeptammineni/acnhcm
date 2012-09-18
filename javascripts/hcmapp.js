@@ -134,7 +134,7 @@ function onEmpSearch() {
 					
 					tCount++; //for total number of records parsed!
 					//Add each record to the table - ready for displaying to the user.
-					tableData = tableData + "<tr id="+fPerNo+"><td>"+fFirstName+"</td><td>"+fLastName+"</td><td>"+
+					tableData = tableData + "<tr class='rowPerson' id="+fPerNo+"><td>"+fFirstName+"</td><td>"+fLastName+"</td><td>"+
 											fCompCode+"</td><td>"+fOrgText+"</td><td>"+fJobText+"</td><td>"+fPosText+"</td><td>"+
 											fCostCenter+"</td><td>"+fEmailID+"</td></tr>";
 				});
@@ -155,6 +155,9 @@ function onEmpSearch() {
 	});
 }
 
+$('tr.rowPerson').dblclick(function(){
+	alert ("hi");
+}
 // Having "Back button in Search Results.
 // Getting back to "Search" form!!
 function onBackSearch () {
