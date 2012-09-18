@@ -164,10 +164,20 @@ $('tr.rowPerson').live('dblclick',function(){
 	var posText = $(this).find(".pText").html();
 	var costCenter = $(this).find(".cCenter").html();
 	var emailID = $(this).find(".eID").html();
+	
+	$("detailName").html(fullName);
+	$("detailCCode").html(compCode);
+	$("detailTeam").html(orgText);
+	$("detailJTitle").html(jobText);
+	$("detailPTitle").html(posText);
+	$("detailCCenter").html(costCenter);
+	$("detailEID").html(emailID);
+	$("detailRecord").show();
+	$("displayRecord").hide();
 	console.log(personID+"--"+fullName+"--"+compCode+"--"+orgText+"--"+jobText+"--"+posText+"--"+costCenter+"--"+emailID);
 });
 
-
+// <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetlist><Addressempkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Addressempkey><Employeenumber>00065013</Employeenumber><Subtype>3</Subtype><Timeintervalhigh>*****</Timeintervalhigh><Timeintervallow>*****</Timeintervallow></urn:AddressempGetlist></soapenv:Body></soapenv:Envelope>
 // Having "Back button in Search Results.
 // Getting back to "Search" form!!
 function onBackSearch () {
