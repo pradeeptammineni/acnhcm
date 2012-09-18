@@ -162,7 +162,8 @@ function onEmpSearch() {
 // On double-clicking each row, let's 
 // get the details displayed...
 $('tr.rowPerson').live('dblclick',function(){
-	alert ("hi");
+	var id = $(this).attr('id');
+	console.log("id: "+id);
 });
 
 
