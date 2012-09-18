@@ -1,4 +1,5 @@
 var mini;
+var personID = '';
 
 // On view load, wire up static actions and retrieve initial data
 function init() {
@@ -155,7 +156,8 @@ function onEmpSearch() {
 // On double-clicking each row, let's 
 // get the details displayed...
 $('tr.rowPerson').live('dblclick',function(){
-	var personID = $(this).attr('id');
+	personID = '';
+	personID = $(this).attr('id');
 	console.log("id: "+personID);
 	var fullName = $(this).find(".fName").html() +" "+ $(this).find(".lName").html();
 	var compCode = $(this).find(".cCode").html();
