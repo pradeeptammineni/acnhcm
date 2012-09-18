@@ -27,15 +27,6 @@ function getTodaysDate()
 	return (todaysDate);
 }
 
-function recordLoadDetail() {
-	console.log("yes");
-	//var fname = $(this).parent('tr').children('td:first-child').text();
-	//console.log("first name:"+fname);
-	console.log(this);
-	var id = $(this).attr('id');
-	console.log("id: "+id);
-}
-
 //When the user searches for an employee, we are  
 //to fetch the search results from the server.
 function onEmpSearch() {
@@ -138,7 +129,7 @@ function onEmpSearch() {
 					
 					tCount++; //for total number of records parsed!
 					//Add each record to the table - ready for displaying to the user.
-					tableData = tableData + "<tr class='rowPerson' id="+fPerNo+"><td>"+fFirstName+"</td><td>"+fLastName+"</td><td>"+
+					tableData = tableData + "<tr class='rowPerson' id="+fPerNo+"><td class='fName'>"+fFirstName+"</td><td>"+fLastName+"</td><td>"+
 											fCompCode+"</td><td>"+fOrgText+"</td><td>"+fJobText+"</td><td>"+fPosText+"</td><td>"+
 											fCostCenter+"</td><td>"+fEmailID+"</td></tr>";
 				});
@@ -162,8 +153,10 @@ function onEmpSearch() {
 // On double-clicking each row, let's 
 // get the details displayed...
 $('tr.rowPerson').live('dblclick',function(){
-	var id = $(this).attr('id');
-	console.log("id: "+id);
+	var personID = $(this).attr('id');
+	console.log("id: "+personID);
+	var fName = $(this).find(".fName").html();
+	console.log("First Name:" +fName);
 });
 
 
