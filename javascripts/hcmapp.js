@@ -27,11 +27,12 @@ function getTodaysDate()
 	return (todaysDate);
 }
 
+/*
 $('tr').dblclick(function() {
 	var id = $(this).attr('id');
 	console.log(id+"Handler for .dblclick() called.");
 });
-
+*/
 //When the user searches for an employee, we are  
 //to fetch the search results from the server.
 function onEmpSearch() {
