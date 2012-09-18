@@ -33,6 +33,10 @@ $('tr').dblclick(function() {
 	console.log(id+"Handler for .dblclick() called.");
 });
 */
+$('#TableBody tr').on('dblclick', function() {
+console.log('item anchor clicked');
+});
+
 //When the user searches for an employee, we are  
 //to fetch the search results from the server.
 function onEmpSearch() {
@@ -155,12 +159,13 @@ function onEmpSearch() {
 		}
 	});
 }
-
+/*
 // On double-clicking each row, let's 
 // get the details displayed...
 $('tr.rowPerson').dblclick(function(){
 	alert ("hi");
 });
+*/
 
 // Having "Back button in Search Results.
 // Getting back to "Search" form!!
