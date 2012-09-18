@@ -56,6 +56,25 @@ table.j-table {
  border:1px solid #222; margin:20px; box-shadow:0 0 5px #888
 }
 
-table.j-table thead tr th{ 
+table.j-table thead tr th { 
   padding:8px 15px 8px 8px; text-align:left; font-weight:bold
+}
+
+div.menu {
+   background-color: #12378B;
+	border: 0px solid #222;
+	padding: 5px 0 0 5px
+}
+
+div.menu a:link, div.menu a:visited { 
+   display: inline-block; 
+   padding: 10px 20px; 
+   text-decoration: none; 
+   color: #12378B; 
+   font-weight: bold
+}
+
+div.menu a:hover, div.menu a.active:link, div.menu a.active:visited { 
+   background: #E7E7F7; 
+   color: #12378B
 }
