@@ -31,6 +31,7 @@ function recordLoadDetail() {
 	console.log("yes");
 	//var fname = $(this).parent('tr').children('td:first-child').text();
 	//console.log("first name:"+fname);
+	console.log(this);
 	var id = $(this).attr('id');
 	console.log("id: "+id);
 }
