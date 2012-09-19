@@ -197,12 +197,12 @@ $('a.addLink').click(function(){
 			//$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
 			//Populate the address table
 			$("#addCO").val($addDetails.find('Coname').text());
-			$("#addLine1").val($addDetails.children('Streetandhouseno').text());
-			$("#addLine2").val($addDetails.children('Scndaddressline').text());
+			$("#addLine1").val($addDetails.find('Streetandhouseno').text());
+			$("#addLine2").val($addDetails.find('Scndaddressline').text());
 			$("#addCity").val($addDetails.find('City').text());
-			$("#addCode").val($addDetails.children('Postalcodecity').text());
-			$("#addState").val($addDetails.children('State').text());
-			$("#addCountry").val($addDetails.children('Country').text());
+			$("#addCode").val($addDetails.find('Postalcodecity').text());
+			$("#addState").val($addDetails.find('State').text());
+			$("#addCountry").val($addDetails.find('Country').text());
 		});
 		
 	});
