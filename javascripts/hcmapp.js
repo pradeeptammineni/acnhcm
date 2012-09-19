@@ -197,7 +197,12 @@ $('a.addLink').click(function(){
 			$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
 			//Populate the address table
 			$("#addCO").val($addDetails.children('Coname').text());
-			
+			$("#addLine1").val($addDetails.children('Streetandhouseno').text());
+			$("#addLine2").val($addDetails.children('Scndaddressline').text());
+			$("#addCity").val($addDetails.children('City').text());
+			$("#addCode").val($addDetails.children('Postalcodecity').text());
+			$("#addState").val($addDetails.children('State').text());
+			$("#addCountry").val($addDetails.children('Country').text());
 		});
 		
 	});
