@@ -192,6 +192,12 @@ $('a.addLink').click(function(){
 			'headers' : { 'content-type' : ['text/xml'] }
 		}).execute(function(callback) {
 			console.log("Response from Address 2: "+callback.content);
+			empData = $.parseXML(callback.content);
+			$tempData = $(empData);
+			$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
+			//Populate the address table
+			$("#addCO").val($addDetails.children('Coname').text());
+			
 		});
 		
 	});
