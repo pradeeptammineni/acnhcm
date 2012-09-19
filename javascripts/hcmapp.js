@@ -193,13 +193,13 @@ $('a.addLink').click(function(){
 		}).execute(function(callback) {
 			console.log("Response from Address 2: "+callback.content);
 			empData = $.parseXML(callback.content);
-			$tempData = $(empData);
-			$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
+			$addDetails= $(empData);
+			//$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
 			//Populate the address table
-			$("#addCO").val($addDetails.children('Coname').text());
+			$("#addCO").val($addDetails.find('Coname').text());
 			$("#addLine1").val($addDetails.children('Streetandhouseno').text());
 			$("#addLine2").val($addDetails.children('Scndaddressline').text());
-			$("#addCity").val($addDetails.children('City').text());
+			$("#addCity").val($addDetails.find('City').text());
 			$("#addCode").val($addDetails.children('Postalcodecity').text());
 			$("#addState").val($addDetails.children('State').text());
 			$("#addCountry").val($addDetails.children('Country').text());
