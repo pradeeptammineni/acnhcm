@@ -61,20 +61,21 @@ table.j-table thead tr th {
 }
 
 div.menu {
-   background-color: #12378B;
+	background-color: #12378B;
 	border: 0px solid #222;
 	padding: 5px 0 0 5px
 }
 
 div.menu a:link, div.menu a:visited { 
-   display: inline-block; 
-   padding: 10px 20px; 
-   text-decoration: none; 
-   color: #12378B; 
-   font-weight: bold
+	display: inline-block; 
+	padding: 5px 5px; 
+	text-decoration: none;
+	background-color: while;
+	color: #12378B; 
+	font-weight: bold
 }
 
 div.menu a:hover, div.menu a.active:link, div.menu a.active:visited { 
-   background: #E7E7F7; 
-   color: #12378B
+	background: #E7E7F7; 
+	color: #12378B
 }
