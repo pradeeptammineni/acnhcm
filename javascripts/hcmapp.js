@@ -224,7 +224,7 @@ function onBackSearch () {
 }
 
 function onBackDetail () {
-	$('a.addLink').addClass('active');
+	$('a.addLink').removeClass('active');
 	$('a.annPayLink').removeClass('active');
 	$('a.bankLink').removeClass('active');
 	$('a.perDocLink').removeClass('active');
