@@ -175,7 +175,25 @@ $('a.addLink').click(function(){
 		'format' : 'text',
 		'headers' : { 'content-type' : ['text/xml'] }
 	}).execute(function(response) {
+		var dValBeg, dValEnd, addDetails, empData, tempData = '';
 		console.log("Response from Address: "+response.content);
+		empData = $.parseXML(response.content);
+		$tempData = $(empData);
+		$addDetails = $tempData.find('Addressempkey');
+		$addDetails = $addDetails.find('item');
+		dValBeg = $addDetails.children('Validbegin').text();
+		dValEnd = $addDetails.children('Validend').text();
+		soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempGetdetail></soapenv:Body></soapenv:Envelope>';
+		osapi.jive.connects.post({
+			'alias' : 'SAPHCM',
+			'href' : '/z_bapi_addressemp_getdetail/801/z_bapi_addressemp_getdetail/bind1',
+			'body' : soap_envelope,
+			'format' : 'text',
+			'headers' : { 'content-type' : ['text/xml'] }
+		}).execute(function(callback) {
+			console.log("Response from Address 2: "+callback.content);
+		});
+		
 	});
 	
 });
