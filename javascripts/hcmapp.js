@@ -1,5 +1,5 @@
 var mini;
-var personID, dValEnd, dValBeg = '';
+var personID, dValEnd, dValBeg, lockInd, objID = '';
 var ADDRESS_SUBTYPE = '3';
 
 // On view load, wire up static actions and retrieve initial data
@@ -232,6 +232,7 @@ function onAddUpdate() {
 		}).execute(function(callback) {
 			console.log("Address updated: "+callback.response)
 		});
+	gadgets.window.adjustHeight();
 }
 
 // On double-clicking each row, let's 
