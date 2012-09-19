@@ -224,6 +224,16 @@ function onBackSearch () {
 }
 
 function onBackDetail () {
+	$('a.addLink').addClass('active');
+	$('a.annPayLink').removeClass('active');
+	$('a.bankLink').removeClass('active');
+	$('a.perDocLink').removeClass('active');
+	
+	$('#addList').hide();
+	$('#annPayList').hide();
+	$('#bankList').hide();
+	$('#perDocList').hide();
+	
 	$('#displayRecord').show();
 	$('#detailRecord').hide();
 }
