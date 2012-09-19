@@ -12,6 +12,7 @@ function init() {
 	$("#emp-search-button").click(onEmpSearch);
 	//From "Search Results" -> BACK to "Search" form
 	$("#search-results-back").click(onBackSearch);
+	$("#results-back").click(onBackDetail);
 	mini = new gadgets.MiniMessage();
 }
 
@@ -222,5 +223,9 @@ function onBackSearch () {
 	gadgets.window.adjustHeight();
 }
 
+function onBackDetail () {
+	$('#displayRecord').show();
+	$('#detailRecord').hide();
+}
 // Register our on-view-load handler
 gadgets.util.registerOnLoadHandler(init);
