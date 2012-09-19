@@ -70,12 +70,12 @@ div.menu a:link, div.menu a:visited {
 	display: inline-block; 
 	padding: 5px 5px; 
 	text-decoration: none;
-	background-color: while;
+	background-color: white;
 	color: #12378B; 
 	font-weight: bold
 }
 
 div.menu a:hover, div.menu a.active:link, div.menu a.active:visited { 
-	background: #E7E7F7; 
+	background: gray; /*#E7E7F7*/
 	color: #12378B
 }
