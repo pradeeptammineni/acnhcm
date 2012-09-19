@@ -187,7 +187,8 @@ $('a.addLink').click(function(){
 		dValBeg = $addDetails.children('Validbegin').text();
 		dValEnd = $addDetails.children('Validend').text();
 		gadgets.window.adjustHeight();
-		soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempGetdetail></soapenv:Body></soapenv:Envelope>';		osapi.jive.connects.post({
+		soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempGetdetail></soapenv:Body></soapenv:Envelope>';		
+		osapi.jive.connects.post({
 			'alias' : 'SAPHCM',
 			'href' : '/z_bapi_addressemp_getdetail/801/z_bapi_addressemp_getdetail/bind1',
 			'body' : soap_envelope,
@@ -214,7 +215,22 @@ function onAddUpdate() {
 	var soap_envelope, addCO, addLine1, addLine2, 
 			addCity, addCode, addState, addCountry = '';
 	addCO = $("#addCO").val();
-	console.log(addCO);
+	addLine1 = $("#addLine1").val();
+	addLine2 = $("#addLine2").val();
+	addCity = $("#addCity").val();
+	addCode = $("#addCode").val();
+	addState = $("#addState").val();
+	addCountry = $("#addCountry").val();
+	soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempChange><City>'+addCity+'</City><Coname>'+addCO+'</Coname><Country>'+addCountry+'</Country><District></District><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Nocommit></Nocommit><Objectid></Objectid><Postalcodecity>'+addCode+'</Postalcodecity><Recordnumber></Recordnumber><Scndaddressline>'+addLine2+'</Scndaddressline><State>'+addState+'</State><Streetandhouseno>'+addLine1+'</Streetandhouseno><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Telephonenumber></Telephonenumber><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempChange></soapenv:Body></soapenv:Envelope>';
+	osapi.jive.connects.post({
+			'alias' : 'SAPHCM',
+			'href' : '/z_bapi_addressemp_change/801/z_bapi_addressemp_change/bind1',
+			'body' : soap_envelope,
+			'format' : 'text',
+			'headers' : { 'content-type' : ['text/xml'] }
+		}).execute(function(callback) {
+			console.log("Address updated: "+callback.response)
+		});
 }
 
 // On double-clicking each row, let's 
