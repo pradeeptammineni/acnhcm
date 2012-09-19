@@ -1,5 +1,5 @@
 var mini;
-var personID = '';
+var personID, dValEnd, dValBeg = '';
 var ADDRESS_SUBTYPE = '3';
 
 // On view load, wire up static actions and retrieve initial data
@@ -13,6 +13,7 @@ function init() {
 	//From "Search Results" -> BACK to "Search" form
 	$("#search-results-back").click(onBackSearch);
 	$("#results-back").click(onBackDetail);
+	$("#submit-address-update").click(onAddUpdate);
 	mini = new gadgets.MiniMessage();
 }
 
@@ -155,6 +156,7 @@ function onEmpSearch() {
 	});
 }
 
+
 // The "Address" link in the top-menu
 $('a.addLink').click(function(){
 	$('a.annPayLink').removeClass('active');
@@ -166,6 +168,7 @@ $('a.addLink').click(function(){
 	$('#annPayList').hide();
 	$('#bankList').hide();
 	$('#perDocList').hide();
+	gadgets.window.adjustHeight();
 	var todayDate = getTodaysDate();
 	var soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetlist><Addressempkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Addressempkey><Employeenumber>'+personID+'</Employeenumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Timeintervalhigh>'+todayDate+'</Timeintervalhigh><Timeintervallow>'+todayDate+'</Timeintervallow></urn:AddressempGetlist></soapenv:Body></soapenv:Envelope>';
 	osapi.jive.connects.post({
@@ -175,7 +178,7 @@ $('a.addLink').click(function(){
 		'format' : 'text',
 		'headers' : { 'content-type' : ['text/xml'] }
 	}).execute(function(response) {
-		var dValBeg, dValEnd, addDetails, empData, tempData = '';
+		var addDetails, empData, tempData = '';
 		console.log("Response from Address: "+response.content);
 		empData = $.parseXML(response.content);
 		$tempData = $(empData);
@@ -184,8 +187,7 @@ $('a.addLink').click(function(){
 		dValBeg = $addDetails.children('Validbegin').text();
 		dValEnd = $addDetails.children('Validend').text();
 		gadgets.window.adjustHeight();
-		soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempGetdetail></soapenv:Body></soapenv:Envelope>';
-		osapi.jive.connects.post({
+		soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempGetdetail></soapenv:Body></soapenv:Envelope>';		osapi.jive.connects.post({
 			'alias' : 'SAPHCM',
 			'href' : '/z_bapi_addressemp_getdetail/801/z_bapi_addressemp_getdetail/bind1',
 			'body' : soap_envelope,
@@ -205,10 +207,15 @@ $('a.addLink').click(function(){
 			$("#addState").val($addDetails.find('State').text());
 			$("#addCountry").val($addDetails.find('Country').text());
 		});
-		
 	});
-	
 });
+
+function onAddUpdate() {
+	var soap_envelope, addCO, addLine1, addLine2, 
+			addCity, addCode, addState, addCountry = '';
+	addCO = $("#addCO").val();
+	console.log(addCO);
+}
 
 // On double-clicking each row, let's 
 // get the details displayed...
@@ -231,8 +238,11 @@ $('tr.rowPerson').live('dblclick',function(){
 	$("#detailPTitle").html(posText);
 	$("#detailCCenter").html(costCenter);
 	$("#detailEID").html(emailID);
-	$("#detailRecord").show();
+	
 	$("#displayRecord").hide();
+	$("#detailRecord").show();
+	
+	gadgets.window.adjustHeight();
 	//console.log(personID+"--"+fullName+"--"+compCode+"--"+orgText+"--"+jobText+"--"+posText+"--"+costCenter+"--"+emailID);
 });
 
@@ -253,6 +263,8 @@ function onBackSearch () {
 	gadgets.window.adjustHeight();
 }
 
+// On clicking Back in Detail View, 
+// make all sections to disappear.
 function onBackDetail () {
 	$('a.addLink').removeClass('active');
 	$('a.annPayLink').removeClass('active');
@@ -264,8 +276,10 @@ function onBackDetail () {
 	$('#bankList').hide();
 	$('#perDocList').hide();
 	
-	$('#displayRecord').show();
 	$('#detailRecord').hide();
+	$('#displayRecord').show();
+	
+	gadgets.window.adjustHeight();
 }
 // Register our on-view-load handler
 gadgets.util.registerOnLoadHandler(init);
