@@ -171,6 +171,19 @@ function onEmpSearch() {
 	});
 }
 
+$('a.perDocLink').click(function() {
+	$('a.addLink').removeClass('active');
+	$('a.annPayLink').removeClass('active');
+	$('a.bankLink').removeClass('active');
+	$(this).addClass('active');
+	
+	$('#addList').hide();
+	$('#annPayList').hide();
+	$('#bankList').hide();
+	$('#perDocList').show();
+	gadgets.window.adjustHeight();
+});
+
 $('a.bankLink').click(function() {
 	$('a.addLink').removeClass('active');
 	$('a.annPayLink').removeClass('active');
