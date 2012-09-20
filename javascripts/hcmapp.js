@@ -208,6 +208,17 @@ $('a.annPayLink').click(function() {
 	$('#bankList').hide();
 	$('#perDocList').hide();
 	gadgets.window.adjustHeight();
+	
+	var soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:BasicpayGetlist><Basicpayempkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Basicpayempkey><Employeenumber>'+personID+'</Employeenumber><!--Optional:--><Subtype>'+BASICPAY_SUBTYPE+'</Subtype><Timeintervalhigh>'+todaysDate+'</Timeintervalhigh><Timeintervallow>'+todaysDate+'</Timeintervallow></urn:BasicpayGetlist></soapenv:Body></soapenv:Envelope>';
+	osapi.jive.connects.post({
+		'alias' : 'SAPHCM',
+		'href' : '/z_bapi_basicpay_getlist/801/z_bapi_basicpay_getlist/bind1',
+		'body' : soap_envelope,
+		'format' : 'text',
+		'headers' : { 'content-type' : ['text/xml'] }
+	}).execute(function(response) {
+	console.log("Basic Pay:"+response.content);
+	});
 });
 
 // The "Address" link in the top-menu
@@ -231,7 +242,6 @@ $('a.addLink').click(function(){
 		'headers' : { 'content-type' : ['text/xml'] }
 	}).execute(function(response) {
 		var addDetails, empData, tempData = '';
-		console.log("Response from Address: "+response.content);
 		empData = $.parseXML(response.content);
 		$tempData = $(empData);
 		$addDetails = $tempData.find('Addressempkey');
