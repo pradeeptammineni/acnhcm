@@ -47,9 +47,17 @@ table.crud thead, table.data-grid thead tr th, table.data-grid tfoot tr th {
   border: 1px solid #222;
 }
 
+td.heading-top-cell {
+ font-size: +2;	
+}
+
 /* Search form table ID: j-table*/
 table.j-table tr td {
  padding: 10px; 
+}
+
+table.j-table tr td.heading-cell {
+ font-weight: bold; 
 }
 
 table.j-table {
