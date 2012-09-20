@@ -234,13 +234,12 @@ $('a.annPayLink').click(function() {
 			console.log("Response from Pay 2: "+callback.content);
 			payData = $.parseXML(callback.content);
 			$payDetails= $(payData);
-		/*
 			//Populate the address table
-			$("#payArea").val($payDetails.find('Coname').text());
-			$("#payGroup").val($payDetails.find('Streetandhouseno').text());
-			$("#payLevel").val($payDetails.find('Scndpayressline').text());
-			$("#paySalary").val($payDetails.find('City').text());
-			$("#payCurrency").val($payDetails.find('Postalcodecity').text());		*/
+			$("#payArea").val($payDetails.find('Payscalearea').text());
+			$("#payGroup").val($payDetails.find('Payscalegroup').text());
+			$("#payLevel").val($payDetails.find('Payscalelevel').text());
+			$("#paySalary").val($payDetails.find('Annualsalary').text());
+			$("#payCurrency").val($payDetails.find('Currencyannualsalary').text());	
 		});
 	});
 });
