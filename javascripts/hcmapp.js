@@ -225,10 +225,10 @@ $('a.bankLink').click(function() {
 			$bankDetails= $(bankData);
 			
 			//Populate the address table
-			$("#bankKey").val($payDetails.find('Bankkey').text());
-			$("#bankAcNum").val($payDetails.find('Accountno').text());
-			$("#bankCheck").val($payDetails.find('Checkdigit').text());
-			$("#bankIBAN").val($payDetails.find('Iban').text());
+			$("#bankKey").val($bankDetails.find('Bankkey').text());
+			$("#bankAcNum").val($bankDetails.find('Accountno').text());
+			$("#bankCheck").val($bankDetails.find('Checkdigit').text());
+			$("#bankIBAN").val($bankDetails.find('Iban').text());
 		});
 	});
 });
