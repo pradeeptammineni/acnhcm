@@ -237,14 +237,15 @@ function onAddUpdate() {
 	addState = $("#addState").val();
 	addCountry = $("#addCountry").val();
 	soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmployeeEnqueue><Number>'+personID+'</Number></urn:EmployeeEnqueue></soapenv:Body></soapenv:Envelope>';
+	console.log("Enqueue: "+soap_envelope);
 	osapi.jive.connects.post({
 			'alias' : 'SAPHCM',
 			'href' : '/z_bapi_employee_enqueue/801/z_bapi_employee_enqueue/bind1',
 			'body' : soap_envelope,
 			'format' : 'text',
 			'headers' : { 'content-type' : ['text/xml'] }
-		}).execute(function(callback) {
-			console.log("Enqueued: "+callback.response);
+		}).execute(function(response) {
+			console.log("Enqueued: "+response.content);
 			soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempChange><City>'+addCity+'</City><Coname>'+addCO+'</Coname><Country>'+addCountry+'</Country><District></District><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Nocommit></Nocommit><Objectid></Objectid><Postalcodecity>'+addCode+'</Postalcodecity><Recordnumber></Recordnumber><Scndaddressline>'+addLine2+'</Scndaddressline><State>'+addState+'</State><Streetandhouseno>'+addLine1+'</Streetandhouseno><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Telephonenumber></Telephonenumber><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempChange></soapenv:Body></soapenv:Envelope>';
 			console.log(soap_envelope);
 			osapi.jive.connects.post({
@@ -254,7 +255,7 @@ function onAddUpdate() {
 					'format' : 'text',
 					'headers' : { 'content-type' : ['text/xml'] }
 				}).execute(function(callback) {
-					console.log("Address updated: "+callback.response);
+					console.log("Address updated: "+callback.content);
 				});			
 		});	
 	gadgets.window.adjustHeight();
