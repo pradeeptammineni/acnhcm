@@ -2,6 +2,8 @@ var mini;
 var personID, todaysDate, dValEnd, dValBeg, lockInd, objID = '';
 var ADDRESS_SUBTYPE = '3';
 var BASICPAY_SUBTYPE = '0';
+var BANKDETAIL_SUBTYPE = '0';
+
 
 // On view load, wire up static actions and retrieve initial data
 function init() {
@@ -195,6 +197,41 @@ $('a.bankLink').click(function() {
 	$('#bankList').show();
 	$('#perDocList').hide();
 	gadgets.window.adjustHeight();
+	
+	var soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:BankdetailGetlist><Bankdetailkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Bankdetailkey><Employeenumber>'+personID+'</Employeenumber><Subtype>'+BANKDETAIL_SUBTYPE+'</Subtype><Timeintervalhigh>'+todaysDate+'</Timeintervalhigh><Timeintervallow>'+todaysDate+'</Timeintervallow></urn:BankdetailGetlist></soapenv:Body></soapenv:Envelope>';
+	osapi.jive.connects.post({
+		'alias' : 'SAPHCM',
+		'href' : '/z_bapi_bankdetail_getlist/801/z_bapi_bankdetail_getlist/bind1',
+		'body' : soap_envelope,
+		'format' : 'text',
+		'headers' : { 'content-type' : ['text/xml'] }
+	}).execute(function(response) {
+		console.log("Bank Details: "+response.content);
+		var bankDetails, bankData, tempData, tValBeg, tValEnd = '';
+		bankData = $.parseXML(response.content);
+		$tempData = $(bankData);
+		tValBeg = $tempData.find('Validbegin').text();
+		tValEnd = $tempData.find('Validend').text();
+		soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:BankdetailGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+BANKDETAIL_SUBTYPE+'</Subtype><Validitybegin>'+tValBeg+'</Validitybegin><Validityend>'+tValEnd+'</Validityend></urn:BankdetailGetdetail></soapenv:Body></soapenv:Envelope>';
+		osapi.jive.connects.post({
+			'alias' : 'SAPHCM',
+			'href' : '/z_bapi_bankdetail_getdetail/801/z_bapi_bankdetail_getdetail/bind1',
+			'body' : soap_envelope,
+			'format' : 'text',
+			'headers' : { 'content-type' : ['text/xml'] }
+		}).execute(function(callback) {
+			console.log("Response from Bank 2: "+callback.content);
+			bankData = $.parseXML(callback.content);
+			$bankDetails= $(bankData);
+			/*
+			//Populate the address table
+			$("#payArea").val($payDetails.find('Payscalearea').text());
+			$("#payGroup").val($payDetails.find('Payscalegroup').text());
+			$("#payLevel").val($payDetails.find('Payscalelevel').text());
+			$("#paySalary").val($payDetails.find('Annualsalary').text());
+			$("#payCurrency").val($payDetails.find('Currencyannualsalary').text());	 */
+		});
+	});
 });
 
 $('a.annPayLink').click(function() {
