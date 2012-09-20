@@ -171,6 +171,19 @@ function onEmpSearch() {
 	});
 }
 
+$('a.bankLink').click(function() {
+	$('a.addLink').removeClass('active');
+	$('a.annPayLink').removeClass('active');
+	$('a.perDocLink').removeClass('active');
+	$(this).addClass('active');
+	
+	$('#addList').hide();
+	$('#annPayList').hide();
+	$('#bankList').show();
+	$('#perDocList').hide();
+	gadgets.window.adjustHeight();
+});
+
 $('a.annPayLink').click(function() {
 	$('a.addLink').removeClass('active');
 	$('a.bankLink').removeClass('active');
@@ -182,8 +195,6 @@ $('a.annPayLink').click(function() {
 	$('#bankList').hide();
 	$('#perDocList').hide();
 	gadgets.window.adjustHeight();
-	
-	
 });
 
 // The "Address" link in the top-menu
