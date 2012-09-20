@@ -223,13 +223,12 @@ $('a.bankLink').click(function() {
 			console.log("Response from Bank 2: "+callback.content);
 			bankData = $.parseXML(callback.content);
 			$bankDetails= $(bankData);
-			/*
+			
 			//Populate the address table
-			$("#payArea").val($payDetails.find('Payscalearea').text());
-			$("#payGroup").val($payDetails.find('Payscalegroup').text());
-			$("#payLevel").val($payDetails.find('Payscalelevel').text());
-			$("#paySalary").val($payDetails.find('Annualsalary').text());
-			$("#payCurrency").val($payDetails.find('Currencyannualsalary').text());	 */
+			$("#bankKey").val($payDetails.find('Bankkey').text());
+			$("#bankAcNum").val($payDetails.find('Accountno').text());
+			$("#bankCheck").val($payDetails.find('Checkdigit').text());
+			$("#bankIBAN").val($payDetails.find('Iban').text());
 		});
 	});
 });
