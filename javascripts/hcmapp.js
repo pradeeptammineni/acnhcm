@@ -217,7 +217,31 @@ $('a.annPayLink').click(function() {
 		'format' : 'text',
 		'headers' : { 'content-type' : ['text/xml'] }
 	}).execute(function(response) {
-	console.log("Basic Pay:"+response.content);
+		console.log("Basic Pay:"+response.content);
+		var payDetails, payData, tempData, tValBeg, tValEnd = '';
+		payData = $.parseXML(response.content);
+		$tempData = $(payData);
+		tValBeg = $tempData.find('Validbegin').text();
+		tValEnd = $tempData.find('Validend').text();
+		soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:BasicpayGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+BASICPAY_SUBTYPE+'</Subtype><Validitybegin>'+tValBeg+'</Validitybegin><Validityend>'+tValEnd+'</Validityend><Wagetypes><item><Wagetype></Wagetype><Amount></Amount><Number></Number><Timeunit></Timeunit><Indvaluat></Indvaluat><Addtotamnt></Addtotamnt><Operindic></Operindic><Nameofwagetype></Nameofwagetype></item></Wagetypes></urn:BasicpayGetdetail></soapenv:Body></soapenv:Envelope>';
+		osapi.jive.connects.post({
+			'alias' : 'SAPHCM',
+			'href' : '/z_bapi_basicpay_getdetail/801/z_bapi_basicpay_getdetail/bind1',
+			'body' : soap_envelope,
+			'format' : 'text',
+			'headers' : { 'content-type' : ['text/xml'] }
+		}).execute(function(callback) {
+			console.log("Response from Pay 2: "+callback.content);
+			payData = $.parseXML(callback.content);
+			$payDetails= $(payData);
+		/*
+			//Populate the address table
+			$("#payArea").val($payDetails.find('Coname').text());
+			$("#payGroup").val($payDetails.find('Streetandhouseno').text());
+			$("#payLevel").val($payDetails.find('Scndpayressline').text());
+			$("#paySalary").val($payDetails.find('City').text());
+			$("#payCurrency").val($payDetails.find('Postalcodecity').text());		*/
+		});
 	});
 });
 
@@ -257,7 +281,7 @@ $('a.addLink').click(function(){
 			'format' : 'text',
 			'headers' : { 'content-type' : ['text/xml'] }
 		}).execute(function(callback) {
-			console.log("Response from Address 2: "+callback.content);
+			//console.log("Response from Address 2: "+callback.content);
 			empData = $.parseXML(callback.content);
 			$addDetails= $(empData);
 			//$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
