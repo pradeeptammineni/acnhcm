@@ -158,6 +158,13 @@ function onEmpSearch() {
 				}
 				else { //Well, you have just one record, you may as well get to the form directly!
 					//...Later!
+					$("table#xmlTable tbody").append(tableData);
+					//Show the records' table and hide the search form.
+					$('#displayRecord').show();
+					$('#search-form').hide();
+					$('#emp-search-button').text("Search");
+					$('#emp-search-button').removeAttr('disabled');					
+					gadgets.window.adjustHeight();					
 				}
 			}
 		}
@@ -229,17 +236,27 @@ function onAddUpdate() {
 	addCode = $("#addCode").val();
 	addState = $("#addState").val();
 	addCountry = $("#addCountry").val();
-	soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempChange><City>'+addCity+'</City><Coname>'+addCO+'</Coname><Country>'+addCountry+'</Country><District></District><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Nocommit></Nocommit><Objectid></Objectid><Postalcodecity>'+addCode+'</Postalcodecity><Recordnumber></Recordnumber><Scndaddressline>'+addLine2+'</Scndaddressline><State>'+addState+'</State><Streetandhouseno>'+addLine1+'</Streetandhouseno><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Telephonenumber></Telephonenumber><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempChange></soapenv:Body></soapenv:Envelope>';
-	console.log(soap_envelope);
+	soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmployeeEnqueue><Number>'+personID+'</Number></urn:EmployeeEnqueue></soapenv:Body></soapenv:Envelope>';
 	osapi.jive.connects.post({
 			'alias' : 'SAPHCM',
-			'href' : '/z_bapi_addressemp_change/801/z_bapi_addressemp_change/bind1',
+			'href' : '/z_bapi_employee_enqueue/801/z_bapi_employee_enqueue/bind1',
 			'body' : soap_envelope,
 			'format' : 'text',
 			'headers' : { 'content-type' : ['text/xml'] }
 		}).execute(function(callback) {
-			console.log("Address updated: "+callback.response)
-		});
+			console.log("Enqueued: "+callback.response);
+			soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempChange><City>'+addCity+'</City><Coname>'+addCO+'</Coname><Country>'+addCountry+'</Country><District></District><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Nocommit></Nocommit><Objectid></Objectid><Postalcodecity>'+addCode+'</Postalcodecity><Recordnumber></Recordnumber><Scndaddressline>'+addLine2+'</Scndaddressline><State>'+addState+'</State><Streetandhouseno>'+addLine1+'</Streetandhouseno><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Telephonenumber></Telephonenumber><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempChange></soapenv:Body></soapenv:Envelope>';
+			console.log(soap_envelope);
+			osapi.jive.connects.post({
+					'alias' : 'SAPHCM',
+					'href' : '/z_bapi_addressemp_change/801/z_bapi_addressemp_change/bind1',
+					'body' : soap_envelope,
+					'format' : 'text',
+					'headers' : { 'content-type' : ['text/xml'] }
+				}).execute(function(callback) {
+					console.log("Address updated: "+callback.response);
+				});			
+		});	
 	gadgets.window.adjustHeight();
 }
 
