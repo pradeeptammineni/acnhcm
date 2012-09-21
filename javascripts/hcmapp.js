@@ -342,16 +342,6 @@ function onAddUpdate() {
 	addCode = $("#addCode").val();
 	addState = $("#addState").val();
 	addCountry = $("#addCountry").val();
-	soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmployeeEnqueue><Number>'+personID+'</Number></urn:EmployeeEnqueue></soapenv:Body></soapenv:Envelope>';
-	console.log("Enqueue: "+soap_envelope);
-	osapi.jive.connects.post({
-			'alias' : 'SAPHCM',
-			'href' : '/z_bapi_employee_enqueue/801/z_bapi_employee_enqueue/bind1',
-			'body' : soap_envelope,
-			'format' : 'text',
-			'headers' : { 'content-type' : ['text/xml'] }
-		}).execute(function(response) {
-			console.log("Enqueued: "+response.content);
 			soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempChange><City>'+addCity+'</City><Coname>'+addCO+'</Coname><Country>'+addCountry+'</Country><District></District><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Nocommit></Nocommit><Objectid></Objectid><Postalcodecity>'+addCode+'</Postalcodecity><Recordnumber></Recordnumber><Scndaddressline>'+addLine2+'</Scndaddressline><State>'+addState+'</State><Streetandhouseno>'+addLine1+'</Streetandhouseno><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Telephonenumber></Telephonenumber><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempChange></soapenv:Body></soapenv:Envelope>';
 			console.log(soap_envelope);
 			osapi.jive.connects.post({
@@ -362,18 +352,7 @@ function onAddUpdate() {
 					'headers' : { 'content-type' : ['text/xml'] }
 				}).execute(function(callback) {
 					console.log("Address updated: "+callback.content);
-					soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmployeeDequeue><Number>'+personID+'</Number></urn:EmployeeDequeue></soapenv:Body></soapenv:Envelope>'					
-					osapi.jive.connects.post({
-						'alias' : 'SAPHCM',
-						'href' : '/z_bapi_employee_dequeue/801/z_bapi_employee_dequeue/bind1',
-						'body' : soap_envelope,
-						'format' : 'text',
-						'headers' : { 'content-type' : ['text/xml'] }
-					}).execute(function(recallback) {
-						console.log("Lock released! -- Dequeued: "+recallback.content);
-					});
 				});			
-		});	
 	gadgets.window.adjustHeight();
 }
 
@@ -406,6 +385,9 @@ $('tr.rowPerson').live('dblclick',function(){
 	//console.log(personID+"--"+fullName+"--"+compCode+"--"+orgText+"--"+jobText+"--"+posText+"--"+costCenter+"--"+emailID);
 });
 
+function clearAll () {
+	
+}
 // Having "Back button in Search Results.
 // Getting back to "Search" form!!
 function onBackSearch () {
@@ -419,6 +401,7 @@ function onBackSearch () {
 	$('#person-first-name').val("");
 	$('#person-last-name').val("");
 	$('#response-message').html("");
+	
 	// Adjust height!
 	gadgets.window.adjustHeight();
 }
@@ -439,6 +422,8 @@ function onBackDetail () {
 	$('#detailRecord').hide();
 	$('#displayRecord').show();
 	
+	//Clear all the form details
+	clearAll();	
 	gadgets.window.adjustHeight();
 }
 // Register our on-view-load handler
