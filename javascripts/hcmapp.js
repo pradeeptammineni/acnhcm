@@ -362,6 +362,16 @@ function onAddUpdate() {
 					'headers' : { 'content-type' : ['text/xml'] }
 				}).execute(function(callback) {
 					console.log("Address updated: "+callback.content);
+					soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmployeeDequeue><Number>'+personID+'</Number></urn:EmployeeDequeue></soapenv:Body></soapenv:Envelope>'					
+					osapi.jive.connects.post({
+						'alias' : 'SAPHCM',
+						'href' : '/z_bapi_employee_dequeue/801/z_bapi_employee_dequeue/bind1',
+						'body' : soap_envelope,
+						'format' : 'text',
+						'headers' : { 'content-type' : ['text/xml'] }
+					}).execute(function(recallback) {
+						console.log("Lock released! -- Dequeued: "+recallback.content);
+					});
 				});			
 		});	
 	gadgets.window.adjustHeight();
