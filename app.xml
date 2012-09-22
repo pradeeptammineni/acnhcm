@@ -6,7 +6,7 @@
         <Require feature="dynamic-height"/>
         <Require feature="jive-core-v3"/>
         <Require feature="jive-connects-v1">
-          <Param name="alias:SAPHCM|title:SAP HCM">jive:service://sap.com/api?version=1</Param>
+          <Param name="alias:SAPHCM2|title:SAP HCM">jive:service://sap.com/api?version=1</Param>
         </Require>
         <Require feature="jquery-1.4.2"/>
         <Require feature="minimessage"/>
