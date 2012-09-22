@@ -253,7 +253,7 @@ $('a.annPayLink').click(function() {
 		'format' : 'text',
 		'headers' : { 'content-type' : ['text/xml'] }
 	}).execute(function(response) {
-		console.log("Basic Pay:"+response.content);
+		console.log("Basic Pay:"+response);
 		var payDetails, payData, tempData, tValBeg, tValEnd = '';
 		payData = $.parseXML(response.content);
 		$tempData = $(payData);
