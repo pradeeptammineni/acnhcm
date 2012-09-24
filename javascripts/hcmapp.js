@@ -280,8 +280,12 @@ $('a.annPayLink').click(function() {
 	});
 });
 
-// The "Address" link in the top-menu
+
 $('a.addLink').click(function(){
+	showAddress();
+});
+// The "Address" link in the top-menu
+function showAddress() {
 	$('a.annPayLink').removeClass('active');
 	$('a.bankLink').removeClass('active');
 	$('a.perDocLink').removeClass('active');
@@ -330,7 +334,7 @@ $('a.addLink').click(function(){
 			$("#addCountry").val($addDetails.find('Country').text());
 		});
 	});
-});
+}
 
 function onAddUpdate() {
 	var soap_envelope, addCO, addLine1, addLine2, 
@@ -380,7 +384,7 @@ $('tr.rowPerson').live('dblclick',function(){
 	
 	$("#displayRecord").hide();
 	$("#detailRecord").show();
-	
+	showAddress();
 	gadgets.window.adjustHeight();
 	//console.log(personID+"--"+fullName+"--"+compCode+"--"+orgText+"--"+jobText+"--"+posText+"--"+costCenter+"--"+emailID);
 });
