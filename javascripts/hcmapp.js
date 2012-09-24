@@ -1,6 +1,6 @@
 var mini;
 var personID, todaysDate, dValEnd, dValBeg, lockInd, objID = '';
-var isAddFet, isBanFet, isPerFet, isPayFet = 0;
+var isAddFet = 0, isBanFet = 0, isPerFet = 0, isPayFet = 0;
 var ADDRESS_SUBTYPE = '3';
 var BASICPAY_SUBTYPE = '0';
 var BANKDETAIL_SUBTYPE = '0';
