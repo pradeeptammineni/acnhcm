@@ -404,7 +404,7 @@ $('tr.rowPerson').live('dblclick',function(){
 });
 
 function clearAll () {
-	isAddFet, isBanFet, isPerFet, isPayFet = FALSE;
+	isAddFet = 0, isBanFet = 0, isPerFet = 0, isPayFet = 0;
 	$('#detailCCode').val("");
 	$('#detailTeam').val("");
 	$('#detailJTitle').val("");
