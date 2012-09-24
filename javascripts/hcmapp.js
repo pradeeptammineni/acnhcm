@@ -393,7 +393,40 @@ $('tr.rowPerson').live('dblclick',function(){
 });
 
 function clearAll () {
+	$('#detailCCode').val("");
+	$('#detailTeam').val("");
+	$('#detailJTitle').val("");
+	$('#detailPTitle').val("");
+	$('#detailCCenter').val("");
+	$('#detailEID').val("");
 	
+	$('#addCO').val("");
+	$('#addLine1').val("");
+	$('#addLine2').val("");
+	$('#addCity').val("");
+	$('#addCode').val("");
+	$('#addState').val("");
+	$('#addCountry').val("");
+
+	$('#payArea').val("");
+	$('#payGroup').val("");
+	$('#payLevel').val("");
+	$('#paySalary').val("");
+	$('#payCurrency').val("");
+
+
+	$('#bankKey').val("");
+	$('#bankAcNum').val("");
+	$('#bankCheck').val("");
+	$('#bankIBAN').val("");
+	
+	$('#docType').val("");
+	$('#docNum').val("");
+	$('#docIssDate').val("");
+	$('#docExpiryDate').val("");
+	$('#docIssPlace').val("");
+	$('#docIssCountry').val("");	
+	$('#docIssAuth').val("");	
 }
 // Having "Back button in Search Results.
 // Getting back to "Search" form!!
