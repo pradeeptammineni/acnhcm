@@ -1,6 +1,6 @@
 var mini;
 var personID, todaysDate, dValEnd, dValBeg, lockInd, objID = '';
-var isAddFet, isBanFet, isPerFet, isPayFet = FALSE;
+var isAddFet, isBanFet, isPerFet, isPayFet = 0;
 var ADDRESS_SUBTYPE = '3';
 var BASICPAY_SUBTYPE = '0';
 var BANKDETAIL_SUBTYPE = '0';
@@ -200,7 +200,7 @@ $('a.bankLink').click(function() {
 	$('#bankList').show();
 	$('#perDocList').hide();
 	gadgets.window.adjustHeight();
-	if (isBanFet == FALSE)
+	if (isBanFet == 0)
 	{
 		var soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:BankdetailGetlist><Bankdetailkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Bankdetailkey><Employeenumber>'+personID+'</Employeenumber><Subtype>'+BANKDETAIL_SUBTYPE+'</Subtype><Timeintervalhigh>'+todaysDate+'</Timeintervalhigh><Timeintervallow>'+todaysDate+'</Timeintervallow></urn:BankdetailGetlist></soapenv:Body></soapenv:Envelope>';
 		osapi.jive.connects.post({
@@ -233,7 +233,7 @@ $('a.bankLink').click(function() {
 				$("#bankAcNum").val($bankDetails.find('Accountno').text());
 				$("#bankCheck").val($bankDetails.find('Checkdigit').text());
 				$("#bankIBAN").val($bankDetails.find('Iban').text());
-				isBanFet = TRUE;
+				isBanFet = 1;
 			});
 		});
 	}
@@ -250,7 +250,7 @@ $('a.annPayLink').click(function() {
 	$('#bankList').hide();
 	$('#perDocList').hide();
 	gadgets.window.adjustHeight();
-	if (isPayFet == FALSE)
+	if (isPayFet == 0)
 	{
 		var soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:BasicpayGetlist><Basicpayempkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Basicpayempkey><Employeenumber>'+personID+'</Employeenumber><!--Optional:--><Subtype>'+BASICPAY_SUBTYPE+'</Subtype><Timeintervalhigh>'+todaysDate+'</Timeintervalhigh><Timeintervallow>'+todaysDate+'</Timeintervallow></urn:BasicpayGetlist></soapenv:Body></soapenv:Envelope>';
 		osapi.jive.connects.post({
@@ -283,7 +283,7 @@ $('a.annPayLink').click(function() {
 				$("#payLevel").val($payDetails.find('Payscalelevel').text());
 				$("#paySalary").val($payDetails.find('Annualsalary').text());
 				$("#payCurrency").val($payDetails.find('Currencyannualsalary').text());
-				isPayFet = TRUE;
+				isPayFet = 1;
 			});
 		});
 	}
@@ -306,7 +306,7 @@ function showAddress() {
 	$('#bankList').hide();
 	$('#perDocList').hide();
 	gadgets.window.adjustHeight();
-	if (isAddFet == FALSE)
+	if (isAddFet == 0)
 	{
 		var soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetlist><Addressempkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Addressempkey><Employeenumber>'+personID+'</Employeenumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Timeintervalhigh>'+todaysDate+'</Timeintervalhigh><Timeintervallow>'+todaysDate+'</Timeintervallow></urn:AddressempGetlist></soapenv:Body></soapenv:Envelope>';
 		osapi.jive.connects.post({
@@ -344,7 +344,7 @@ function showAddress() {
 				$("#addCode").val($addDetails.find('Postalcodecity').text());
 				$("#addState").val($addDetails.find('State').text());
 				$("#addCountry").val($addDetails.find('Country').text());
-				isAddFet = TRUE;
+				isAddFet = 1;
 			});
 		});
 	}
