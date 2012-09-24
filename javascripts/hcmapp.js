@@ -284,12 +284,13 @@ $('a.annPayLink').click(function() {
 $('a.addLink').click(function(){
 	showAddress();
 });
+
 // The "Address" link in the top-menu
 function showAddress() {
 	$('a.annPayLink').removeClass('active');
 	$('a.bankLink').removeClass('active');
 	$('a.perDocLink').removeClass('active');
-	$(this).addClass('active');
+	$('a.addLink').addClass('active');
 	
 	$('#addList').show();
 	$('#annPayList').hide();
