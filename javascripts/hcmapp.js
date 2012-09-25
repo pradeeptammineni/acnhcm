@@ -358,7 +358,7 @@ function showAddress() {
 				isAddFet = 1;
 			});
 		});
-		}
+		});
 	}
 }
 
