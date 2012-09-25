@@ -497,7 +497,6 @@ function onBackDetail () {
 	
 	$('#detailRecord').hide();
 	$('#displayRecord').show();
-	
 	deQueuePerson();
 	//Clear all the form details
 	clearAll();	
