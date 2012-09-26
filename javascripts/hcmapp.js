@@ -64,6 +64,7 @@ function onEmpSearch() {
 						// First pass; no user credentials present. So, 
 						// capture the credentials of the user and retry.
 						onEmpSearch();
+						});
 						}
 					else {
 						// The problem is not an HTTPBasic related one.
