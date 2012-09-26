@@ -37,6 +37,7 @@ function getTodaysDate()
 }
 
 function setAction () {
+	console.log ("I am here");
 	isAction = 1;
 	onEmpSearch();
 }
