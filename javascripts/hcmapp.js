@@ -18,8 +18,10 @@ function init() {
 	$("#search-results-back").click(onBackSearch);
 	$("#results-back").click(onBackDetail);
 	$("#submit-address-update").click(onAddUpdate);
+	$("#emp-id-search-button").click(setAction);
 	mini = new gadgets.MiniMessage();
 }
+
 
 //To get today's date in YYYY-MM-DD format
 function getTodaysDate()
@@ -32,6 +34,11 @@ function getTodaysDate()
 	n = n.slice(n.length-2);
 	todaysDate = y + "-" + m + "-" + n;
 	return (todaysDate);
+}
+
+function setAction () {
+	isAction = 1;
+	onEmpSearch();
 }
 
 //When the user searches for an employee, we are  
