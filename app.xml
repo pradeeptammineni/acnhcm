@@ -1,20 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-    <ModulePrefs title="SAP-HCM App"
-                author="Accenture"
-           description="Accenture-Jive SAP-HCM App">
-        <Require feature="dynamic-height"/>
-        <Require feature="jive-core-v3"/>
-        <Require feature="jive-connects-v1">
-          <Param name="alias:SAPHCM|title:SAP HCM">jive:service://sap.com/api?version=1</Param>
-        </Require>
-        <Require feature="jquery-1.4.2"/>
-        <Require feature="minimessage"/>
-        <Require feature="osapi"/>
-        <Require feature="views"/>
-        <Link rel="Icon" href="https://github.com/downloads/pradeeptammineni/acnhcm/icon.png" /> 
-        <Link rel="MediumIcon" href="https://github.com/downloads/pradeeptammineni/acnhcm/sap-logo.png" /> 
-        <Link rel="LargeIcon" href="https://github.com/downloads/pradeeptammineni/acnhcm/sap-acn-icon.png" />
-    </ModulePrefs>
-    <Content view="home, canvas" type="html" href="hcmapp.html"/>
+  <ModulePrefs title="SAP-HCM App"
+              author="Accenture" 
+              author-affiliation = "Accenture" 
+              author-email = "pradeep.tammineni@accenture.com"
+              description="Accenture-Jive SAP-HCM App">
+    <Require feature="dynamic-height"/>
+    <Require feature="jive-core-v3"/>
+    <Require feature="jive-connects-v1">
+      <Param name="alias:SAPHCM|title:SAP HCM">jive:service://sap.com/api?version=1</Param>
+    </Require>
+    <Require feature="jquery-1.6"/>
+    <Require feature="minimessage"/>
+    <Require feature="osapi"/>
+    <Require feature="views"/>
+    <Require feature="embedded-experiences" /> 
+    <Require feature="actions">
+      <Param name="action-contributions">
+      <![CDATA[        
+        <action id="com.jivesoftware.rte.sap.html"
+        path="jive/actions/rte"
+        label="Fetch Employee"
+        view="embedded.html"
+        icon="https://github.com/downloads/pradeeptammineni/acnhcm/icon.png"/>
+        
+        <action id="com.jivesoftware.rte.sap.actionMenu"
+        path="jive/actions/content/*"
+        label="SAP Action"
+        view="embedded.json"
+        icon="https://github.com/downloads/pradeeptammineni/acnhcm/icon.png"/>
+      ]]> 
+      </Param>
+    </Require>
+    <Require feature="selection" /> 
+    
+    <Link rel="Icon" href="https://github.com/downloads/pradeeptammineni/acnhcm/icon.png" /> 
+    <Link rel="MediumIcon" href="https://github.com/downloads/pradeeptammineni/acnhcm/sap-logo.png" /> 
+    <Link rel="LargeIcon" href="https://github.com/downloads/pradeeptammineni/acnhcm/sap-acn-icon.png" />
+  </ModulePrefs>
+  <Content view="home, canvas" type="html" href="hcmapp.html"/>
+  <Content view="embedded.html" type="html" href="hcmapp.html" preferred_height="250" preferred_width="600"/>
+  <Content view="embedded.json" type="html" href="hcmapp.html" preferred_height="250" preferred_width="600"/>
 </Module>
