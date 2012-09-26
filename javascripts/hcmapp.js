@@ -51,7 +51,7 @@ function onEmpSearch() {
 	{
 		//If this is invoked from APP Actions,
 		//fetch the data differently
-		var personID = $('#person-id').val();
+		personID = $('#person-id').val();
 		if (personID == '') {
 			$('#response-message').html("<b>Please enter the employee ID.</b>");
 			$('#person-id').focus();
