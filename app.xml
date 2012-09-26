@@ -20,13 +20,13 @@
       <![CDATA[        
         <action id="com.jivesoftware.rte.sap.html"
         path="jive/actions/rte"
-        label="Fetch Employee"
+        label="Insert Employee Details"
         view="embedded.html"
         icon="https://github.com/downloads/pradeeptammineni/acnhcm/icon.png"/>
         
         <action id="com.jivesoftware.rte.sap.actionMenu"
         path="jive/actions/content/*"
-        label="SAP Action"
+        label="Lookup Employee Details"
         view="embedded.json"
         icon="https://github.com/downloads/pradeeptammineni/acnhcm/icon.png"/>
       ]]> 
