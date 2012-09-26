@@ -75,7 +75,6 @@ function onEmpSearch() {
 						gadgets.window.adjustHeight();
 					}
 				}
-			}
 			else
 			{
 				
