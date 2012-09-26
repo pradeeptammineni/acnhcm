@@ -12,6 +12,9 @@
         <Require feature="minimessage"/>
         <Require feature="osapi"/>
         <Require feature="views"/>
+        <Link rel="Icon" href="https://github.com/downloads/pradeeptammineni/acnhcm/sap-logo-small.png" /> 
+        <Link rel="MediumIcon" href="https://github.com/downloads/pradeeptammineni/acnhcm/sap-logo.png" /> 
+        <Link rel="LargeIcon" href="https://github.com/downloads/pradeeptammineni/acnhcm/sap-acn-icon.png" />
     </ModulePrefs>
     <Content view="home, canvas" type="html" href="hcmapp.html"/>
 </Module>
