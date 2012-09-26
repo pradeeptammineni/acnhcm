@@ -77,7 +77,82 @@ function onEmpSearch() {
 				}
 			else
 			{
+				var empData, tempData, returnMessage, 
+						returnCheck, personalData, orgAsgEmpData, 
+						intCtrlEmpData, commEmpData, tableData = '';
+				var fPerNo, fFirstName, fLastName, fCompCode, 
+						fOrgText, fJobText, fPosText, fCostCenter, 
+						fEmailID, tCount = '';
 				
+				//Get entire response, which has records!
+				empData = $.parseXML(response.content);
+				$tempData = $(empData);
+				// Check if records are returned. If there is a 
+				// message, it probably means NOT everything is OK!
+				returnMessage = $tempData.find('Message').text();
+				if (returnMessage !='') {
+					// Some problem! Display the message!
+					console.log(returnMessage);
+					$('#response-message').html("<b>"+returnMessage+".</b> <br/>Please try again.");
+					$('#emp-search-button').text("Search");
+					$('#emp-search-button').removeAttr('disabled');		
+					$('#person-id').focus();
+					gadgets.window.adjustHeight();
+				}
+				else { 
+					// OK, no problem, we have some records satisfying 
+					// the search criteria. Let's work with them...
+					tCount = 0;
+					tableData = '';
+					
+					//Get each of the structures of the response.
+					$personalData = $tempData.find('PersonalData');
+					$personalData = $personalData.find('item');
+					$orgAsgEmpData = $tempData.find('OrgAssignment');
+					$orgAsgEmpData = $orgAsgEmpData.find('item');
+					$commEmpData = $tempData.find('Communication');
+					$commEmpData = $commEmpData.find('item');
+					
+					// Cycle through the fetched records -- for each person record.
+					$personalData.each(function () {
+						fPerNo, fFirstName, fLastName = '';
+						
+						// Get the required details from PersonalData structure!
+						fPerNo = ($(this).children('Perno').text());
+						fFirstName = ($(this).children('Firstname').text());
+						fLastName = ($(this).children('LastName').text());
+						
+						//Get OrgAssignment details for the current person!
+						$orgAsgEmpData.each(function () {
+							fCompCode, fOrgText, fJobText, fPosText, fCostCenter = '';
+							if ($(this).children('Perno').text() == fPerNo) {
+								fCompCode = $(this).children('CompCode').text();
+								fOrgText = $(this).children('Orgtxt').text();
+								fJobText = $(this).children('Jobtxt').text();
+								fPosText = $(this).children('Postxt').text();
+								fCostCenter = $(this).children('Costcenter').text();
+								return false;
+							}
+							});
+							
+						//Get Communications details for the current person.
+						$commEmpData.each(function () {
+							fEmailID = '';
+							if ($(this).children('Perno').text() == fPerNo && $(this).children('Usertype').text() == "0010") {
+								fEmailID = $(this).children('UsridLong').text();
+								return false;
+							}	
+						});
+						
+						tCount++; //for total number of records parsed!
+						//Add each record to the table - ready for displaying to the user.
+						tableData = tableData + "<tr class='rowPerson' id="+fPerNo+"><td class='fName'>"
+												+fFirstName+"</td><td class='lName'>"+fLastName+"</td><td class='cCode'>"+
+												fCompCode+"</td><td class='oText'>"+fOrgText+"</td><td class='jText'>"+fJobText+
+												"</td><td class='pText'>"+fPosText+"</td><td class='cCenter'>"+
+												fCostCenter+"</td><td class='eID'>"+fEmailID+"</td></tr>";
+					});				
+				}
 			}
 		});
 	}
