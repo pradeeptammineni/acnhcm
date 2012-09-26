@@ -93,6 +93,8 @@ function onEmpSearch() {
 				// Some problem! Display the message!
 				console.log(returnMessage);
 				$('#response-message').html("<b>"+returnMessage+".</b> <br/>Please try again.");
+				$('#emp-search-button').text("Search");
+				$('#emp-search-button').removeAttr('disabled');		
 				$('#person-first-name').focus();
 				gadgets.window.adjustHeight();
 			}
