@@ -177,7 +177,7 @@ function onEmpSearch() {
 						$("#detailCCenter").html(fCostCenter);
 						$("#detailEID").html(fEmailID);
 						
-						$("#displayRecord").hide();
+						$("#search-form").hide();
 						$("#detailRecord").show();
 						showAddress();
 					});				
