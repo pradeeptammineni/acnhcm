@@ -36,8 +36,8 @@ table.data-grid thead tr th, table.crud thead tr th, table.banner thead tr th{
   }
 table.data-grid tbody tr td { /* for overflow -- text-overflow:ellipsis; white-space:nowrap; */
   padding:2px; border-top:1px solid #222; cursor:default; 
-  text-align:left; position:relative; /*overflow: hidden; 
-  text-overflow:ellipsis; white-space:nowrap; */
+  text-align:left; position:relative; overflow: hidden; 
+  text-overflow:ellipsis; white-space:nowrap;
   } 
 table.data-grid tbody tr:hover { background:#FFFF00}/*#F8F8D2*/
 table.data-grid tbody tr.active { background:#FFFF00; color:black}
