@@ -629,6 +629,7 @@ function onBackSearch () {
 // On clicking Back in Detail View, 
 // make all sections to disappear.
 function onBackDetail () {
+	
 	$('a.addLink').removeClass('active');
 	$('a.annPayLink').removeClass('active');
 	$('a.bankLink').removeClass('active');
@@ -640,7 +641,16 @@ function onBackDetail () {
 	$('#perDocList').hide();
 	
 	$('#detailRecord').hide();
-	$('#displayRecord').show();
+	
+	//If it's from Actions or if there is just ONE
+	//record in the search results, we may want to 
+	//switch to "Search" form!
+	if (isAction || isSingle) {
+		$('#search-form').show();
+	}
+	else {
+		$('#displayRecord').show();
+	}	
 	//deQueuePerson();
 	//Clear all the form details
 	clearAll();	
