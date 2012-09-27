@@ -658,6 +658,10 @@ function onBackDetail () {
 	//record in the search results, we may want to 
 	//switch to "Search" form!
 	if (isAction || isSingle) {
+		//Clear the search form too!
+		$('#person-first-name').val("");
+		$('#person-last-name').val("");
+		$('#response-message').html("");
 		$('#search-form').show();
 	}
 	else {
