@@ -64,6 +64,7 @@ function onEmpSearch() {
 		//If this is invoked from APP Actions,
 		//fetch the data differently
 		personID = $('#person-id').val();
+		$.trim(personID);
 		if (personID == '') {
 			$('#response-message').html("<b>Please enter the employee ID.</b>");
 			$('#person-id').focus();
@@ -182,10 +183,19 @@ function onEmpSearch() {
 	{
 		var firstName = $('#person-first-name').val();
 		var lastName = $('#person-last-name').val();
+		firstName = $.trim(firstName);
+		lastName = $.trim(lastName);
+		var len1 = firstName.length;
+		var len2 = lastName.length;
 		if (firstName == '' && lastName == '') {
 			$('#response-message').html("<b>Please enter the name(s)</b>");
 			$('#person-first-name').focus();
 			return;
+		}
+		else if ((len1 <= 2 && len2 <= 2) || (len1 <= 3 && len2 < 1) || (len1 < 1 && len2 <= 3)) {
+			$('#response-message').html("<b>Please enter longer names for optimal search.</b>");
+			$('#person-first-name').focus();
+			return;			
 		}
 		$('#emp-search-button').text("Processing...");
 		$('#emp-search-button').attr('disabled','disabled');
@@ -453,14 +463,14 @@ function showAddress() {
 	gadgets.window.adjustHeight();
 	if (isAddFet == 0)
 	{
-			soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetlist><Addressempkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Addressempkey><Employeenumber>'+personID+'</Employeenumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Timeintervalhigh>'+todaysDate+'</Timeintervalhigh><Timeintervallow>'+todaysDate+'</Timeintervallow></urn:AddressempGetlist></soapenv:Body></soapenv:Envelope>';
-			osapi.jive.connects.post({
-			'alias' : 'SAPHCM',
-			'href' : '/z_bapi_addressemp_getlist/801/z_bapi_addressemp_getlist/bind1',
-			'body' : soap_envelope,
-			'format' : 'text',
-			'headers' : { 'content-type' : ['text/xml'] }
-			}).execute(function(callback) {
+		soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetlist><Addressempkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Addressempkey><Employeenumber>'+personID+'</Employeenumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Timeintervalhigh>'+todaysDate+'</Timeintervalhigh><Timeintervallow>'+todaysDate+'</Timeintervallow></urn:AddressempGetlist></soapenv:Body></soapenv:Envelope>';
+		osapi.jive.connects.post({
+		'alias' : 'SAPHCM',
+		'href' : '/z_bapi_addressemp_getlist/801/z_bapi_addressemp_getlist/bind1',
+		'body' : soap_envelope,
+		'format' : 'text',
+		'headers' : { 'content-type' : ['text/xml'] }
+		}).execute(function(callback) {
 			var addDetails, empData, tempData = '';
 			empData = $.parseXML(callback.content);
 			$tempData = $(empData);
@@ -585,6 +595,7 @@ function clearAll () {
 	$('#docIssCountry').val("");	
 	$('#docIssAuth').val("");	
 }
+
 function deQueuePerson() {
 	var soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmployeeDequeue><Number>'+personID+'</Number></urn:EmployeeDequeue></soapenv:Body></soapenv:Envelope>';
 	osapi.jive.connects.post({
