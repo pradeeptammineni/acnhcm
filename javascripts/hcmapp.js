@@ -168,12 +168,18 @@ function onEmpSearch() {
 						
 						tCount++; //for total number of records parsed!
 						//Add each record to the table - ready for displaying to the user.
-						tableData = tableData + "<tr class='rowPerson' id="+fPerNo+"><td class='fName'>"
-												+fFirstName+"</td><td class='lName'>"+fLastName+"</td><td class='cCode'>"+
-												fCompCode+"</td><td class='oText'>"+fOrgText+"</td><td class='jText'>"+fJobText+
-												"</td><td class='pText'>"+fPosText+"</td><td class='cCenter'>"+
-												fCostCenter+"</td><td class='eID'>"+fEmailID+"</td></tr>";
-						console.log(tableData);
+						$("#detailID").html(fPerNo);
+						$("#detailName").html(fFirstName+' '+fLastName);
+						$("#detailCCode").html(fCompCode);
+						$("#detailTeam").html(fOrgText);
+						$("#detailJTitle").html(fJobText);
+						$("#detailPTitle").html(fPosText);
+						$("#detailCCenter").html(fCostCenter);
+						$("#detailEID").html(fEmailID);
+						
+						$("#displayRecord").hide();
+						$("#detailRecord").show();
+						showAddress();
 					});				
 				}
 			}
