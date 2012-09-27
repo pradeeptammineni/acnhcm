@@ -122,10 +122,6 @@ function onEmpSearch() {
 					gadgets.window.adjustHeight();
 				}
 				else { 
-					// OK, no problem, we have some records satisfying 
-					// the search criteria. Let's work with them...
-					tCount = 0;
-					tableData = '';
 					
 					//Get each of the structures of the response.
 					$personalData = $tempData.find('PersonalData');
@@ -166,9 +162,7 @@ function onEmpSearch() {
 							}	
 						});
 						
-						tCount++; //for total number of records parsed!
-						//Add each record to the table - ready for displaying to the user.
-						$("#detailID").html(fPerNo);
+						$("#detailEmpID").html(fPerNo);
 						$("#detailName").html(fFirstName+' '+fLastName);
 						$("#detailCCode").html(fCompCode);
 						$("#detailTeam").html(fOrgText);
