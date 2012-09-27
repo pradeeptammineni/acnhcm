@@ -39,6 +39,6 @@
     <Link rel="LargeIcon" href="https://github.com/downloads/pradeeptammineni/acnhcm/icon128x128.png" />
   </ModulePrefs>
   <Content view="home, canvas" type="html" href="hcmapp.html"/>
-  <Content view="embedded.html" type="html" href="hcmapp-global.html" preferred_height="400" preferred_width="600"/>
-  <Content view="embedded.json" type="html" href="hcmapp-rte.html" preferred_height="400" preferred_width="600"/>
+  <Content view="embedded.html" type="html" href="hcmapp-global.html" preferred_height="500" preferred_width="800"/>
+  <Content view="embedded.json" type="html" href="hcmapp-rte.html" preferred_height="500" preferred_width="800"/>
 </Module>

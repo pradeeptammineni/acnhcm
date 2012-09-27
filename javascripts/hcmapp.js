@@ -1,9 +1,10 @@
 var mini;
 var personID, todaysDate, dValEnd, dValBeg, lockInd, objID = '';
-var isAddFet = 0, isBanFet = 0, isPerFet = 0, isPayFet = 0, isAction = 0;
+var isAddFet = 0, isBanFet = 0, isPerFet = 0, isPayFet = 0, isAction = 0, isSingle = 0;
 var ADDRESS_SUBTYPE = '3';
 var BASICPAY_SUBTYPE = '0';
 var BANKDETAIL_SUBTYPE = '0';
+var SAPEMPID_LENGTH = 8;
 
 
 // On view load, wire up static actions and retrieve initial data
@@ -22,6 +23,16 @@ function init() {
 	mini = new gadgets.MiniMessage();
 }
 
+function checkPersonID(empID) {
+	var temp = empID;
+	var i=0;
+	var len = SAPEMPID_LENGTH - temp.length;
+	for (i=0;i<len;i++) {
+		empID = '0'+empID;
+	}
+	console.log(empID);
+	return empID;
+}
 
 //To get today's date in YYYY-MM-DD format
 function getTodaysDate()
@@ -53,11 +64,18 @@ function onEmpSearch() {
 		//If this is invoked from APP Actions,
 		//fetch the data differently
 		personID = $('#person-id').val();
+		personID = $.trim(personID);
 		if (personID == '') {
 			$('#response-message').html("<b>Please enter the employee ID.</b>");
 			$('#person-id').focus();
 			return;			
 		}
+		
+		personID = checkPersonID(personID);
+		
+		$('#emp-search-button').text("Processing...");
+		$('#emp-search-button').attr('disabled','disabled');		
+		
 		var soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmployeeGetdata><Communication><item><Perno></Perno><Infotype></Infotype><Subtype></Subtype><ObjectId></ObjectId><LockInd></LockInd><ToDate></ToDate><FromDate></FromDate><Seqno></Seqno><ChOn></ChOn><ChangedBy></ChangedBy><HistFlag></HistFlag><Textflag></Textflag><RefFlag></RefFlag><CnfrmFlag></CnfrmFlag><Screenctrl></Screenctrl><Reason></Reason><Flag1></Flag1><Flag2></Flag2><Flag3></Flag3><Flag4></Flag4><Reserved1></Reserved1><Reserved2></Reserved2><Usertype></Usertype><Userid></Userid><UsridLong></UsridLong></item></Communication><Costcenter></Costcenter><Date>'+todaysDate+'</Date><EmployeeId>'+personID+'</EmployeeId><Extension></Extension><FstNameK></FstNameK><FstNameR></FstNameR><FstnameM></FstnameM><Jobtxt></Jobtxt><JobtxtLg></JobtxtLg><LastnameM></LastnameM><LiplateNo></LiplateNo><LstNameK></LstNameK><LstNameR></LstNameR><OrgAssignment><item><Perno></Perno><Infotype></Infotype><Subtype></Subtype><ObjectId></ObjectId><LockInd></LockInd><ToDate></ToDate><FromDate></FromDate><Seqno></Seqno><ChOn></ChOn><ChangedBy></ChangedBy><HistFlag></HistFlag><Textflag></Textflag><RefFlag></RefFlag><CnfrmFlag></CnfrmFlag><Screenctrl></Screenctrl><Reason></Reason><Flag1></Flag1><Flag2></Flag2><Flag3></Flag3><Flag4></Flag4><Reserved1></Reserved1><Reserved2></Reserved2><CompCode></CompCode><PersArea></PersArea><Egroup></Egroup><Esubgroup></Esubgroup><OrgKey></OrgKey><BusArea></BusArea><PSubarea></PSubarea><LegPerson></LegPerson><Payarea></Payarea><Contract></Contract><Costcenter></Costcenter><OrgUnit></OrgUnit><Position></Position><Job></Job><Supervisor></Supervisor><PayrAdmin></PayrAdmin><PersAdmin></PersAdmin><TimeAdmin></TimeAdmin><SortName></SortName><Name></Name><Objecttype></Objecttype><Admingroup></Admingroup><CoArea></CoArea><FundsCtr></FundsCtr><Fund></Fund><Orgtxt></Orgtxt><Jobtxt></Jobtxt><Postxt></Postxt><Fkber></Fkber><GrantNbr></GrantNbr></item></OrgAssignment><Orgtxt></Orgtxt><PersonalData><item><Perno></Perno><Infotype></Infotype><Subtype></Subtype><ObjectId></ObjectId><LockInd></LockInd><ToDate></ToDate><FromDate></FromDate><Seqno></Seqno><ChOn></ChOn><ChangedBy></ChangedBy><HistFlag></HistFlag><Initials></Initials><LastName></LastName><LastName2></LastName2><Firstname></Firstname><Title></Title><Title2></Title2><AriTitle></AriTitle><Nameaffix></Nameaffix><Nameprefix></Nameprefix><KnownAs></KnownAs><NameForm></NameForm><Formofadr></Formofadr><Gender></Gender><Birthdate></Birthdate><Birthctry></Birthctry><Birthstate></Birthstate><Birthplace></Birthplace><National></National><National2></National2><National3></National3><Langu></Langu><Religion></Religion><MarStatus></MarStatus><MarDate></MarDate><NoOChldr></NoOChldr><NameCon></NameCon><Permo></Permo><Perid></Perid><Birthdtpp></Birthdtpp><FstNameK></FstNameK><LstNameK></LstNameK><FstNameR></FstNameR><LstNameR></LstNameR><BirthnmeK></BirthnmeK><BirthnmeR></BirthnmeR><NicknameK></NicknameK><NicknameR></NicknameR><Birthyear></Birthyear><Birthmonth></Birthmonth><Birthday></Birthday><LastnameM></LastnameM><FstnameM></FstnameM></item></PersonalData><PhoneNo></PhoneNo><Postxt></Postxt><PostxtLg></PostxtLg><Readdb></Readdb><RoomNo></RoomNo><Userid></Userid></urn:EmployeeGetdata></soapenv:Body></soapenv:Envelope>';
 		osapi.jive.connects.post({
 			'alias' : 'SAPHCM',
@@ -108,10 +126,6 @@ function onEmpSearch() {
 					gadgets.window.adjustHeight();
 				}
 				else { 
-					// OK, no problem, we have some records satisfying 
-					// the search criteria. Let's work with them...
-					tCount = 0;
-					tableData = '';
 					
 					//Get each of the structures of the response.
 					$personalData = $tempData.find('PersonalData');
@@ -152,14 +166,18 @@ function onEmpSearch() {
 							}	
 						});
 						
-						tCount++; //for total number of records parsed!
-						//Add each record to the table - ready for displaying to the user.
-						tableData = tableData + "<tr class='rowPerson' id="+fPerNo+"><td class='fName'>"
-												+fFirstName+"</td><td class='lName'>"+fLastName+"</td><td class='cCode'>"+
-												fCompCode+"</td><td class='oText'>"+fOrgText+"</td><td class='jText'>"+fJobText+
-												"</td><td class='pText'>"+fPosText+"</td><td class='cCenter'>"+
-												fCostCenter+"</td><td class='eID'>"+fEmailID+"</td></tr>";
-						console.log(tableData);
+						$("#detailEmpID").html(fPerNo);
+						$("#detailName").html(fFirstName+' '+fLastName);
+						$("#detailCCode").html(fCompCode);
+						$("#detailTeam").html(fOrgText);
+						$("#detailJTitle").html(fJobText);
+						$("#detailPTitle").html(fPosText);
+						$("#detailCCenter").html(fCostCenter);
+						$("#detailEID").html(fEmailID);
+						
+						$("#search-form").hide();
+						$("#detailRecord").show();
+						showAddress();
 					});				
 				}
 			}
@@ -169,10 +187,19 @@ function onEmpSearch() {
 	{
 		var firstName = $('#person-first-name').val();
 		var lastName = $('#person-last-name').val();
+		firstName = $.trim(firstName);
+		lastName = $.trim(lastName);
+		var len1 = firstName.length;
+		var len2 = lastName.length;
 		if (firstName == '' && lastName == '') {
 			$('#response-message').html("<b>Please enter the name(s)</b>");
 			$('#person-first-name').focus();
 			return;
+		}
+		else if ((len1 <= 2 && len2 <= 2) || (len1 <= 3 && len2 < 1) || (len1 < 1 && len2 <= 3)) {
+			$('#response-message').html("<b>Please enter longer names for optimal search.</b>");
+			$('#person-first-name').focus();
+			return;			
 		}
 		$('#emp-search-button').text("Processing...");
 		$('#emp-search-button').attr('disabled','disabled');
@@ -293,13 +320,20 @@ function onEmpSearch() {
 					}
 					else { //Well, you have just one record, you may as well get to the form directly!
 						//...Later!
-						$("table#xmlTable tbody").append(tableData);
-						//Show the records' table and hide the search form.
-						$('#recordCount').text(tCount);
-						$('#displayRecord').show();
-						$('#search-form').hide();
+						isSingle = 1;
+						$("#detailEmpID").html(fPerNo);
+						$("#detailName").html(fFirstName+' '+fLastName);
+						$("#detailCCode").html(fCompCode);
+						$("#detailTeam").html(fOrgText);
+						$("#detailJTitle").html(fJobText);
+						$("#detailPTitle").html(fPosText);
+						$("#detailCCenter").html(fCostCenter);
+						$("#detailEID").html(fEmailID);
 						$('#emp-search-button').text("Search");
-						$('#emp-search-button').removeAttr('disabled');					
+						$('#emp-search-button').removeAttr('disabled');						
+						$("#search-form").hide();
+						$("#detailRecord").show();
+						showAddress();
 						gadgets.window.adjustHeight();					
 					}
 				}
@@ -440,14 +474,14 @@ function showAddress() {
 	gadgets.window.adjustHeight();
 	if (isAddFet == 0)
 	{
-			soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetlist><Addressempkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Addressempkey><Employeenumber>'+personID+'</Employeenumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Timeintervalhigh>'+todaysDate+'</Timeintervalhigh><Timeintervallow>'+todaysDate+'</Timeintervallow></urn:AddressempGetlist></soapenv:Body></soapenv:Envelope>';
-			osapi.jive.connects.post({
-			'alias' : 'SAPHCM',
-			'href' : '/z_bapi_addressemp_getlist/801/z_bapi_addressemp_getlist/bind1',
-			'body' : soap_envelope,
-			'format' : 'text',
-			'headers' : { 'content-type' : ['text/xml'] }
-			}).execute(function(callback) {
+		soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetlist><Addressempkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Addressempkey><Employeenumber>'+personID+'</Employeenumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Timeintervalhigh>'+todaysDate+'</Timeintervalhigh><Timeintervallow>'+todaysDate+'</Timeintervallow></urn:AddressempGetlist></soapenv:Body></soapenv:Envelope>';
+		osapi.jive.connects.post({
+		'alias' : 'SAPHCM',
+		'href' : '/z_bapi_addressemp_getlist/801/z_bapi_addressemp_getlist/bind1',
+		'body' : soap_envelope,
+		'format' : 'text',
+		'headers' : { 'content-type' : ['text/xml'] }
+		}).execute(function(callback) {
 			var addDetails, empData, tempData = '';
 			empData = $.parseXML(callback.content);
 			$tempData = $(empData);
@@ -572,6 +606,7 @@ function clearAll () {
 	$('#docIssCountry').val("");	
 	$('#docIssAuth').val("");	
 }
+
 function deQueuePerson() {
 	var soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmployeeDequeue><Number>'+personID+'</Number></urn:EmployeeDequeue></soapenv:Body></soapenv:Envelope>';
 	osapi.jive.connects.post({
@@ -605,6 +640,7 @@ function onBackSearch () {
 // On clicking Back in Detail View, 
 // make all sections to disappear.
 function onBackDetail () {
+	
 	$('a.addLink').removeClass('active');
 	$('a.annPayLink').removeClass('active');
 	$('a.bankLink').removeClass('active');
@@ -616,8 +652,17 @@ function onBackDetail () {
 	$('#perDocList').hide();
 	
 	$('#detailRecord').hide();
-	$('#displayRecord').show();
-	deQueuePerson();
+	
+	//If it's from Actions or if there is just ONE
+	//record in the search results, we may want to 
+	//switch to "Search" form!
+	if (isAction || isSingle) {
+		$('#search-form').show();
+	}
+	else {
+		$('#displayRecord').show();
+	}	
+	//deQueuePerson();
 	//Clear all the form details
 	clearAll();	
 	gadgets.window.adjustHeight();

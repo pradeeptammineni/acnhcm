@@ -8,6 +8,7 @@
   <link type="text/css" href="stylesheets/custom-theme/jive-icons.css" rel="stylesheet"/>
   <link type="text/css" href="stylesheets/hcmapp.css" rel="stylesheet"/>
   <link type="text/css" href="stylesheets/security-groups.css" rel="stylesheet"/>
+  
   <title>SAP - HCM App</title>
 </head>
 
@@ -48,6 +49,7 @@
 			</tr>
 		</thead>
 		<tbody>
+			<tr><td class="heading-cell">Employee ID</td><td id="detailEmpID"></td></tr>
 			<tr><td class="heading-cell">Company Code</td><td id="detailCCode"></td></tr>
 			<tr><td class="heading-cell">Team</td><td id="detailTeam"></td></tr>
 			<tr><td class="heading-cell">Job Title</td><td id="detailJTitle"></td></tr>
@@ -69,26 +71,25 @@
 	<div id="addList" style="display:none">
 		<table>
 			<tbody>
-				<tr><td class="heading-cell">C/o</td><td><input type="text" id="addCO" size="30"/></td></tr>
-				<tr><td class="heading-cell">Address Line 1</td><td><input type="text" id="addLine1" size="30"/></td></tr>
-				<tr><td class="heading-cell">Address Line 2</td><td><input type="text" id="addLine2" size="30"/></td></tr>
-				<tr><td class="heading-cell">City</td><td><input type="text" id="addCity" size="30"/></td></tr>
-				<tr><td class="heading-cell">Postal Code</td><td><input type="text" id="addCode" size="30"/></td></tr>
-				<tr><td class="heading-cell">State</td><td><input type="text" id="addState" size="30"/></td></tr>
-				<tr><td class="heading-cell">Country</td><td><input type="text" id="addCountry" size="30"/></td></tr>
+				<tr><td class="heading-cell">C/o</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="addCO"/></td></tr>
+				<tr><td class="heading-cell">Address Line 1</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="addLine1"/></td></tr>
+				<tr><td class="heading-cell">Address Line 2</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="addLine2"/></td></tr>
+				<tr><td class="heading-cell">City</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="addCity"/></td></tr>
+				<tr><td class="heading-cell">Postal Code</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="addCode"/></td></tr>
+				<tr><td class="heading-cell">State</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="addState"/></td></tr>
+				<tr><td class="heading-cell">Country</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="addCountry"/></td></tr>
 			</tbody>			
 		</table>
-		<center><button id="submit-address-update">Submit</button>&nbsp;<button id="submit-address-reset">Reset</button></center>
 	</div>
 	
 	<div id="annPayList" style="display:none">
 		<table>
 			<tbody>
-				<tr><td class="heading-cell">Pay Area</td><td><input type="text" id="payArea" size="30"/></td></tr>
-				<tr><td class="heading-cell">Pay Group</td><td><input type="text" id="payGroup" size="30"/></td></tr>
-				<tr><td class="heading-cell">Pay Level</td><td><input type="text" id="payLevel" size="30"/></td></tr>
-				<tr><td class="heading-cell">Annual Salary</td><td><input type="text" id="paySalary" size="30"/></td></tr>
-				<tr><td class="heading-cell">Currency</td><td><input type="text" id="payCurrency" size="30"/></td></tr>
+				<tr><td class="heading-cell">Pay Area</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="payArea"/></td></tr>
+				<tr><td class="heading-cell">Pay Group</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="payGroup"/></td></tr>
+				<tr><td class="heading-cell">Pay Level</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="payLevel"/></td></tr>
+				<tr><td class="heading-cell">Annual Salary</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="paySalary"/></td></tr>
+				<tr><td class="heading-cell">Currency</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="payCurrency"/></td></tr>
 			</tbody>			
 		</table>
 	</div>
@@ -96,10 +97,10 @@
 	<div id="bankList" style="display:none">
 		<table>
 			<tbody>
-				<tr><td class="heading-cell">Bank Key</td><td><input type="text" id="bankKey" size="30"/></td></tr>
-				<tr><td class="heading-cell">Account Number</td><td><input type="text" id="bankAcNum" size="30"/></td></tr>
-				<tr><td class="heading-cell">Check Digit</td><td><input type="text" id="bankCheck" size="30"/></td></tr>
-				<tr><td class="heading-cell">IBAN</td><td><input type="text" id="bankIBAN" size="30"/></td></tr>
+				<tr><td class="heading-cell">Bank Key</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="bankKey" /></td></tr>
+				<tr><td class="heading-cell">Account Number</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="bankAcNum" /></td></tr>
+				<tr><td class="heading-cell">Check Digit</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="bankCheck" /></td></tr>
+				<tr><td class="heading-cell">IBAN</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="bankIBAN" /></td></tr>
 			</tbody>			
 		</table>		
 	</div>
@@ -107,16 +108,15 @@
 	<div id="perDocList" style="display:none">
 		<table>
 			<tbody>
-				<tr><td class="heading-cell">Document Type</td><td><input type="text" id="docType" size="30"/></td></tr>
-				<tr><td class="heading-cell">Document Number</td><td><input type="text" id="docNum" size="30"/></td></tr>
-				<tr><td class="heading-cell">Issue Date</td><td><input type="text" id="docIssDate" size="30"/></td></tr>
-				<tr><td class="heading-cell">Expiry Date</td><td><input type="text" id="docExpiryDate" size="30"/></td></tr>
-				<tr><td class="heading-cell">Issuing Place</td><td><input type="text" id="docIssPlace" size="30"/></td></tr>
-				<tr><td class="heading-cell">Issuing Country</td><td><input type="text" id="docIssCountry" size="30"/></td></tr>
-				<tr><td class="heading-cell">Issuing Authority</td><td><input type="text" id="docIssAuth" size="30"/></td></tr>
+				<tr><td class="heading-cell">Document Type</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="docType" /></td></tr>
+				<tr><td class="heading-cell">Document Number</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="docNum" /></td></tr>
+				<tr><td class="heading-cell">Issue Date</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="docIssDate" /></td></tr>
+				<tr><td class="heading-cell">Expiry Date</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="docExpiryDate" /></td></tr>
+				<tr><td class="heading-cell">Issuing Place</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="docIssPlace" /></td></tr>
+				<tr><td class="heading-cell">Issuing Country</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="docIssCountry" /></td></tr>
+				<tr><td class="heading-cell">Issuing Authority</td><td><input type="text" disabled="disabled" size="20" style="disabled:disabled" id="docIssAuth" /></td></tr>
 			</tbody>			
 		</table>
-		<center><button id="submit-document-update">Submit</button>&nbsp;<button id="submit-document-reset">Reset</button></center>		
 	</div>
 </td>
 </tr>
