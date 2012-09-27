@@ -440,16 +440,6 @@ function showAddress() {
 	gadgets.window.adjustHeight();
 	if (isAddFet == 0)
 	{
-		var soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmployeeEnqueue><Number>'+personID+'</Number></urn:EmployeeEnqueue></soapenv:Body></soapenv:Envelope>';
-		console.log("Enqueue: "+soap_envelope);
-		osapi.jive.connects.post({
-			'alias' : 'SAPHCM',
-			'href' : '/z_bapi_employee_enqueue/801/z_bapi_employee_enqueue/bind1',
-			'body' : soap_envelope,
-			'format' : 'text',
-			'headers' : { 'content-type' : ['text/xml'] }
-			}).execute(function(response) {
-			console.log("Enqueued: "+response.content);
 			soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetlist><Addressempkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Addressempkey><Employeenumber>'+personID+'</Employeenumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Timeintervalhigh>'+todaysDate+'</Timeintervalhigh><Timeintervallow>'+todaysDate+'</Timeintervallow></urn:AddressempGetlist></soapenv:Body></soapenv:Envelope>';
 			osapi.jive.connects.post({
 			'alias' : 'SAPHCM',
@@ -468,27 +458,26 @@ function showAddress() {
 			gadgets.window.adjustHeight();
 			soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempGetdetail></soapenv:Body></soapenv:Envelope>';		
 			osapi.jive.connects.post({
-				'alias' : 'SAPHCM',
-				'href' : '/z_bapi_addressemp_getdetail/801/z_bapi_addressemp_getdetail/bind1',
-				'body' : soap_envelope,
-				'format' : 'text',
-				'headers' : { 'content-type' : ['text/xml'] }
-			}).execute(function(recallback) {
-				//console.log("Response from Address 2: "+recallback.content);
-				empData = $.parseXML(recallback.content);
-				$addDetails= $(empData);
-				//$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
-				//Populate the address table
-				$("#addCO").val($addDetails.find('Coname').text());
-				$("#addLine1").val($addDetails.find('Streetandhouseno').text());
-				$("#addLine2").val($addDetails.find('Scndaddressline').text());
-				$("#addCity").val($addDetails.find('City').text());
-				$("#addCode").val($addDetails.find('Postalcodecity').text());
-				$("#addState").val($addDetails.find('State').text());
-				$("#addCountry").val($addDetails.find('Country').text());
-				isAddFet = 1;
+					'alias' : 'SAPHCM',
+					'href' : '/z_bapi_addressemp_getdetail/801/z_bapi_addressemp_getdetail/bind1',
+					'body' : soap_envelope,
+					'format' : 'text',
+					'headers' : { 'content-type' : ['text/xml'] }
+				}).execute(function(recallback) {
+					//console.log("Response from Address 2: "+recallback.content);
+					empData = $.parseXML(recallback.content);
+					$addDetails= $(empData);
+					//$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
+					//Populate the address table
+					$("#addCO").val($addDetails.find('Coname').text());
+					$("#addLine1").val($addDetails.find('Streetandhouseno').text());
+					$("#addLine2").val($addDetails.find('Scndaddressline').text());
+					$("#addCity").val($addDetails.find('City').text());
+					$("#addCode").val($addDetails.find('Postalcodecity').text());
+					$("#addState").val($addDetails.find('State').text());
+					$("#addCountry").val($addDetails.find('Country').text());
+					isAddFet = 1;
 			});
-		});
 		});
 	}
 }
@@ -503,11 +492,11 @@ function onAddUpdate() {
 	addCode = $("#addCode").val();
 	addState = $("#addState").val();
 	addCountry = $("#addCountry").val();
-	soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempChange><City>'+addCity+'</City><Coname>'+addCO+'</Coname><Country>'+addCountry+'</Country><District></District><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Nocommit></Nocommit><Objectid></Objectid><Postalcodecity>'+addCode+'</Postalcodecity><Recordnumber></Recordnumber><Scndaddressline>'+addLine2+'</Scndaddressline><State>'+addState+'</State><Streetandhouseno>'+addLine1+'</Streetandhouseno><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Telephonenumber></Telephonenumber><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempChange></soapenv:Body></soapenv:Envelope>';
+	soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:ZbapiAddressempChange><City>'+addCity+'</City><Coname>'+addCO+'</Coname><Country>'+addCountry+'</Country><District>?</District><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Nocommit></Nocommit><Objectid></Objectid><Postalcodecity>'+addCode+'</Postalcodecity><Recordnumber>000</Recordnumber><Scndaddressline>'+addLine2+'</Scndaddressline><State>'+addState+'</State><Streetandhouseno>'+addLine1+'</Streetandhouseno><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Telephonenumber></Telephonenumber><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:ZbapiAddressempChange></soapenv:Body></soapenv:Envelope>';
 	console.log(soap_envelope);
 	osapi.jive.connects.post({
 			'alias' : 'SAPHCM',
-			'href' : '/z_bapi_addressemp_change/801/z_bapi_addressemp_change/bind1',
+			'href' : '/zbapi_addressemp_change/801/zbapi_addressemp_change/bind1',
 			'body' : soap_envelope,
 			'format' : 'text',
 			'headers' : { 'content-type' : ['text/xml'] }
