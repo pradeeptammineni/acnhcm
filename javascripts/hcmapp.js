@@ -617,7 +617,7 @@ function onBackDetail () {
 	
 	$('#detailRecord').hide();
 	$('#displayRecord').show();
-	deQueuePerson();
+	//deQueuePerson();
 	//Clear all the form details
 	clearAll();	
 	gadgets.window.adjustHeight();
