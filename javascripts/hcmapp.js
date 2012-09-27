@@ -321,6 +321,7 @@ function onEmpSearch() {
 					else { //Well, you have just one record, you may as well get to the form directly!
 						//...Later!
 						isSingle = 1;
+						personID = fPerNo;
 						$("#detailEmpID").html(fPerNo);
 						$("#detailName").html(fFirstName+' '+fLastName);
 						$("#detailCCode").html(fCompCode);
