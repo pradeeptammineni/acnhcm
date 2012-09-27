@@ -159,6 +159,7 @@ function onEmpSearch() {
 												fCompCode+"</td><td class='oText'>"+fOrgText+"</td><td class='jText'>"+fJobText+
 												"</td><td class='pText'>"+fPosText+"</td><td class='cCenter'>"+
 												fCostCenter+"</td><td class='eID'>"+fEmailID+"</td></tr>";
+						console.log(tableData);
 					});				
 				}
 			}
