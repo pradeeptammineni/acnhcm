@@ -34,9 +34,9 @@
     </Require>
     <Require feature="selection" /> 
     
-    <Link rel="Icon" href="https://github.com/downloads/pradeeptammineni/acnhcm/icon16x16.png" /> 
-    <Link rel="MediumIcon" href="https://github.com/downloads/pradeeptammineni/acnhcm/icon48x48.png" /> 
-    <Link rel="LargeIcon" href="https://github.com/downloads/pradeeptammineni/acnhcm/icon128x128.png" />
+    <Link rel="Icon" href="images/icon16x16.png" /> 
+    <Link rel="MediumIcon" href="images/icon48x48.png" /> 
+    <Link rel="LargeIcon" href="images/icon128x128.png" />
   </ModulePrefs>
   <Content view="home, canvas" type="html" href="hcmapp.html"/>
   <Content view="embedded.html" type="html" href="hcmapp-global.html" preferred_height="500" preferred_width="800"/>
