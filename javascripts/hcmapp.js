@@ -680,9 +680,8 @@ function insertDetails() {
 	//detailRecord.innerHTML
 	//addList annPayList bankList perDocList
 	// if ($('#addList').is(":visible"))  { get the innerHTML }
-	var empText = document.getElementById("detailPerson");
-	var empText = '<table>'+empText.innerHTML()+'</table>';
-	osapi.jive.core.container.editor().insert(empText);
+	var empText = document.getElementById("detailPerson").innerHTML;
+	osapi.jive.core.container.editor().insert('<table>'+empText+'</table>');
 	
 }
 // Register our on-view-load handler
