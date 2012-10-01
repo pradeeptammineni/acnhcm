@@ -406,12 +406,12 @@ function showAddress() {
 
 function clearAll () {
 	isAddFet = 0, isBanFet = 0, isPerFet = 0, isPayFet = 0;
-	$('#detailCCode').val("");
-	$('#detailTeam').val("");
-	$('#detailJTitle').val("");
-	$('#detailPTitle').val("");
-	$('#detailCCenter').val("");
-	$('#detailEID').val("");
+	$('#detailCCode').html("");
+	$('#detailTeam').html("");
+	$('#detailJTitle').html("");
+	$('#detailPTitle').html("");
+	$('#detailCCenter').html("");
+	$('#detailEID').html("");
 	
 	$('#addCO').html("");
 	$('#addLine1').html("");
@@ -421,25 +421,25 @@ function clearAll () {
 	$('#addState').html("");
 	$('#addCountry').html("");
 
-	$('#payArea').val("");
-	$('#payGroup').val("");
-	$('#payLevel').val("");
-	$('#paySalary').val("");
-	$('#payCurrency').val("");
+	$('#payArea').html("");
+	$('#payGroup').html("");
+	$('#payLevel').html("");
+	$('#paySalary').html("");
+	$('#payCurrency').html("");
 
 
-	$('#bankKey').val("");
-	$('#bankAcNum').val("");
-	$('#bankCheck').val("");
-	$('#bankIBAN').val("");
+	$('#bankKey').html("");
+	$('#bankAcNum').html("");
+	$('#bankCheck').html("");
+	$('#bankIBAN').html("");
 	
-	$('#docType').val("");
-	$('#docNum').val("");
-	$('#docIssDate').val("");
-	$('#docExpiryDate').val("");
-	$('#docIssPlace').val("");
-	$('#docIssCountry').val("");	
-	$('#docIssAuth').val("");	
+	$('#docType').html("");
+	$('#docNum').html("");
+	$('#docIssDate').html("");
+	$('#docExpiryDate').html("");
+	$('#docIssPlace').html("");
+	$('#docIssCountry').html("");	
+	$('#docIssAuth').html("");	
 }
 
 // On clicking Back in Detail View, 
