@@ -680,9 +680,11 @@ function insertDetails() {
 	//detailRecord.innerHTML
 	//addList annPayList bankList perDocList
 	// if ($('#addList').is(":visible"))  { get the innerHTML }
-	var empText = document.getElementById("detailPerson").innerHTML;
-	osapi.jive.core.container.editor().insert('<table>'+empText+'</table>');
-	
+	var empText = '<h3>Employee Details</h3><table>'+document.getElementById("detailPerson").innerHTML+'</table>';
+	if ($('#addList').is(":visible"))  { 
+		empText = empText+'<br/><h4>Address Details</h4><table>'+document.getElementById("addList").innerHTML+'</table>';
+	}
+	osapi.jive.core.container.editor().insert(empText);	
 }
 // Register our on-view-load handler
 gadgets.util.registerOnLoadHandler(init);
