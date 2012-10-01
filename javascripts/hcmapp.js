@@ -21,6 +21,7 @@ function init() {
 	$("#results-back").click(onBackDetail);
 	$("#submit-address-update").click(onAddUpdate);
 	$("#emp-id-search-button").click(setAction);
+	$("#insert-details").click(insertDetails);
 	mini = new gadgets.MiniMessage();
 }
 
@@ -702,6 +703,12 @@ function onBackDetail () {
 	//Clear all the form details
 	clearAll();	
 	gadgets.window.adjustHeight();
+}
+
+function insertDetails() {
+	//detailRecord.innerHTML
+	//addList annPayList bankList perDocList
+	// if ($('#addList').is(":visible"))  { get the innerHTML }
 }
 // Register our on-view-load handler
 gadgets.util.registerOnLoadHandler(init);
