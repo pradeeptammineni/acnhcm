@@ -17,9 +17,7 @@ function init() {
 	//Link the "Search" button to EmpSearch
 	$("#emp-id-search-button").click(onEmpSearch);
 	//From "Search Results" -> BACK to "Search" form
-	$("#search-results-back").click(onBackSearch);
 	$("#results-back").click(onBackDetail);
-	$("#submit-address-update").click(onAddUpdate);
 	$("#emp-id-search-button").click(setAction);
 	$("#insert-details").click(insertDetails);
 	mini = new gadgets.MiniMessage();
@@ -379,7 +377,8 @@ function showAddress() {
 			dValBeg = $addDetails.children('Validbegin').text();
 			dValEnd = $addDetails.children('Validend').text();
 			gadgets.window.adjustHeight();
-			soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempGetdetail></soapenv:Body></soapenv:Envelope>';		
+			soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempGetdetail></soapenv:Body></soapenv:Envelope>';	
+			console.log(soap_envelope);
 			osapi.jive.connects.post({
 					'alias' : 'SAPHCM',
 					'href' : '/z_bapi_addressemp_getdetail/801/z_bapi_addressemp_getdetail/bind1',
@@ -392,72 +391,18 @@ function showAddress() {
 					$addDetails= $(empData);
 					//$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
 					//Populate the address table
-					$("#addCO").val($addDetails.find('Coname').text());
-					$("#addLine1").val($addDetails.find('Streetandhouseno').text());
-					$("#addLine2").val($addDetails.find('Scndaddressline').text());
-					$("#addCity").val($addDetails.find('City').text());
-					$("#addCode").val($addDetails.find('Postalcodecity').text());
-					$("#addState").val($addDetails.find('State').text());
-					$("#addCountry").val($addDetails.find('Country').text());
+					$("#addCO").html($addDetails.find('Coname').text());
+					$("#addLine1").html($addDetails.find('Streetandhouseno').text());
+					$("#addLine2").html($addDetails.find('Scndaddressline').text());
+					$("#addCity").html($addDetails.find('City').text());
+					$("#addCode").html($addDetails.find('Postalcodecity').text());
+					$("#addState").html($addDetails.find('State').text());
+					$("#addCountry").html($addDetails.find('Country').text());
 					isAddFet = 1;
 			});
 		});
 	}
 }
-
-function onAddUpdate() {
-	var soap_envelope, addCO, addLine1, addLine2, 
-			addCity, addCode, addState, addCountry = '';
-	addCO = $("#addCO").val();
-	addLine1 = $("#addLine1").val();
-	addLine2 = $("#addLine2").val();
-	addCity = $("#addCity").val();
-	addCode = $("#addCode").val();
-	addState = $("#addState").val();
-	addCountry = $("#addCountry").val();
-	soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:ZbapiAddressempChange><City>'+addCity+'</City><Coname>'+addCO+'</Coname><Country>'+addCountry+'</Country><District>?</District><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Nocommit></Nocommit><Objectid></Objectid><Postalcodecity>'+addCode+'</Postalcodecity><Recordnumber>000</Recordnumber><Scndaddressline>'+addLine2+'</Scndaddressline><State>'+addState+'</State><Streetandhouseno>'+addLine1+'</Streetandhouseno><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Telephonenumber></Telephonenumber><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:ZbapiAddressempChange></soapenv:Body></soapenv:Envelope>';
-	console.log(soap_envelope);
-	osapi.jive.connects.post({
-			'alias' : 'SAPHCM',
-			'href' : '/zbapi_addressemp_change/801/zbapi_addressemp_change/bind1',
-			'body' : soap_envelope,
-			'format' : 'text',
-			'headers' : { 'content-type' : ['text/xml'] }
-		}).execute(function(callback) {
-			console.log("Address updated: "+callback.content);
-		});			
-	gadgets.window.adjustHeight();
-}
-
-// On double-clicking each row, let's 
-// get the details displayed...
-//$('tr.rowPerson').click(function(){
-$('tr.rowPerson').live('dblclick',function(){
-	personID = '';
-	personID = $(this).attr('id');
-	console.log("id: "+personID);
-	var fullName = $(this).find(".fName").html() +" "+ $(this).find(".lName").html();
-	var compCode = $(this).find(".cCode").html();
-	var orgText = $(this).find(".oText").html();
-	var jobText = $(this).find(".jText").html();
-	var posText = $(this).find(".pText").html();
-	var costCenter = $(this).find(".cCenter").html();
-	var emailID = $(this).find(".eID").html();
-	
-	$("#detailName").html('<b>'+fullName+'</b>');
-	$("#detailCCode").html(compCode);
-	$("#detailTeam").html(orgText);
-	$("#detailJTitle").html(jobText);
-	$("#detailPTitle").html(posText);
-	$("#detailCCenter").html(costCenter);
-	$("#detailEID").html(emailID);
-	
-	$("#displayRecord").hide();
-	$("#detailRecord").show();
-	showAddress();
-	gadgets.window.adjustHeight();
-	//console.log(personID+"--"+fullName+"--"+compCode+"--"+orgText+"--"+jobText+"--"+posText+"--"+costCenter+"--"+emailID);
-});
 
 function clearAll () {
 	isAddFet = 0, isBanFet = 0, isPerFet = 0, isPayFet = 0;
@@ -495,36 +440,6 @@ function clearAll () {
 	$('#docIssPlace').val("");
 	$('#docIssCountry').val("");	
 	$('#docIssAuth').val("");	
-}
-
-function deQueuePerson() {
-	var soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmployeeDequeue><Number>'+personID+'</Number></urn:EmployeeDequeue></soapenv:Body></soapenv:Envelope>';
-	osapi.jive.connects.post({
-			'alias' : 'SAPHCM',
-			'href' : '/z_bapi_employee_dequeue/801/z_bapi_employee_dequeue/bind1',
-			'body' : soap_envelope,
-			'format' : 'text',
-			'headers' : { 'content-type' : ['text/xml'] }
-		}).execute(function(callback) {
-			console.log("Person Dequeued: "+callback.content);
-		});				
-}
-// Having "Back button in Search Results.
-// Getting back to "Search" form!!
-function onBackSearch () {
-	//Clear the table; hide the results table;
-	//Display Search form
-	$("#TableBody").html("");
-	$('#displayRecord').hide();
-	$('#search-form').show();
-	
-	//Clear the search form too!
-	$('#person-first-name').val("");
-	$('#person-last-name').val("");
-	$('#response-message').html("");
-	
-	// Adjust height!
-	gadgets.window.adjustHeight();
 }
 
 // On clicking Back in Detail View, 
