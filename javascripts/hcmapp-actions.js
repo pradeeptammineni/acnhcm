@@ -413,13 +413,13 @@ function clearAll () {
 	$('#detailCCenter').val("");
 	$('#detailEID').val("");
 	
-	$('#addCO').val("");
-	$('#addLine1').val("");
-	$('#addLine2').val("");
-	$('#addCity').val("");
-	$('#addCode').val("");
-	$('#addState').val("");
-	$('#addCountry').val("");
+	$('#addCO').html("");
+	$('#addLine1').html("");
+	$('#addLine2').html("");
+	$('#addCity').html("");
+	$('#addCode').html("");
+	$('#addState').html("");
+	$('#addCountry').html("");
 
 	$('#payArea').val("");
 	$('#payGroup').val("");
