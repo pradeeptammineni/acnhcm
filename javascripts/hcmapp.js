@@ -546,7 +546,7 @@ function onAddUpdate() {
 // On double-clicking each row, let's 
 // get the details displayed...
 //$('tr.rowPerson').live('dblclick',function(){
-$('tr.rowPerson').dblclick(function(){
+$('tr.rowPerson').click(function(){
 	personID = '';
 	personID = $(this).attr('id');
 	console.log("id: "+personID);
