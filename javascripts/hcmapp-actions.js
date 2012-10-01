@@ -228,13 +228,13 @@ $('a.perDocLink').click(function() {
 					$addDetails= $(empData);
 					//$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
 					//Populate the address table
-					$("#addCO").val($addDetails.find('Coname').text());
-					$("#addLine1").val($addDetails.find('Streetandhouseno').text());
-					$("#addLine2").val($addDetails.find('Scndaddressline').text());
-					$("#addCity").val($addDetails.find('City').text());
-					$("#addCode").val($addDetails.find('Postalcodecity').text());
-					$("#addState").val($addDetails.find('State').text());
-					$("#addCountry").val($addDetails.find('Country').text());
+					$("#addCO").html($addDetails.find('Coname').text());
+					$("#addLine1").html($addDetails.find('Streetandhouseno').text());
+					$("#addLine2").html($addDetails.find('Scndaddressline').text());
+					$("#addCity").html($addDetails.find('City').text());
+					$("#addCode").html($addDetails.find('Postalcodecity').text());
+					$("#addState").html($addDetails.find('State').text());
+					$("#addCountry").html($addDetails.find('Country').text());
 					isPerFet = 1;
 			});
 		});
@@ -281,10 +281,10 @@ $('a.bankLink').click(function() {
 				$bankDetails= $(bankData);
 				
 				//Populate the address table
-				$("#bankKey").val($bankDetails.find('Bankkey').text());
-				$("#bankAcNum").val($bankDetails.find('Accountno').text());
-				$("#bankCheck").val($bankDetails.find('Checkdigit').text());
-				$("#bankIBAN").val($bankDetails.find('Iban').text());
+				$("#bankKey").html($bankDetails.find('Bankkey').text());
+				$("#bankAcNum").html($bankDetails.find('Accountno').text());
+				$("#bankCheck").html($bankDetails.find('Checkdigit').text());
+				$("#bankIBAN").html($bankDetails.find('Iban').text());
 				isBanFet = 1;
 			});
 		});
@@ -330,11 +330,11 @@ $('a.annPayLink').click(function() {
 				payData = $.parseXML(callback.content);
 				$payDetails= $(payData);
 				//Populate the address table
-				$("#payArea").val($payDetails.find('Payscalearea').text());
-				$("#payGroup").val($payDetails.find('Payscalegroup').text());
-				$("#payLevel").val($payDetails.find('Payscalelevel').text());
-				$("#paySalary").val($payDetails.find('Annualsalary').text());
-				$("#payCurrency").val($payDetails.find('Currencyannualsalary').text());
+				$("#payArea").html($payDetails.find('Payscalearea').text());
+				$("#payGroup").html($payDetails.find('Payscalegroup').text());
+				$("#payLevel").html($payDetails.find('Payscalelevel').text());
+				$("#paySalary").html($payDetails.find('Annualsalary').text());
+				$("#payCurrency").html($payDetails.find('Currencyannualsalary').text());
 				isPayFet = 1;
 			});
 		});
