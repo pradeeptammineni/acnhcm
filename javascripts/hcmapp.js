@@ -545,35 +545,6 @@ function onAddUpdate() {
 
 // On double-clicking each row, let's 
 // get the details displayed...
-$('tr.rowPerson').live('dblclick',function(){
-	personID = '';
-	personID = $(this).attr('id');
-	console.log("id: "+personID);
-	var fullName = $(this).find(".fName").html() +" "+ $(this).find(".lName").html();
-	var compCode = $(this).find(".cCode").html();
-	var orgText = $(this).find(".oText").html();
-	var jobText = $(this).find(".jText").html();
-	var posText = $(this).find(".pText").html();
-	var costCenter = $(this).find(".cCenter").html();
-	var emailID = $(this).find(".eID").html();
-	
-	$("#detailName").html(fullName);
-	$("#detailCCode").html(compCode);
-	$("#detailTeam").html(orgText);
-	$("#detailJTitle").html(jobText);
-	$("#detailPTitle").html(posText);
-	$("#detailCCenter").html(costCenter);
-	$("#detailEID").html(emailID);
-	
-	$("#displayRecord").hide();
-	$("#detailRecord").show();
-	showAddress();
-	gadgets.window.adjustHeight();
-	//console.log(personID+"--"+fullName+"--"+compCode+"--"+orgText+"--"+jobText+"--"+posText+"--"+costCenter+"--"+emailID);
-});
-
-// On double-clicking each row, let's 
-// get the details displayed...
 //$('tr.rowPerson').live('dblclick',function(){
 $('tr.rowPerson').dblclick(function(){
 	personID = '';
