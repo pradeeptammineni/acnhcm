@@ -15,7 +15,7 @@ function init() {
 	//Set focus on the search criteria fields.
 	$('#person-first-name').focus();
 	//Link the "Search" button to EmpSearch
-	$("#emp-search-button").click(onEmpSearch);
+	$("#emp-id-search-button").click(onEmpSearch);
 	//From "Search Results" -> BACK to "Search" form
 	$("#search-results-back").click(onBackSearch);
 	$("#results-back").click(onBackDetail);
@@ -96,8 +96,8 @@ function onEmpSearch() {
 					// The problem is not an HTTPBasic related one.
 					$('#response-message').html("Unable to process your request.<br/>Please try again.");
 					console.log("Encountered an error. Error Code: "+response.error.code);
-					$('#emp-search-button').text("Search");
-					$('#emp-search-button').removeAttr('disabled');
+					$('#emp-id-search-button').text("Search");
+					$('#emp-id-search-button').removeAttr('disabled');
 					gadgets.window.adjustHeight();
 				}
 			}
