@@ -176,6 +176,8 @@ function onEmpSearch() {
 					$("#detailEID").html(fEmailID);
 					
 					$("#search-form").hide();
+					$('#emp-id-search-button').text("Search");
+					$('#emp-id-search-button').removeAttr('disabled');						
 					$("#detailRecord").show();
 					showAddress();
 				});				
