@@ -445,7 +445,7 @@ function showAddress() {
 			$addDetails = $addDetails.find('item');
 			dValBeg = $addDetails.children('Validbegin').text();
 			dValEnd = $addDetails.children('Validend').text();
-			if (dValBeg == '' || dValEnd == '') {
+			if (dValBeg != '' && dValEnd != '') {
 				gadgets.window.adjustHeight();
 				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempGetdetail></soapenv:Body></soapenv:Envelope>';		
 				osapi.jive.connects.post({
