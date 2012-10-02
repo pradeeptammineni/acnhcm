@@ -25,7 +25,6 @@ function init() {
 	$("#search-results-back").click(onBackSearch);
 	$("#results-back").click(onBackDetail);
 	$("#submit-address-update").click(onAddUpdate);
-	$("#emp-id-search-button").click(setAction);
 	$("#insert-details").click(insertDetails);
 	mini = new gadgets.MiniMessage();
 }
