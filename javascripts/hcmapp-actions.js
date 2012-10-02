@@ -483,8 +483,17 @@ function insertDetails() {
 	// if ($('#addList').is(":visible"))  { get the innerHTML }
 	var empText = '<h3>Employee Details</h3><table>'+document.getElementById("detailPerson").innerHTML+'</table>';
 	if ($('#addList').is(":visible"))  { 
-		empText = empText+'<br/><h4>Address Details</h4><table>'+document.getElementById("addList").innerHTML+'</table>';
+		empText = empText+'<br/><h3>Address Details</h3><table>'+document.getElementById("addList").innerHTML+'</table>';
 	}
+	else if ($('#annPayList').is(":visible"))  { 
+		empText = empText+'<br/><h3>Address Details</h3><table>'+document.getElementById("annPayList").innerHTML+'</table>';
+	}
+	else if ($('#bankList').is(":visible"))  { 
+		empText = empText+'<br/><h3>Address Details</h3><table>'+document.getElementById("bankList").innerHTML+'</table>';
+	}
+	else if ($('#perDocList').is(":visible"))  { 
+		empText = empText+'<br/><h3>Address Details</h3><table>'+document.getElementById("perDocList").innerHTML+'</table>';
+	}	
 	osapi.jive.core.container.editor().insert(empText);	
 }
 // Register our on-view-load handler
