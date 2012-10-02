@@ -443,33 +443,39 @@ function showAddress() {
 			$tempData = $(empData);
 			$addDetails = $tempData.find('Addressempkey');
 			$addDetails = $addDetails.find('item');
-			console.log("Address Details"+addDetails);
 			dValBeg = $addDetails.children('Validbegin').text();
 			dValEnd = $addDetails.children('Validend').text();
-			gadgets.window.adjustHeight();
-			soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempGetdetail></soapenv:Body></soapenv:Envelope>';		
-			osapi.jive.connects.post({
-					'alias' : 'SAPHCM',
-					'href' : '/z_bapi_addressemp_getdetail/801/z_bapi_addressemp_getdetail/bind1',
-					'body' : soap_envelope,
-					'format' : 'text',
-					'headers' : { 'content-type' : ['text/xml'] }
-				}).execute(function(recallback) {
-					//console.log("Response from Address 2: "+recallback.content);
-					empData = $.parseXML(recallback.content);
-					$addDetails= $(empData);
-					//$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
-					//Populate the address table
-					$("#addCO").val($addDetails.find('Coname').text());
-					$("#addLine1").val($addDetails.find('Streetandhouseno').text());
-					$("#addLine2").val($addDetails.find('Scndaddressline').text());
-					$("#addCity").val($addDetails.find('City').text());
-					$("#addCode").val($addDetails.find('Postalcodecity').text());
-					$("#addState").val($addDetails.find('State').text());
-					$("#addCountry").val($addDetails.find('Country').text());
-					isAddFet = 1;
-					hideLoading();
-			});
+			if (dValBeg == '' || dValEnd == '') {
+				gadgets.window.adjustHeight();
+				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempGetdetail></soapenv:Body></soapenv:Envelope>';		
+				osapi.jive.connects.post({
+						'alias' : 'SAPHCM',
+						'href' : '/z_bapi_addressemp_getdetail/801/z_bapi_addressemp_getdetail/bind1',
+						'body' : soap_envelope,
+						'format' : 'text',
+						'headers' : { 'content-type' : ['text/xml'] }
+					}).execute(function(recallback) {
+						//console.log("Response from Address 2: "+recallback.content);
+						empData = $.parseXML(recallback.content);
+						$addDetails= $(empData);
+						//$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
+						//Populate the address table
+						$("#addCO").val($addDetails.find('Coname').text());
+						$("#addLine1").val($addDetails.find('Streetandhouseno').text());
+						$("#addLine2").val($addDetails.find('Scndaddressline').text());
+						$("#addCity").val($addDetails.find('City').text());
+						$("#addCode").val($addDetails.find('Postalcodecity').text());
+						$("#addState").val($addDetails.find('State').text());
+						$("#addCountry").val($addDetails.find('Country').text());
+						isAddFet = 1;
+						hideLoading();
+				});				
+			}
+			else {
+				$('#response-status').html("<b>No address record found for the employee.</b>")
+				$('#submit-address-update').hide();
+				hideLoading();
+			}
 		});
 	}
 }
