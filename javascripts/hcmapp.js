@@ -7,6 +7,10 @@ var BANKDETAIL_SUBTYPE = '0';
 var PERSDOC_SUBTYPE = '3';
 var SAPEMPID_LENGTH = 8;
 
+var ua = navigator.userAgent,
+		eventHandler = (ua.match(/iPad/i)) ? "touchstart" : "click";
+
+// $("theElement").bind(eventHandler, function(e) {//do shit here }
 
 // On view load, wire up static actions and retrieve initial data
 function init() {
