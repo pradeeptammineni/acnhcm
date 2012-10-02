@@ -494,7 +494,7 @@ function insertDetails() {
 	else if ($('#perDocList').is(":visible"))  { 
 		empText = empText+'<br/><h3>Address Details</h3><table>'+document.getElementById("perDocList").innerHTML+'</table>';
 	}	
-	empText=empText+'<br/><hr/>;
+	empText=empText+'<br/><hr/>';
 	osapi.jive.core.container.editor().insert(empText);	
 }
 // Register our on-view-load handler
