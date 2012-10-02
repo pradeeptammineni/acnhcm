@@ -1,6 +1,6 @@
 var mini;
 var personID, todaysDate, dValEnd, dValBeg, lockInd, objID = '';
-var isAddFet = 0, isBanFet = 0, isPerFet = 0, isPayFet = 0, isSingle = 0;
+var isAddFet = 0, isAddFine = 0, isBanFet = 0, isPerFet = 0, isPerFine = 0, isPayFet = 0, isSingle = 0;
 var ADDRESS_SUBTYPE = '3';
 var BASICPAY_SUBTYPE = '0';
 var BANKDETAIL_SUBTYPE = '0';
@@ -256,9 +256,9 @@ $('a.perDocLink').click(function() {
 			$tempData = $(empData);
 			$addDetails = $tempData.find('Addressempkey');
 			$addDetails = $addDetails.find('item');
+			dValBeg = $addDetails.children('Validbegin').text();
+			dValEnd = $addDetails.children('Validend').text();
 			if (addDetails) {
-				dValBeg = $addDetails.children('Validbegin').text();
-				dValEnd = $addDetails.children('Validend').text();
 				gadgets.window.adjustHeight();
 				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempGetdetail></soapenv:Body></soapenv:Envelope>';		
 				osapi.jive.connects.post({
@@ -285,8 +285,8 @@ $('a.perDocLink').click(function() {
 				});				
 			}
 			else {
-				$('#response-status').html("<b>No Address record found for the employee.</b>");
-				$('submit-address-update').hide();
+				$('#response-status').html("<b>No Personal Document details found for the employee.</b>");
+				$('submit-document-update').hide();
 				hideLoading();
 			}
 		});
@@ -421,8 +421,10 @@ function showAddress() {
 	$('#annPayList').hide();
 	$('#bankList').hide();
 	$('#perDocList').hide();
-
-	$('#submit-address-update').show();
+	
+	if (isAddFine == 1) {
+		$('#submit-address-update').show();
+	}
 	$('#submit-document-update').hide();
 	
 	gadgets.window.adjustHeight();
@@ -468,11 +470,14 @@ function showAddress() {
 						$("#addState").val($addDetails.find('State').text());
 						$("#addCountry").val($addDetails.find('Country').text());
 						isAddFet = 1;
+						isAddFine = 1;
 						hideLoading();
 				});				
 			}
 			else {
-				$('#response-status').html("<b>No address record found for the employee.</b>")
+				isAddFet = 1;
+				isAddFine = 0;
+				$('#response-status').html("<b>No address record found for the employee.</b>");
 				$('#submit-address-update').hide();
 				hideLoading();
 			}
@@ -570,7 +575,9 @@ function clearAll () {
 	$('#docExpiryDate').val("");
 	$('#docIssPlace').val("");
 	$('#docIssCountry').val("");	
-	$('#docIssAuth').val("");	
+	$('#docIssAuth').val("");
+	
+	$('#response-status').html("");
 }
 
 // Having "Back button in Search Results.
