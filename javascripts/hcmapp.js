@@ -342,6 +342,7 @@ $('a.bankLink').click(function() {
 			$tempData = $(bankData);
 			tValBeg = $tempData.find('Validbegin').text();
 			tValEnd = $tempData.find('Validend').text();
+			console.log("Yeah: "+tValBeg+"..."+tValBeg);
 			if (tValBeg != '' && tValEnd != '') {
 				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:BankdetailGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+BANKDETAIL_SUBTYPE+'</Subtype><Validitybegin>'+tValBeg+'</Validitybegin><Validityend>'+tValEnd+'</Validityend></urn:BankdetailGetdetail></soapenv:Body></soapenv:Envelope>';
 				osapi.jive.connects.post({
