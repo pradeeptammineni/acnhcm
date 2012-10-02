@@ -482,18 +482,18 @@ function insertDetails() {
 	//detailRecord.innerHTML
 	//addList annPayList bankList perDocList
 	// if ($('#addList').is(":visible"))  { get the innerHTML }
-	var empText = '<br/><hr/><h3>Employee Details</h3><table>'+document.getElementById("detailPerson").innerHTML+'</table>';
+	var empText = '<br/><hr/><h3>Employee Details</h3><table border="1">'+document.getElementById("detailPerson").innerHTML+'</table>';
 	if ($('#addList').is(":visible"))  { 
-		empText = empText+'<br/><h3>Address Details</h3><table>'+document.getElementById("addList").innerHTML+'</table>';
+		empText = empText+'<br/><h3>Address Details</h3><table border="1">'+document.getElementById("addList").innerHTML+'</table>';
 	}
 	else if ($('#annPayList').is(":visible"))  { 
-		empText = empText+'<br/><h3>Annual Pay Details</h3><table>'+document.getElementById("annPayList").innerHTML+'</table>';
+		empText = empText+'<br/><h3>Annual Pay Details</h3><table border="1">'+document.getElementById("annPayList").innerHTML+'</table>';
 	}
 	else if ($('#bankList').is(":visible"))  { 
-		empText = empText+'<br/><h3>Bank Details</h3><table>'+document.getElementById("bankList").innerHTML+'</table>';
+		empText = empText+'<br/><h3>Bank Details</h3><table border="1">'+document.getElementById("bankList").innerHTML+'</table>';
 	}
 	else if ($('#perDocList').is(":visible"))  { 
-		empText = empText+'<br/><h3>Personal Document Details</h3><table>'+document.getElementById("perDocList").innerHTML+'</table>';
+		empText = empText+'<br/><h3>Personal Document Details</h3><table border="1">'+document.getElementById("perDocList").innerHTML+'</table>';
 	}	
 	empText=empText+'<br/><hr/>';
 	osapi.jive.core.container.editor().insert(empText);	
