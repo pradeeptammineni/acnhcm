@@ -38,6 +38,17 @@ function checkPersonID(empID) {
 	return empID;
 }
 
+
+function showLoading() 
+{
+	$("#maskLoad").mask("Please Wait...");
+}
+
+function hideLoading() 
+{
+	$("#maskLoad").unmask();
+}  
+	
 //To get today's date in YYYY-MM-DD format
 function getTodaysDate()
 {
