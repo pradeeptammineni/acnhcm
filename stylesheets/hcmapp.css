@@ -81,6 +81,12 @@ div.menu a:link, div.menu a:visited {
 	background-color: white;
 	color: #12378B; 
 	font-weight: bold
+	/* The following four lines are to make the top left and top right corners of each tab rounded. */
+	-moz-border-radius-topleft: 4px;
+	border-top-left-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	border-top-right-radius: 4px;
+	/* end of rounded borders */
 }
 
 div.menu a:hover, div.menu a.active:link, div.menu a.active:visited { 
