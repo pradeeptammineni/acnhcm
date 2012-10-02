@@ -689,18 +689,6 @@ function clearAll () {
 	$('#docIssAuth').val("");	
 }
 
-function deQueuePerson() {
-	var soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmployeeDequeue><Number>'+personID+'</Number></urn:EmployeeDequeue></soapenv:Body></soapenv:Envelope>';
-	osapi.jive.connects.post({
-			'alias' : 'SAPHCM',
-			'href' : '/z_bapi_employee_dequeue/801/z_bapi_employee_dequeue/bind1',
-			'body' : soap_envelope,
-			'format' : 'text',
-			'headers' : { 'content-type' : ['text/xml'] }
-		}).execute(function(callback) {
-			console.log("Person Dequeued: "+callback.content);
-		});				
-}
 // Having "Back button in Search Results.
 // Getting back to "Search" form!!
 function onBackSearch () {
