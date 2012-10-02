@@ -64,6 +64,11 @@ table.j-table {
  border:1px solid #222; margin:20px; box-shadow:0 0 5px #888
 }
 
+table.j-table-special {
+ background: gray;
+ color: white;
+}
+
 table.j-table thead tr th { 
   padding:8px 15px 8px 8px; text-align:left; font-weight:bold
 }
