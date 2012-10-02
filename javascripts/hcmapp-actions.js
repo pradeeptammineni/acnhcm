@@ -165,7 +165,7 @@ function onEmpSearch() {
 					});
 					
 					$("#detailEmpID").html(fPerNo);
-					$("#detailName").html(fFirstName+' '+fLastName);
+					$("#detailName").html('<b>'+fFirstName+' '+fLastName+'</b>');
 					$("#detailCCode").html(fCompCode);
 					$("#detailTeam").html(fOrgText);
 					$("#detailJTitle").html(fJobText);
