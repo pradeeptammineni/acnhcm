@@ -235,11 +235,15 @@ $('a.perDocLink').click(function() {
 	$('#perDocList').show();
 	
 	$('#submit-address-update').hide();
-	$('#submit-document-update').show();
 	
 	$('#response-status').html("");
-	if (isPerFet == 1 && isPerFine == 0) {
-		$('#response-status').html("<b>No Personal Document details found for the employee.</b>");
+	if (isPerFet == 1) {
+		if (isPerFine == 0) {
+			$('#response-status').html("<b>No Personal Document details found for the employee.</b>");
+		}
+		else {
+			$('#submit-document-update').show();
+		}
 	}
 	
 	gadgets.window.adjustHeight();
@@ -461,8 +465,13 @@ function showAddress() {
 	$('#submit-document-update').hide();
 	
 	$('#response-status').html("");
-	if (isAddFet == 1 && isAddFine == 0) {
-		$('#response-status').html("<b>No Address details found for the employee.</b>");
+	if (isAddFet == 1) {
+		if (isAddFine == 0) {
+			$('#response-status').html("<b>No Address details found for the employee.</b>");
+		}
+		else {
+			$('#submit-address-update').show();
+		}
 	}
 	
 	gadgets.window.adjustHeight();
