@@ -431,6 +431,7 @@ function showAddress() {
 		'headers' : { 'content-type' : ['text/xml'] }
 		}).execute(function(callback) {
 			var addDetails, empData, tempData = '';
+			console.log(callback.content);
 			empData = $.parseXML(callback.content);
 			$tempData = $(empData);
 			$addDetails = $tempData.find('Addressempkey');
