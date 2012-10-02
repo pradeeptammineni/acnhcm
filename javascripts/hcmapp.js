@@ -233,13 +233,14 @@ $('a.perDocLink').click(function() {
 	$('#annPayList').hide();
 	$('#bankList').hide();
 	$('#perDocList').show();
-
+	
 	$('#submit-address-update').hide();
 	$('#submit-document-update').show();
 	
 	gadgets.window.adjustHeight();
 	if (isPerFet == 0)
 	{
+		showLoading();
 		soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmppersidGetlist><Employeenumber>'+personID+'</Employeenumber><Ppidkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Ppidkey><Subtype>'+PERSDOC_SUBTYPE+'</Subtype><Timeintervalhigh>'+todaysDate+'</Timeintervalhigh><Timeintervallow>'+todaysDate+'</Timeintervallow></urn:EmppersidGetlist></soapenv:Body></soapenv:Envelope>';
 		console.log(soap_envelope);
 		osapi.jive.connects.post({
@@ -279,6 +280,7 @@ $('a.perDocLink').click(function() {
 					$("#docIssCountry").val($addDetails.find('State').text());
 					$("#docIssAuth").val($addDetails.find('Country').text());
 					isPerFet = 1;
+					hideLoading();
 			});
 		});
 	}	
@@ -301,6 +303,7 @@ $('a.bankLink').click(function() {
 	gadgets.window.adjustHeight();
 	if (isBanFet == 0)
 	{
+		showLoading();
 		var soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:BankdetailGetlist><Bankdetailkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Bankdetailkey><Employeenumber>'+personID+'</Employeenumber><Subtype>'+BANKDETAIL_SUBTYPE+'</Subtype><Timeintervalhigh>'+todaysDate+'</Timeintervalhigh><Timeintervallow>'+todaysDate+'</Timeintervallow></urn:BankdetailGetlist></soapenv:Body></soapenv:Envelope>';
 		osapi.jive.connects.post({
 			'alias' : 'SAPHCM',
@@ -333,6 +336,7 @@ $('a.bankLink').click(function() {
 				$("#bankCheck").val($bankDetails.find('Checkdigit').text());
 				$("#bankIBAN").val($bankDetails.find('Iban').text());
 				isBanFet = 1;
+				hideLoading();
 			});
 		});
 	}
@@ -355,6 +359,7 @@ $('a.annPayLink').click(function() {
 	gadgets.window.adjustHeight();
 	if (isPayFet == 0)
 	{
+		showLoading();
 		var soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:BasicpayGetlist><Basicpayempkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Basicpayempkey><Employeenumber>'+personID+'</Employeenumber><!--Optional:--><Subtype>'+BASICPAY_SUBTYPE+'</Subtype><Timeintervalhigh>'+todaysDate+'</Timeintervalhigh><Timeintervallow>'+todaysDate+'</Timeintervallow></urn:BasicpayGetlist></soapenv:Body></soapenv:Envelope>';
 		osapi.jive.connects.post({
 			'alias' : 'SAPHCM',
@@ -387,6 +392,7 @@ $('a.annPayLink').click(function() {
 				$("#paySalary").val($payDetails.find('Annualsalary').text());
 				$("#payCurrency").val($payDetails.find('Currencyannualsalary').text());
 				isPayFet = 1;
+				hideLoading();
 			});
 		});
 	}
@@ -415,6 +421,7 @@ function showAddress() {
 	gadgets.window.adjustHeight();
 	if (isAddFet == 0)
 	{
+		showLoading();
 		soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetlist><Addressempkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Addressempkey><Employeenumber>'+personID+'</Employeenumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Timeintervalhigh>'+todaysDate+'</Timeintervalhigh><Timeintervallow>'+todaysDate+'</Timeintervallow></urn:AddressempGetlist></soapenv:Body></soapenv:Envelope>';
 		osapi.jive.connects.post({
 		'alias' : 'SAPHCM',
@@ -452,6 +459,7 @@ function showAddress() {
 					$("#addState").val($addDetails.find('State').text());
 					$("#addCountry").val($addDetails.find('Country').text());
 					isAddFet = 1;
+					hideLoading();
 			});
 		});
 	}
