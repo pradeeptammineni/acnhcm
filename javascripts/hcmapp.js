@@ -237,6 +237,11 @@ $('a.perDocLink').click(function() {
 	$('#submit-address-update').hide();
 	$('#submit-document-update').show();
 	
+	$('#response-status').html("");
+	if (isPerFet == 1 && isPerFine == 0) {
+		$('#response-status').html("<b>No Personal Document details found for the employee.</b>");
+	}
+	
 	gadgets.window.adjustHeight();
 	if (isPerFet == 0)
 	{
@@ -281,10 +286,13 @@ $('a.perDocLink').click(function() {
 						$("#docIssCountry").val($addDetails.find('State').text());
 						$("#docIssAuth").val($addDetails.find('Country').text());
 						isPerFet = 1;
+						isPerFine = 1;
 						hideLoading();
 				});				
 			}
 			else {
+				isPerFet = 1;
+				isPerFine = 0;
 				$('#response-status').html("<b>No Personal Document details found for the employee.</b>");
 				$('submit-document-update').hide();
 				hideLoading();
@@ -307,6 +315,11 @@ $('a.bankLink').click(function() {
 	$('#submit-address-update').hide();
 	$('#submit-document-update').hide();
 
+	$('#response-status').html("");
+	if (isBanFet == 1 && isBanFine == 0) {
+		$('#response-status').html("<b>No Bank details found for the employee.</b>");
+	}
+
 	gadgets.window.adjustHeight();
 	if (isBanFet == 0)
 	{
@@ -325,26 +338,35 @@ $('a.bankLink').click(function() {
 			$tempData = $(bankData);
 			tValBeg = $tempData.find('Validbegin').text();
 			tValEnd = $tempData.find('Validend').text();
-			soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:BankdetailGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+BANKDETAIL_SUBTYPE+'</Subtype><Validitybegin>'+tValBeg+'</Validitybegin><Validityend>'+tValEnd+'</Validityend></urn:BankdetailGetdetail></soapenv:Body></soapenv:Envelope>';
-			osapi.jive.connects.post({
-				'alias' : 'SAPHCM',
-				'href' : '/z_bapi_bankdetail_getdetail/801/z_bapi_bankdetail_getdetail/bind1',
-				'body' : soap_envelope,
-				'format' : 'text',
-				'headers' : { 'content-type' : ['text/xml'] }
-			}).execute(function(callback) {
-				//console.log("Response from Bank 2: "+callback.content);
-				bankData = $.parseXML(callback.content);
-				$bankDetails= $(bankData);
-				
-				//Populate the address table
-				$("#bankKey").val($bankDetails.find('Bankkey').text());
-				$("#bankAcNum").val($bankDetails.find('Accountno').text());
-				$("#bankCheck").val($bankDetails.find('Checkdigit').text());
-				$("#bankIBAN").val($bankDetails.find('Iban').text());
+			if (tValBeg != '' && tValEnd != '') {
+				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:BankdetailGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+BANKDETAIL_SUBTYPE+'</Subtype><Validitybegin>'+tValBeg+'</Validitybegin><Validityend>'+tValEnd+'</Validityend></urn:BankdetailGetdetail></soapenv:Body></soapenv:Envelope>';
+				osapi.jive.connects.post({
+					'alias' : 'SAPHCM',
+					'href' : '/z_bapi_bankdetail_getdetail/801/z_bapi_bankdetail_getdetail/bind1',
+					'body' : soap_envelope,
+					'format' : 'text',
+					'headers' : { 'content-type' : ['text/xml'] }
+				}).execute(function(callback) {
+					//console.log("Response from Bank 2: "+callback.content);
+					bankData = $.parseXML(callback.content);
+					$bankDetails= $(bankData);
+					
+					//Populate the address table
+					$("#bankKey").val($bankDetails.find('Bankkey').text());
+					$("#bankAcNum").val($bankDetails.find('Accountno').text());
+					$("#bankCheck").val($bankDetails.find('Checkdigit').text());
+					$("#bankIBAN").val($bankDetails.find('Iban').text());
+					isBanFet = 1;
+					isBanFine = 1;
+					hideLoading();
+				});
+			}
+			else {
 				isBanFet = 1;
+				isBanFine = 0;
+				$('#response-status').html("<b>No Bank details found for the employee.</b>");
 				hideLoading();
-			});
+			}
 		});
 	}
 });
@@ -359,9 +381,14 @@ $('a.annPayLink').click(function() {
 	$('#annPayList').show();
 	$('#bankList').hide();
 	$('#perDocList').hide();
-
+	
 	$('#submit-address-update').hide();
 	$('#submit-document-update').hide();
+	
+	$('#response-status').html("");
+	if (isPayFet == 1 && isPayFine == 0) {
+		$('#response-status').html("<b>No Annual Pay details found for the employee.</b>");
+	}
 	
 	gadgets.window.adjustHeight();
 	if (isPayFet == 0)
@@ -381,26 +408,35 @@ $('a.annPayLink').click(function() {
 			$tempData = $(payData);
 			tValBeg = $tempData.find('Validbegin').text();
 			tValEnd = $tempData.find('Validend').text();
-			soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:BasicpayGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+BASICPAY_SUBTYPE+'</Subtype><Validitybegin>'+tValBeg+'</Validitybegin><Validityend>'+tValEnd+'</Validityend><Wagetypes><item><Wagetype></Wagetype><Amount></Amount><Number></Number><Timeunit></Timeunit><Indvaluat></Indvaluat><Addtotamnt></Addtotamnt><Operindic></Operindic><Nameofwagetype></Nameofwagetype></item></Wagetypes></urn:BasicpayGetdetail></soapenv:Body></soapenv:Envelope>';
-			osapi.jive.connects.post({
-				'alias' : 'SAPHCM',
-				'href' : '/z_bapi_basicpay_getdetail/801/z_bapi_basicpay_getdetail/bind1',
-				'body' : soap_envelope,
-				'format' : 'text',
-				'headers' : { 'content-type' : ['text/xml'] }
-			}).execute(function(callback) {
-				//console.log("Response from Pay 2: "+callback.content);
-				payData = $.parseXML(callback.content);
-				$payDetails= $(payData);
-				//Populate the address table
-				$("#payArea").val($payDetails.find('Payscalearea').text());
-				$("#payGroup").val($payDetails.find('Payscalegroup').text());
-				$("#payLevel").val($payDetails.find('Payscalelevel').text());
-				$("#paySalary").val($payDetails.find('Annualsalary').text());
-				$("#payCurrency").val($payDetails.find('Currencyannualsalary').text());
+			if (tValBeg != '' && tValEnd!='') {
+				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:BasicpayGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+BASICPAY_SUBTYPE+'</Subtype><Validitybegin>'+tValBeg+'</Validitybegin><Validityend>'+tValEnd+'</Validityend><Wagetypes><item><Wagetype></Wagetype><Amount></Amount><Number></Number><Timeunit></Timeunit><Indvaluat></Indvaluat><Addtotamnt></Addtotamnt><Operindic></Operindic><Nameofwagetype></Nameofwagetype></item></Wagetypes></urn:BasicpayGetdetail></soapenv:Body></soapenv:Envelope>';
+				osapi.jive.connects.post({
+					'alias' : 'SAPHCM',
+					'href' : '/z_bapi_basicpay_getdetail/801/z_bapi_basicpay_getdetail/bind1',
+					'body' : soap_envelope,
+					'format' : 'text',
+					'headers' : { 'content-type' : ['text/xml'] }
+				}).execute(function(callback) {
+					//console.log("Response from Pay 2: "+callback.content);
+					payData = $.parseXML(callback.content);
+					$payDetails= $(payData);
+					//Populate the address table
+					$("#payArea").val($payDetails.find('Payscalearea').text());
+					$("#payGroup").val($payDetails.find('Payscalegroup').text());
+					$("#payLevel").val($payDetails.find('Payscalelevel').text());
+					$("#paySalary").val($payDetails.find('Annualsalary').text());
+					$("#payCurrency").val($payDetails.find('Currencyannualsalary').text());
+					isPayFet = 1;
+					isPayFine = 1;
+					hideLoading();
+				});				
+			}
+			else {
 				isPayFet = 1;
+				isPayFine = 0;
+				$('#response-status').html("<b>No Annual Pay details found for the employee.</b>");
 				hideLoading();
-			});
+			}
 		});
 	}
 });
@@ -421,16 +457,19 @@ function showAddress() {
 	$('#annPayList').hide();
 	$('#bankList').hide();
 	$('#perDocList').hide();
-	
-	if (isAddFine == 1) {
-		$('#submit-address-update').show();
-	}
+
 	$('#submit-document-update').hide();
+	
+	$('#response-status').html("");
+	if (isAddFet == 1 && isAddFine == 0) {
+		$('#response-status').html("<b>No Address details found for the employee.</b>");
+	}
 	
 	gadgets.window.adjustHeight();
 	if (isAddFet == 0)
 	{
 		showLoading();
+		$('#submit-address-update').show();
 		soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetlist><Addressempkey><item><Employeeno></Employeeno><Subtype></Subtype><Objectid></Objectid><Lockindic></Lockindic><Validend></Validend><Validbegin></Validbegin><Recordnr></Recordnr></item></Addressempkey><Employeenumber>'+personID+'</Employeenumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Timeintervalhigh>'+todaysDate+'</Timeintervalhigh><Timeintervallow>'+todaysDate+'</Timeintervallow></urn:AddressempGetlist></soapenv:Body></soapenv:Envelope>';
 		osapi.jive.connects.post({
 		'alias' : 'SAPHCM',
@@ -477,7 +516,7 @@ function showAddress() {
 			else {
 				isAddFet = 1;
 				isAddFine = 0;
-				$('#response-status').html("<b>No address record found for the employee.</b>");
+				$('#response-status').html("<b>No Address details found for the employee.</b>");
 				$('#submit-address-update').hide();
 				hideLoading();
 			}
@@ -542,6 +581,7 @@ $('tr.rowPerson').live(eventHandler,function(){
 
 function clearAll () {
 	isAddFet = 0, isBanFet = 0, isPerFet = 0, isPayFet = 0;
+	isAddFine = 0, isBanFine = 0, isPerFine = 0, isPayFine = 0;
 	$('#detailCCode').val("");
 	$('#detailTeam').val("");
 	$('#detailJTitle').val("");
