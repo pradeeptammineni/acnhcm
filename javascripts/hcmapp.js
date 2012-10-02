@@ -17,7 +17,8 @@ function init() {
 	// Adjust the height of the app!
 	gadgets.window.adjustHeight();
 	//Set focus on the search criteria fields.
-	$('#person-first-name').focus();
+	//$('#person-first-name').focus();
+	$("input:text:visible:first").focus();
 	//Link the "Search" button to EmpSearch
 	$("#emp-search-button").click(onEmpSearch);
 	//From "Search Results" -> BACK to "Search" form
@@ -71,7 +72,7 @@ function onEmpSearch() {
 		personID = $.trim(personID);
 		if (personID == '') {
 			$('#response-message').html("<b>Please enter the employee ID.</b>");
-			$('#person-id').focus();
+			$("input:text:visible:first").focus();
 			return;			
 		}
 		
@@ -126,7 +127,7 @@ function onEmpSearch() {
 					$('#response-message').html("<b>"+returnMessage+".</b> <br/>Please try again.");
 					$('#emp-search-button').text("Search");
 					$('#emp-search-button').removeAttr('disabled');		
-					$('#person-id').focus();
+					$("input:text:visible:first").focus();
 					gadgets.window.adjustHeight();
 				}
 				else { 
@@ -197,12 +198,12 @@ function onEmpSearch() {
 		var len2 = lastName.length;
 		if (firstName == '' && lastName == '') {
 			$('#response-message').html("<b>Please enter the name(s)</b>");
-			$('#person-first-name').focus();
+			$("input:text:visible:first").focus();
 			return;
 		}
 		else if ((len1 <= 2 && len2 <= 2) || (len1 <= 3 && len2 < 1) || (len1 < 1 && len2 <= 3)) {
 			$('#response-message').html("<b>Please enter longer names for optimal search.</b>");
-			$('#person-first-name').focus();
+			$("input:text:visible:first").focus();
 			return;			
 		}
 		$('#emp-search-button').text("Processing...");
@@ -254,7 +255,7 @@ function onEmpSearch() {
 					$('#response-message').html("<b>"+returnMessage+".</b> <br/>Please try again.");
 					$('#emp-search-button').text("Search");
 					$('#emp-search-button').removeAttr('disabled');		
-					$('#person-first-name').focus();
+					$("input:text:visible:first").focus();
 					gadgets.window.adjustHeight();
 				}
 				else { 
@@ -715,7 +716,10 @@ function onBackSearch () {
 	//Clear the search form too!
 	$('#person-first-name').val("");
 	$('#person-last-name').val("");
+	
 	$('#response-message').html("");
+	
+	$("input:text:visible:first").focus();
 	
 	// Adjust height!
 	gadgets.window.adjustHeight();
