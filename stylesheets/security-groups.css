@@ -34,7 +34,7 @@
     padding-left: 5px;
     padding-right: 5px;
     }
-.j-table tbody tr:hover td { background-color: #fcfcfc; }
+/* .j-table tbody tr:hover td { background-color: #fcfcfc; } */
 
 .j-table td.j-td-checkbox,
 .j-table td.j-td-icon {
