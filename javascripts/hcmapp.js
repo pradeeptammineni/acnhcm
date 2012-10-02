@@ -38,7 +38,6 @@ function checkPersonID(empID) {
 	return empID;
 }
 
-
 function showLoading() 
 {
 	$("#maskLoad").mask("Please Wait...");
@@ -537,6 +536,7 @@ function showAddress() {
 function onAddUpdate() {
 	var soap_envelope, addCO, addLine1, addLine2, 
 			addCity, addCode, addState, addCountry = '';
+	showLoading();
 	addCO = $("#addCO").val();
 	addLine1 = $("#addLine1").val();
 	addLine2 = $("#addLine2").val();
@@ -553,6 +553,8 @@ function onAddUpdate() {
 			'format' : 'text',
 			'headers' : { 'content-type' : ['text/xml'] }
 		}).execute(function(callback) {
+			$('#response-status').html("<b>Address successfully updated.</b>");
+			hideLoading();
 			//console.log("Address updated: "+callback.content);
 		});			
 	gadgets.window.adjustHeight();
