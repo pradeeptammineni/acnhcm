@@ -443,6 +443,7 @@ function showAddress() {
 			$tempData = $(empData);
 			$addDetails = $tempData.find('Addressempkey');
 			$addDetails = $addDetails.find('item');
+			console.log("Address Details"+addDetails);
 			dValBeg = $addDetails.children('Validbegin').text();
 			dValEnd = $addDetails.children('Validend').text();
 			gadgets.window.adjustHeight();
