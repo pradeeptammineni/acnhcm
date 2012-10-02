@@ -481,7 +481,7 @@ function insertDetails() {
 	//detailRecord.innerHTML
 	//addList annPayList bankList perDocList
 	// if ($('#addList').is(":visible"))  { get the innerHTML }
-	var empText = '<h3>Employee Details</h3><table>'+document.getElementById("detailPerson").innerHTML+'</table>';
+	var empText = '<br/><hr/><h3>Employee Details</h3><table>'+document.getElementById("detailPerson").innerHTML+'</table>';
 	if ($('#addList').is(":visible"))  { 
 		empText = empText+'<br/><h3>Address Details</h3><table>'+document.getElementById("addList").innerHTML+'</table>';
 	}
@@ -494,6 +494,7 @@ function insertDetails() {
 	else if ($('#perDocList').is(":visible"))  { 
 		empText = empText+'<br/><h3>Address Details</h3><table>'+document.getElementById("perDocList").innerHTML+'</table>';
 	}	
+	empText=empText+'<br/><hr/>;
 	osapi.jive.core.container.editor().insert(empText);	
 }
 // Register our on-view-load handler
