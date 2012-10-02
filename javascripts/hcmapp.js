@@ -602,6 +602,7 @@ $('tr.rowPerson').live('dblclick',function(){
 	var costCenter = $(this).find(".cCenter").html();
 	var emailID = $(this).find(".eID").html();
 	
+	$("#detailEmpID").html(personID);
 	$("#detailName").html(fullName);
 	$("#detailCCode").html(compCode);
 	$("#detailTeam").html(orgText);
