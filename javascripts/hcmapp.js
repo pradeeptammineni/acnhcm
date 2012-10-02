@@ -357,6 +357,10 @@ $('a.perDocLink').click(function() {
 	$('#annPayList').hide();
 	$('#bankList').hide();
 	$('#perDocList').show();
+
+	$('#submit-address-update').hide();
+	$('#submit-document-update').show();
+	
 	gadgets.window.adjustHeight();
 	if (isPerFet == 0)
 	{
@@ -414,6 +418,10 @@ $('a.bankLink').click(function() {
 	$('#annPayList').hide();
 	$('#bankList').show();
 	$('#perDocList').hide();
+	
+	$('#submit-address-update').hide();
+	$('#submit-document-update').hide();
+
 	gadgets.window.adjustHeight();
 	if (isBanFet == 0)
 	{
@@ -464,6 +472,10 @@ $('a.annPayLink').click(function() {
 	$('#annPayList').show();
 	$('#bankList').hide();
 	$('#perDocList').hide();
+
+	$('#submit-address-update').hide();
+	$('#submit-document-update').hide();
+	
 	gadgets.window.adjustHeight();
 	if (isPayFet == 0)
 	{
@@ -520,6 +532,10 @@ function showAddress() {
 	$('#annPayList').hide();
 	$('#bankList').hide();
 	$('#perDocList').hide();
+
+	$('#submit-address-update').show();
+	$('#submit-document-update').hide();
+	
 	gadgets.window.adjustHeight();
 	if (isAddFet == 0)
 	{
