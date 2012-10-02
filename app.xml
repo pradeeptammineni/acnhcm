@@ -22,13 +22,13 @@
         path="jive/actions/rte"
         label="Insert Employee Details"
         view="embedded.html"
-        icon="https://github.com/downloads/pradeeptammineni/acnhcm/icon16x16.png"/>
+        icon="images/icon16x16.png"/>
         
         <action id="com.jivesoftware.rte.sap.actionMenu"
         path="jive/actions/content/*"
         label="Lookup Employee Details"
         view="embedded.json"
-        icon="https://github.com/downloads/pradeeptammineni/acnhcm/icon16x16.png"/>
+        icon="images/icon16x16.png"/>
       ]]> 
       </Param>
     </Require>
@@ -40,5 +40,5 @@
   </ModulePrefs>
   <Content view="home, canvas" type="html" href="hcmapp.html"/>
   <Content view="embedded.html" type="html" href="hcmapp-global.html" preferred_height="500" preferred_width="800"/>
-  <Content view="embedded.json" type="html" href="hcmapp-rte.html" preferred_height="500" preferred_width="800"/>
+  <Content view="embedded.json" type="html" href="hcmapp-global.html" preferred_height="500" preferred_width="800"/>
 </Module>
