@@ -36,7 +36,6 @@ function checkPersonID(empID) {
 	for (i=0;i<len;i++) {
 		empID = '0'+empID;
 	}
-	console.log(empID);
 	return empID;
 }
 
@@ -54,7 +53,6 @@ function getTodaysDate()
 }
 
 function setAction () {
-	console.log ("I am here");
 	isAction = 1;
 	onEmpSearch();
 }
@@ -124,7 +122,7 @@ function onEmpSearch() {
 				returnMessage = $tempData.find('Message').text();
 				if (returnMessage !='') {
 					// Some problem! Display the message!
-					console.log(returnMessage);
+					//console.log(returnMessage);
 					$('#response-message').html("<b>"+returnMessage+".</b> <br/>Please try again.");
 					$('#emp-search-button').text("Search");
 					$('#emp-search-button').removeAttr('disabled');		
@@ -252,7 +250,7 @@ function onEmpSearch() {
 				returnMessage = $tempData.find('Message').text();
 				if (returnMessage !='') {
 					// Some problem! Display the message!
-					console.log(returnMessage);
+					//console.log(returnMessage);
 					$('#response-message').html("<b>"+returnMessage+".</b> <br/>Please try again.");
 					$('#emp-search-button').text("Search");
 					$('#emp-search-button').removeAttr('disabled');		
@@ -427,7 +425,7 @@ $('a.bankLink').click(function() {
 			'format' : 'text',
 			'headers' : { 'content-type' : ['text/xml'] }
 		}).execute(function(response) {
-			console.log("Bank Details: "+response.content);
+			//console.log("Bank Details: "+response.content);
 			var bankDetails, bankData, tempData, tValBeg, tValEnd = '';
 			bankData = $.parseXML(response.content);
 			$tempData = $(bankData);
@@ -441,7 +439,7 @@ $('a.bankLink').click(function() {
 				'format' : 'text',
 				'headers' : { 'content-type' : ['text/xml'] }
 			}).execute(function(callback) {
-				console.log("Response from Bank 2: "+callback.content);
+				//console.log("Response from Bank 2: "+callback.content);
 				bankData = $.parseXML(callback.content);
 				$bankDetails= $(bankData);
 				
@@ -477,7 +475,7 @@ $('a.annPayLink').click(function() {
 			'format' : 'text',
 			'headers' : { 'content-type' : ['text/xml'] }
 		}).execute(function(response) {
-			console.log("Basic Pay:"+response);
+			//console.log("Basic Pay:"+response);
 			var payDetails, payData, tempData, tValBeg, tValEnd = '';
 			payData = $.parseXML(response.content);
 			$tempData = $(payData);
@@ -491,7 +489,7 @@ $('a.annPayLink').click(function() {
 				'format' : 'text',
 				'headers' : { 'content-type' : ['text/xml'] }
 			}).execute(function(callback) {
-				console.log("Response from Pay 2: "+callback.content);
+				//console.log("Response from Pay 2: "+callback.content);
 				payData = $.parseXML(callback.content);
 				$payDetails= $(payData);
 				//Populate the address table
@@ -578,7 +576,7 @@ function onAddUpdate() {
 	addState = $("#addState").val();
 	addCountry = $("#addCountry").val();
 	soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:ZbapiAddressempChange><City>'+addCity+'</City><Coname>'+addCO+'</Coname><Country>'+addCountry+'</Country><District>?</District><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Nocommit></Nocommit><Objectid></Objectid><Postalcodecity>'+addCode+'</Postalcodecity><Recordnumber>000</Recordnumber><Scndaddressline>'+addLine2+'</Scndaddressline><State>'+addState+'</State><Streetandhouseno>'+addLine1+'</Streetandhouseno><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Telephonenumber></Telephonenumber><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:ZbapiAddressempChange></soapenv:Body></soapenv:Envelope>';
-	console.log(soap_envelope);
+	//console.log(soap_envelope);
 	osapi.jive.connects.post({
 			'alias' : 'SAPHCM',
 			'href' : '/zbapi_addressemp_change/801/zbapi_addressemp_change/bind1',
@@ -586,7 +584,7 @@ function onAddUpdate() {
 			'format' : 'text',
 			'headers' : { 'content-type' : ['text/xml'] }
 		}).execute(function(callback) {
-			console.log("Address updated: "+callback.content);
+			//console.log("Address updated: "+callback.content);
 		});			
 	gadgets.window.adjustHeight();
 }
