@@ -465,6 +465,7 @@ function onBackDetail () {
 		//Clear the search form too!
 		$('#person-first-name').val("");
 		$('#person-last-name').val("");
+		$('#person-id').val("");
 		$('#response-message').html("");
 		$('#search-form').show();
 	}
