@@ -25,6 +25,7 @@ function init() {
 	$("#search-results-back").click(onBackSearch);
 	$("#results-back").click(onBackDetail);
 	$("#submit-address-update").click(onAddUpdate);
+	$("#submit-document-update").click(onDocUpdate);
 	mini = new gadgets.MiniMessage();
 }
 
@@ -555,6 +556,33 @@ function onAddUpdate() {
 			'headers' : { 'content-type' : ['text/xml'] }
 		}).execute(function(callback) {
 			$('#response-status').html("<b>Address successfully updated.</b>");
+			hideLoading();
+			//console.log("Address updated: "+callback.content);
+		});			
+	gadgets.window.adjustHeight();
+}
+
+function onDocUpdate() {
+	var soap_envelope, docNum, docIssDate, docExpiryDate, 
+			docIssPlace, docIssCountry, docIssAuth, addCountry = '';
+	showLoading();
+	//docType = $("#docType").val();
+	docNum = $("#docNum").val();
+	docIssDate = $("#docIssDate").val();
+	docExpiryDate = $("#docExpiryDate").val();
+	docIssPlace = $("#docIssPlace").val();
+	docIssCountry = $("#docIssCountry").val();
+	docIssAuth = $("#docIssAuth").val();
+	soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:ZbapiEmppersidChange><Applicationdate></Applicationdate><Applicationstatus></Applicationstatus><Docissuenumber>'+docNum+'</Docissuenumber><Employeenumber>'+personID+'</Employeenumber><Icnumber></Icnumber><Idcountry></Idcountry><Idexpirydate>'+docExpiryDate+'</Idexpirydate><Idissuedcountry>'+docIssCountry+'</Idissuedcountry><Idissuedplace>'+docIssPlace+'</Idissuedplace><Indicatorconschkoverride></Indicatorconschkoverride><Issuingauthority>'+docIssAuth+'</Issuingauthority><Lengthofmultiplevisa></Lengthofmultiplevisa><Lockindicator></Lockindicator><Nocommit></Nocommit><Objectid></Objectid><Oldicnumber></Oldicnumber><Personalidissuedt>'+docIssDate+'</Personalidissuedt><Recordnumber>000</Recordnumber><Rejectreason></Rejectreason><Singlemultiple>?</Singlemultiple><Subtype>'+PERSDOC_SUBTYPE+'</Subtype><Timeunitfornextpayment></Timeunitfornextpayment><Usedfromdate></Usedfromdate><Usedtodate></Usedtodate><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:ZbapiEmppersidChange></soapenv:Body></soapenv:Envelope>';
+	//console.log(soap_envelope);
+	osapi.jive.connects.post({
+			'alias' : 'SAPHCM',
+			'href' : '/zbapi_emppersid_change/801/zbapi_emppersid_change/bind1',
+			'body' : soap_envelope,
+			'format' : 'text',
+			'headers' : { 'content-type' : ['text/xml'] }
+		}).execute(function(callback) {
+			$('#response-status').html("<b>Personal Document details successfully updated.</b>");
 			hideLoading();
 			//console.log("Address updated: "+callback.content);
 		});			
