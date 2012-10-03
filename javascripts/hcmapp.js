@@ -282,13 +282,13 @@ $('a.perDocLink').click(function() {
 						console.log("Response from Personal Document: "+docDetails);
 						//$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
 						//Populate the address table
-						$("#docType").val($docDetails.find('Coname').text());
-						$("#docNum").val($docDetails.find('Streetandhouseno').text());
-						$("#docIssDate").val($docDetails.find('Scndaddressline').text());
-						$("#docExpiryDate").val($docDetails.find('City').text());
-						$("#docIssPlace").val($docDetails.find('Postalcodecity').text());
-						$("#docIssCountry").val($docDetails.find('State').text());
-						$("#docIssAuth").val($docDetails.find('Country').text());
+						$("#docType").val($docDetails.find('Subtypetext').text());
+						$("#docNum").val($docDetails.find('Docissuenumber').text());
+						$("#docIssDate").val($docDetails.find('Personalidissuedt').text());
+						$("#docExpiryDate").val($docDetails.find('Idexpirydate').text());
+						$("#docIssPlace").val($docDetails.find('Idissuedplace').text());
+						$("#docIssCountry").val($docDetails.find('Idissuedcountry').text());
+						$("#docIssAuth").val($docDetails.find('Issuingauthority').text());
 						isPerFet = 1;
 						isPerFine = 1;
 						hideLoading();
