@@ -4,7 +4,7 @@ var isAddFet = 0, isAddFine = 0, isBanFet = 0, isPerFet = 0, isPerFine = 0, isPa
 var ADDRESS_SUBTYPE = '3';
 var BASICPAY_SUBTYPE = '0';
 var BANKDETAIL_SUBTYPE = '0';
-var PERSDOC_SUBTYPE = 'pp';
+var PERSDOC_SUBTYPE = '3';
 var SAPEMPID_LENGTH = 8;
 
 var ua = navigator.userAgent,
