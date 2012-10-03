@@ -258,20 +258,20 @@ $('a.perDocLink').click(function() {
 		'format' : 'text',
 		'headers' : { 'content-type' : ['text/xml'] }
 		}).execute(function(callback) {
-			var addDetails, empData, tempData = '';
+			var docDetails, empData, tempData = '';
 			empData = $.parseXML(callback.content);
 			console.log(callback.content);
 			$tempData = $(empData);
-			$addDetails = $tempData.find('Addressempkey');
-			$addDetails = $addDetails.find('item');
-			dValBeg = $addDetails.children('Validbegin').text();
-			dValEnd = $addDetails.children('Validend').text();
+			$docDetails = $tempData.find('Addressempkey');
+			$docDetails = $addDetails.find('item');
+			dValBeg = $docDetails.children('Validbegin').text();
+			dValEnd = $docDetails.children('Validend').text();
 			if (addDetails) {
 				gadgets.window.adjustHeight();
-				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempGetdetail></soapenv:Body></soapenv:Envelope>';		
+				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmppersidGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Molga></Molga><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+PERSDOC_SUBTYPE+'</Subtype><Validitybegin>''</Validitybegin><Validityend>''</Validityend></urn:EmppersidGetdetail></soapenv:Body></soapenv:Envelope>';		
 				osapi.jive.connects.post({
 						'alias' : 'SAPHCM',
-						'href' : '/z_bapi_addressemp_getdetail/801/z_bapi_addressemp_getdetail/bind1',
+						'href' : '/z_bapi_emppersid_getdetail/801/z_bapi_emppersid_getdetail/bind1',
 						'body' : soap_envelope,
 						'format' : 'text',
 						'headers' : { 'content-type' : ['text/xml'] }
@@ -281,13 +281,13 @@ $('a.perDocLink').click(function() {
 						$addDetails= $(empData);
 						//$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
 						//Populate the address table
-						$("#docType").val($addDetails.find('Coname').text());
-						$("#docNum").val($addDetails.find('Streetandhouseno').text());
-						$("#docIssDate").val($addDetails.find('Scndaddressline').text());
-						$("#docExpiryDate").val($addDetails.find('City').text());
-						$("#docIssPlace").val($addDetails.find('Postalcodecity').text());
-						$("#docIssCountry").val($addDetails.find('State').text());
-						$("#docIssAuth").val($addDetails.find('Country').text());
+						$("#docType").val($docDetails.find('Coname').text());
+						$("#docNum").val($docDetails.find('Streetandhouseno').text());
+						$("#docIssDate").val($docDetails.find('Scndaddressline').text());
+						$("#docExpiryDate").val($docDetails.find('City').text());
+						$("#docIssPlace").val($docDetails.find('Postalcodecity').text());
+						$("#docIssCountry").val($docDetails.find('State').text());
+						$("#docIssAuth").val($docDetails.find('Country').text());
 						isPerFet = 1;
 						isPerFine = 1;
 						hideLoading();
