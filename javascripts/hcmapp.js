@@ -268,7 +268,7 @@ $('a.perDocLink').click(function() {
 			dValEnd = $docDetails.children('Validend').text();
 			if (addDetails) {
 				gadgets.window.adjustHeight();
-				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmppersidGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Molga></Molga><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+PERSDOC_SUBTYPE+'</Subtype><Validitybegin>''</Validitybegin><Validityend>''</Validityend></urn:EmppersidGetdetail></soapenv:Body></soapenv:Envelope>';		
+				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmppersidGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Molga></Molga><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+PERSDOC_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:EmppersidGetdetail></soapenv:Body></soapenv:Envelope>';		
 				osapi.jive.connects.post({
 						'alias' : 'SAPHCM',
 						'href' : '/z_bapi_emppersid_getdetail/801/z_bapi_emppersid_getdetail/bind1',
