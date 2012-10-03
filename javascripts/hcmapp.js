@@ -269,6 +269,7 @@ $('a.perDocLink').click(function() {
 			if (dValBeg != '' && dValEnd != '') {
 				gadgets.window.adjustHeight();
 				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmppersidGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Molga></Molga><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+PERSDOC_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:EmppersidGetdetail></soapenv:Body></soapenv:Envelope>';		
+				console.log("Personal Doc: "+soap_envelope);
 				osapi.jive.connects.post({
 						'alias' : 'SAPHCM',
 						'href' : '/z_bapi_emppersid_getdetail/801/z_bapi_emppersid_getdetail/bind1',
@@ -276,9 +277,9 @@ $('a.perDocLink').click(function() {
 						'format' : 'text',
 						'headers' : { 'content-type' : ['text/xml'] }
 					}).execute(function(recallback) {
-						console.log("Response from Personal Document: "+recallback.content);
 						empData = $.parseXML(recallback.content);
 						$docDetails= $(empData);
+						console.log("Response from Personal Document: "+empData);
 						//$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
 						//Populate the address table
 						$("#docType").val($docDetails.find('Coname').text());
