@@ -266,7 +266,7 @@ $('a.perDocLink').click(function() {
 			$docDetails = $docDetails.find('item');
 			dValBeg = $docDetails.children('Validbegin').text();
 			dValEnd = $docDetails.children('Validend').text();
-			if (addDetails) {
+			if (dValBeg != '' && dValEnd!='') {
 				gadgets.window.adjustHeight();
 				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmppersidGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Molga></Molga><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+PERSDOC_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:EmppersidGetdetail></soapenv:Body></soapenv:Envelope>';		
 				osapi.jive.connects.post({
@@ -278,7 +278,7 @@ $('a.perDocLink').click(function() {
 					}).execute(function(recallback) {
 						//console.log("Response from Address 2: "+recallback.content);
 						empData = $.parseXML(recallback.content);
-						$addDetails= $(empData);
+						$docDetails= $(empData);
 						//$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
 						//Populate the address table
 						$("#docType").val($docDetails.find('Coname').text());
