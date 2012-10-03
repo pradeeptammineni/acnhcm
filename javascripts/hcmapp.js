@@ -4,7 +4,7 @@ var isAddFet = 0, isAddFine = 0, isBanFet = 0, isPerFet = 0, isPerFine = 0, isPa
 var ADDRESS_SUBTYPE = '3';
 var BASICPAY_SUBTYPE = '0';
 var BANKDETAIL_SUBTYPE = '0';
-var PERSDOC_SUBTYPE = '3';
+var PERSDOC_SUBTYPE = 'PP';
 var SAPEMPID_LENGTH = 8;
 
 var ua = navigator.userAgent,
@@ -263,7 +263,7 @@ $('a.perDocLink').click(function() {
 			console.log(callback.content);
 			$tempData = $(empData);
 			$docDetails = $tempData.find('Addressempkey');
-			$docDetails = $addDetails.find('item');
+			$docDetails = $docDetails.find('item');
 			dValBeg = $docDetails.children('Validbegin').text();
 			dValEnd = $docDetails.children('Validend').text();
 			if (addDetails) {
