@@ -279,7 +279,7 @@ $('a.perDocLink').click(function() {
 					}).execute(function(recallback) {
 						empData = $.parseXML(recallback.content);
 						$docDetails= $(empData);
-						console.log("Response from Personal Document: "+empData);
+						console.log("Response from Personal Document: "+docDetails);
 						//$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
 						//Populate the address table
 						$("#docType").val($docDetails.find('Coname').text());
