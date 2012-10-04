@@ -301,7 +301,7 @@ $('a.perDocLink').bind(eventHandler, function() {
 				isPerFet = 1;
 				isPerFine = 0;
 				$('#response-status').html("<b>No Personal Document details found for the employee.</b>");
-				$('submit-document-update').hide();
+				$('#submit-document-update').hide();
 				hideLoading();
 			}
 		});
