@@ -234,7 +234,7 @@ $('a.perDocLink').bind(eventHandler, function() {
 	$('#bankList').hide();
 	$('#perDocList').show();
 	
-	$('#submit-address-update').hide();
+	$('#submit-document-update').hide();
 	
 	$('#response-status').html("");
 	if (isPerFet == 1) {
