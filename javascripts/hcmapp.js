@@ -559,7 +559,7 @@ function onAddUpdate() {
 		}).execute(function(callback) {
 			$('#response-status').html("<b>Address successfully updated.</b>");
 			hideLoading();
-			//console.log("Address updated: "+callback.content);
+			console.log("Address updated: "+callback.content);
 		});			
 	gadgets.window.adjustHeight();
 }
