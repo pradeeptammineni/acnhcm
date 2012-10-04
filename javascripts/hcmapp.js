@@ -593,7 +593,7 @@ function onDocUpdate() {
 // On double-clicking each row, let's 
 // get the details displayed...
 //$('tr.rowPerson').bind(eventHandler, function(){
-$('tr.rowPerson').bind(eventHandler, function(){
+$('tr.rowPerson').live (eventHandler, function(){
 	personID = '';
 	personID = $(this).attr('id');
 	console.log("id: "+personID);
