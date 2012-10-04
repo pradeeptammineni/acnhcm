@@ -22,10 +22,10 @@ function init() {
 	//Link the "Search" button to EmpSearch
 	$("#emp-search-button").bind(eventHandler, onEmpSearch);
 	//From "Search Results" -> BACK to "Search" form
-	$("#search-results-back").click(onBackSearch);
-	$("#results-back").click(onBackDetail);
-	$("#submit-address-update").click(onAddUpdate);
-	$("#submit-document-update").click(onDocUpdate);
+	$("#search-results-back").bind(eventHandler, onBackSearch);
+	$("#results-back").bind(eventHandler, onBackDetail);
+	$("#submit-address-update").bind(eventHandler, onAddUpdate);
+	$("#submit-document-update").bind(eventHandler, onDocUpdate);
 	mini = new gadgets.MiniMessage();
 }
 
@@ -223,7 +223,7 @@ function onEmpSearch() {
 	});
 }
 
-$('a.perDocLink').click(function() {
+$('a.perDocLink').bind(eventHandler, function() {
 	$('a.addLink').removeClass('active');
 	$('a.annPayLink').removeClass('active');
 	$('a.bankLink').removeClass('active');
@@ -307,7 +307,7 @@ $('a.perDocLink').click(function() {
 	}	
 });
 
-$('a.bankLink').click(function() {
+$('a.bankLink').bind(eventHandler, function() {
 	$('a.addLink').removeClass('active');
 	$('a.annPayLink').removeClass('active');
 	$('a.perDocLink').removeClass('active');
@@ -378,7 +378,7 @@ $('a.bankLink').click(function() {
 	}
 });
 
-$('a.annPayLink').click(function() {
+$('a.annPayLink').bind(eventHandler, function() {
 	$('a.addLink').removeClass('active');
 	$('a.bankLink').removeClass('active');
 	$('a.perDocLink').removeClass('active');
@@ -449,7 +449,7 @@ $('a.annPayLink').click(function() {
 });
 
 
-$('a.addLink').click(function(){
+$('a.addLink').bind(eventHandler, function(){
 	showAddress();
 });
 
@@ -592,8 +592,8 @@ function onDocUpdate() {
 
 // On double-clicking each row, let's 
 // get the details displayed...
-//$('tr.rowPerson').click(function(){
-$('tr.rowPerson').live(eventHandler,function(){
+//$('tr.rowPerson').bind(eventHandler, function(){
+$('tr.rowPerson').bind(eventHandler, function(){
 	personID = '';
 	personID = $(this).attr('id');
 	console.log("id: "+personID);
