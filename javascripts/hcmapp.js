@@ -20,7 +20,7 @@ function init() {
 	//$('#person-first-name').focus();
 	$("input:text:visible:first").focus();
 	//Link the "Search" button to EmpSearch
-	$("#emp-search-button").click(onEmpSearch);
+	$("#emp-search-button").bind(eventHandler, onEmpSearch);
 	//From "Search Results" -> BACK to "Search" form
 	$("#search-results-back").click(onBackSearch);
 	$("#results-back").click(onBackDetail);
