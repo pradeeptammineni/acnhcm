@@ -234,12 +234,13 @@ $('a.perDocLink').bind(eventHandler, function() {
 	$('#bankList').hide();
 	$('#perDocList').show();
 	
-	$('#submit-document-update').hide();
+	$('#submit-address-update').hide();
 	
 	$('#response-status').html("");
 	if (isPerFet == 1) {
 		if (isPerFine == 0) {
 			$('#response-status').html("<b>No Personal Document details found for the employee.</b>");
+			$('#submit-document-update').hide();
 		}
 		else {
 			$('#submit-document-update').show();
