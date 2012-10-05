@@ -221,6 +221,7 @@ function onEmpSearch() {
 			}
 		}
 	});
+	gadgets.window.adjustHeight();
 }
 
 $('a.perDocLink').bind(eventHandler, function() {
@@ -247,7 +248,6 @@ $('a.perDocLink').bind(eventHandler, function() {
 		}
 	}
 	
-	gadgets.window.adjustHeight();
 	if (isPerFet == 0)
 	{
 		showLoading();
@@ -305,7 +305,8 @@ $('a.perDocLink').bind(eventHandler, function() {
 				hideLoading();
 			}
 		});
-	}	
+	}
+	gadgets.window.adjustHeight();
 });
 
 $('a.bankLink').bind(eventHandler, function() {
@@ -327,7 +328,6 @@ $('a.bankLink').bind(eventHandler, function() {
 		$('#response-status').html("<b>No Bank details found for the employee.</b>");
 	}
 
-	gadgets.window.adjustHeight();
 	if (isBanFet == 0)
 	{
 		showLoading();
@@ -377,6 +377,7 @@ $('a.bankLink').bind(eventHandler, function() {
 			}
 		});
 	}
+	gadgets.window.adjustHeight();
 });
 
 $('a.annPayLink').bind(eventHandler, function() {
@@ -447,6 +448,7 @@ $('a.annPayLink').bind(eventHandler, function() {
 			}
 		});
 	}
+	gadgets.window.adjustHeight();
 });
 
 
@@ -535,6 +537,7 @@ function showAddress() {
 			}
 		});
 	}
+	gadgets.window.adjustHeight();
 }
 
 function onAddUpdate() {
@@ -661,6 +664,7 @@ function clearAll () {
 	$('#docIssAuth').val("");
 	
 	$('#response-status').html("");
+	gadgets.window.adjustHeight();
 }
 
 // Having "Back button in Search Results.
