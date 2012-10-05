@@ -1,5 +1,5 @@
 var mini;
-var personID, todaysDate, dValEnd, dValBeg, lockInd, objID = '';
+var personID, todaysDate, dValEnd, dValBeg, aValEnd, aValBeg, lockInd, objID = '';
 var isAddFet = 0, isAddFine = 0, isBanFet = 0, isPerFet = 0, isPerFine = 0, isPayFet = 0, isSingle = 0;
 var ADDRESS_SUBTYPE = '3';
 var BASICPAY_SUBTYPE = '0';
@@ -283,8 +283,8 @@ $('a.perDocLink').bind(eventHandler, function() {
 						empData = $.parseXML(recallback.content);
 						$docDetails= $(empData);
 						console.log("Response from Personal Document: "+docDetails);
-						//$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
-						//Populate the address table
+						
+						//Populate the Document table
 						$("#docType").val($docDetails.find('Subtypetext').text());
 						$("#docNum").val($docDetails.find('Docissuenumber').text());
 						$("#docIssDate").val($docDetails.find('Personalidissuedt').text());
@@ -497,11 +497,11 @@ function showAddress() {
 			$tempData = $(empData);
 			$addDetails = $tempData.find('Addressempkey');
 			$addDetails = $addDetails.find('item');
-			dValBeg = $addDetails.children('Validbegin').text();
-			dValEnd = $addDetails.children('Validend').text();
-			if (dValBeg != '' && dValEnd != '') {
+			aValBeg = $addDetails.children('Validbegin').text();
+			aValEnd = $addDetails.children('Validend').text();
+			if (aValBeg != '' && aValEnd != '') {
 				gadgets.window.adjustHeight();
-				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempGetdetail></soapenv:Body></soapenv:Envelope>';		
+				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Validitybegin>'+aValBeg+'</Validitybegin><Validityend>'+aValEnd+'</Validityend></urn:AddressempGetdetail></soapenv:Body></soapenv:Envelope>';		
 				osapi.jive.connects.post({
 						'alias' : 'SAPHCM',
 						'href' : '/z_bapi_addressemp_getdetail/801/z_bapi_addressemp_getdetail/bind1',
@@ -548,7 +548,7 @@ function onAddUpdate() {
 	addCode = $("#addCode").val();
 	addState = $("#addState").val();
 	addCountry = $("#addCountry").val();
-	soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:ZbapiAddressempChange><City>'+addCity+'</City><Coname>'+addCO+'</Coname><Country>'+addCountry+'</Country><District>?</District><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Nocommit></Nocommit><Objectid></Objectid><Postalcodecity>'+addCode+'</Postalcodecity><Recordnumber>000</Recordnumber><Scndaddressline>'+addLine2+'</Scndaddressline><State>'+addState+'</State><Streetandhouseno>'+addLine1+'</Streetandhouseno><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Telephonenumber></Telephonenumber><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:ZbapiAddressempChange></soapenv:Body></soapenv:Envelope>';
+	soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:ZbapiAddressempChange><City>'+addCity+'</City><Coname>'+addCO+'</Coname><Country>'+addCountry+'</Country><District>?</District><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Nocommit></Nocommit><Objectid></Objectid><Postalcodecity>'+addCode+'</Postalcodecity><Recordnumber>000</Recordnumber><Scndaddressline>'+addLine2+'</Scndaddressline><State>'+addState+'</State><Streetandhouseno>'+addLine1+'</Streetandhouseno><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Telephonenumber></Telephonenumber><Validitybegin>'+aValBeg+'</Validitybegin><Validityend>'+aValEnd+'</Validityend></urn:ZbapiAddressempChange></soapenv:Body></soapenv:Envelope>';
 	//console.log(soap_envelope);
 	osapi.jive.connects.post({
 			'alias' : 'SAPHCM',
