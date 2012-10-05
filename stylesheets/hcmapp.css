@@ -146,7 +146,7 @@ div.menu a:hover, div.menu a.active:link, div.menu a.active:visited {
 .loadmask-msg div {
 	padding:5px 10px 5px 25px;
 	background: #fbfbfb;
-	background-image: url('https://raw.github.com/pradeeptammineni/acnhcm/master/images/loading.gif') no-repeat 5px 5px;
+	background-image: url(https://raw.github.com/pradeeptammineni/acnhcm/master/images/loading.gif) no-repeat 5px 5px;
 	line-height: 16px;
 	border:1px solid #a3bad9;
 	color:#222;
