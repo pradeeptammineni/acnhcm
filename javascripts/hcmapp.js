@@ -243,6 +243,7 @@ $('a.perDocLink').bind(eventHandler, function() {
 		if (isPerFine == 0) {
 			$('#response-status').html("<b>No Personal Document details found for the employee.</b>");
 			$('#submit-document-update').hide();
+			gadgets.window.adjustHeight();
 		}
 		else {
 			$('#submit-document-update').show();
@@ -296,6 +297,7 @@ $('a.perDocLink').bind(eventHandler, function() {
 						isPerFet = 1;
 						isPerFine = 1;
 						hideLoading();
+						gadgets.window.adjustHeight();
 				});				
 			}
 			else {
@@ -304,6 +306,7 @@ $('a.perDocLink').bind(eventHandler, function() {
 				$('#response-status').html("<b>No Personal Document details found for the employee.</b>");
 				$('#submit-document-update').hide();
 				hideLoading();
+				gadgets.window.adjustHeight();
 			}
 		});
 	}
