@@ -699,6 +699,7 @@ function onBackDetail () {
 	$('#perDocList').hide();
 	
 	$('#detailRecord').hide();
+	console.log("Single: "+isSingle);
 	
 	//If it's from Actions or if there is just ONE
 	//record in the search results, we may want to 
