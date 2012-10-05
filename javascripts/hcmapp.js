@@ -330,6 +330,7 @@ $('a.bankLink').bind(eventHandler, function() {
 	$('#response-status').html("");
 	if (isBanFet == 1 && isBanFine == 0) {
 		$('#response-status').html("<b>No Bank details found for the employee.</b>");
+		gadgets.window.adjustHeight();
 	}
 
 	if (isBanFet == 0)
@@ -371,6 +372,7 @@ $('a.bankLink').bind(eventHandler, function() {
 					isBanFet = 1;
 					isBanFine = 1;
 					hideLoading();
+					gadgets.window.adjustHeight();
 				});
 			}
 			else {
@@ -378,6 +380,7 @@ $('a.bankLink').bind(eventHandler, function() {
 				isBanFine = 0;
 				$('#response-status').html("<b>No Bank details found for the employee.</b>");
 				hideLoading();
+				gadgets.window.adjustHeight();
 			}
 		});
 	}
@@ -401,6 +404,7 @@ $('a.annPayLink').bind(eventHandler, function() {
 	$('#response-status').html("");
 	if (isPayFet == 1 && isPayFine == 0) {
 		$('#response-status').html("<b>No Annual Pay details found for the employee.</b>");
+		gadgets.window.adjustHeight();
 	}
 	
 	gadgets.window.adjustHeight();
@@ -442,6 +446,7 @@ $('a.annPayLink').bind(eventHandler, function() {
 					isPayFet = 1;
 					isPayFine = 1;
 					hideLoading();
+					gadgets.window.adjustHeight();
 				});				
 			}
 			else {
@@ -449,6 +454,7 @@ $('a.annPayLink').bind(eventHandler, function() {
 				isPayFine = 0;
 				$('#response-status').html("<b>No Annual Pay details found for the employee.</b>");
 				hideLoading();
+				gadgets.window.adjustHeight();
 			}
 		});
 	}
@@ -478,6 +484,7 @@ function showAddress() {
 	if (isAddFet == 1) {
 		if (isAddFine == 0) {
 			$('#response-status').html("<b>No Address details found for the employee.</b>");
+			gadgets.window.adjustHeight();
 		}
 		else {
 			$('#submit-address-update').show();
@@ -530,6 +537,7 @@ function showAddress() {
 						isAddFet = 1;
 						isAddFine = 1;
 						hideLoading();
+						gadgets.window.adjustHeight();
 				});				
 			}
 			else {
@@ -538,6 +546,7 @@ function showAddress() {
 				$('#response-status').html("<b>No Address details found for the employee.</b>");
 				$('#submit-address-update').hide();
 				hideLoading();
+				gadgets.window.adjustHeight();
 			}
 		});
 	}
@@ -567,6 +576,7 @@ function onAddUpdate() {
 			$('#response-status').html("<b>Address successfully updated.</b>");
 			hideLoading();
 			console.log("Address updated: "+callback.content);
+			gadgets.window.adjustHeight();
 		});			
 	gadgets.window.adjustHeight();
 }
@@ -593,6 +603,7 @@ function onDocUpdate() {
 		}).execute(function(callback) {
 			$('#response-status').html("<b>Personal Document details successfully updated.</b>");
 			hideLoading();
+			gadgets.window.adjustHeight();
 			//console.log("Address updated: "+callback.content);
 		});			
 	gadgets.window.adjustHeight();
@@ -718,14 +729,15 @@ function onBackDetail () {
 		$('#person-last-name').val("");
 		$('#response-message').html("");
 		$('#search-form').show();
+		gadgets.window.adjustHeight();
 	}
 	else {
 		$('#displayRecord').show();
+		gadgets.window.adjustHeight();
 	}	
 	//deQueuePerson();
 	//Clear all the form details
 	clearAll();	
-	gadgets.window.adjustHeight();
 }
 
 // Register our on-view-load handler
