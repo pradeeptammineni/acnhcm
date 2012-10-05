@@ -44,8 +44,14 @@
 
 <!-- Records Display table & Pages -->
 <div id="displayRecord" style="display:none">
-	<div>Total records: <b><span id="recordCount"></span></b>. 
-	Please select (through double-click) the employee, whose information you seek.</div>
+	<div align="center" width="90%" id="pager" align="right" class="pager" style="display:none">Total records: <b><span id="recordCount"></span></b>. 
+	Please select (through double-click) the employee, whose information you seek.
+		<img src="images/first.png" class="first" style="padding-left: 0pt; padding-top: 3pt; padding-bottom: 0pt; padding-right: 0pt"/>
+		<img src="images/prev.png" class="prev" style="padding-left: 0pt; padding-top: 3pt; padding-bottom: 0pt; padding-right: 0pt"/>
+		<input type="text" class="pagedisplay" disabled="disabled"/>
+		<img src="images/next.png" class="next" style="padding-left: 0pt; padding-top: 3pt; padding-bottom: 0pt; padding-right: 0pt"/>
+		<img src="images/last.png" class="last" style="padding-left: 0pt; padding-top: 3pt; padding-bottom: 0pt; padding-right: 0pt"/>
+	</div>
 	<table id="xmlTable" class="data-grid">
 		<thead>
 		<tr>
