@@ -132,8 +132,10 @@
 				renderTable(table,rows);
 			};
 			
+			var ua = navigator.userAgent, pageSizeAgent = (ua.match(/iPad/i)) ? "5" : "15";
+			
 			this.defaults = {
-				size: 15,
+				size: pageSizeAgent,
 				offset: 0,
 				page: 0,
 				totalRows: 0,
