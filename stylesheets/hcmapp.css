@@ -95,7 +95,7 @@ div.menu a:link, div.menu a:visited {
 }
 
 div.menu a:hover, div.menu a.active:link, div.menu a.active:visited { 
-	background: gray; /*#E7E7F7*/
+	background: #cdc9c9; /*#E7E7F7*/
 	color: white;
 }
 
