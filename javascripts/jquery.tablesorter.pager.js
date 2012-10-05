@@ -119,10 +119,6 @@
 			function undoDataGrid()
 			{
 				$('table.data-grid tr').removeClass('active');
-				$('#canvas').hide();
-				$('#discussTable').hide();
-				$('#discussTopic').val("");
-				$('#discussMessage').val("");
 			}
 			
 			this.appender = function(table,rows) {
