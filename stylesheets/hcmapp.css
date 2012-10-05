@@ -99,6 +99,10 @@ div.menu a:hover, div.menu a.active:link, div.menu a.active:visited {
 	/*color: white;*/
 }
 
+#pager img {
+	margin: 0px 0px 0px 0px;
+}
+
 /*Masking - Start */
 .loadmask {
 	z-index: 100;
