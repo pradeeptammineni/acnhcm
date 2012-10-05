@@ -48,17 +48,17 @@ table.crud thead, table.data-grid thead tr th, table.data-grid tfoot tr th {
 }
 
 table.data-grid thead tr .header {
-	background-image: url(../images/bg.png);
+	background-image: url(https://raw.github.com/pradeeptammineni/acnhcm/master/images/bg.png);
 	background-repeat: no-repeat;
 	background-position: center right;
 	cursor: pointer;
 }
 
 table.data-grid thead tr .headerSortUp {
-	background-image: url(../images/asc.png);
+	background-image: url(https://raw.github.com/pradeeptammineni/acnhcm/master/images/asc.png);
 }
 table.data-grid thead tr .headerSortDown {
-	background-image: url(../images/desc.png);
+	background-image: url(https://raw.github.com/pradeeptammineni/acnhcm/master/images/desc.png);
 }
 table.data-grid thead tr .headerSortDown, table.data-grid thead tr .headerSortUp {
 background-color: #12378B;
@@ -146,7 +146,7 @@ div.menu a:hover, div.menu a.active:link, div.menu a.active:visited {
 .loadmask-msg div {
 	padding:5px 10px 5px 25px;
 	background: #fbfbfb;
-	background-image: url('../images/loading.gif') no-repeat 5px 5px;
+	background-image: url('https://raw.github.com/pradeeptammineni/acnhcm/master/images/loading.gif') no-repeat 5px 5px;
 	line-height: 16px;
 	border:1px solid #a3bad9;
 	color:#222;
