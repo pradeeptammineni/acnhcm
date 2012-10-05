@@ -192,7 +192,7 @@ function onEmpSearch() {
 				//Now, display the table ONLY when we have more than one record.
 				if (tCount>1) {
 					$("table#xmlTable tbody").append(tableData);
-					$("table#xmlTable").tablesorter({widthFixed: false, widgets: ['zebra'],sortList: [[5,1], [1,0]], headers: { 2:{sorter: false}}}).tablesorterPager({container: $("#pager")});
+				//	$("table#xmlTable").tablesorter({widthFixed: false, widgets: ['zebra'],sortList: [[5,1], [1,0]], headers: { 2:{sorter: false}}}).tablesorterPager({container: $("#pager")});
 					//Show the records' table and hide the search form.
 					$('#recordCount').text(tCount);
 					$('#displayRecord').show();
