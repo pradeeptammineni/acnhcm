@@ -132,7 +132,7 @@
 				renderTable(table,rows);
 			};
 			
-			var ua = navigator.userAgent, pageSizeAgent = (ua.match(/iPad/i)) ? "5" : "15";
+			var ua = navigator.userAgent, pageSizeAgent = (ua.match(/iPad/i)) ? "10" : "10";
 			
 			this.defaults = {
 				size: pageSizeAgent,
