@@ -48,17 +48,17 @@ table.crud thead, table.data-grid thead tr th, table.data-grid tfoot tr th {
 }
 
 table.data-grid thead tr .header {
-	background-image: url(images/bg.png);
+	background-image: url(../images/bg.png);
 	background-repeat: no-repeat;
 	background-position: center right;
 	cursor: pointer;
 }
 
 table.data-grid thead tr .headerSortUp {
-	background-image: url(images/asc.png);
+	background-image: url(../images/asc.png);
 }
 table.data-grid thead tr .headerSortDown {
-	background-image: url(images/desc.png);
+	background-image: url(../images/desc.png);
 }
 table.data-grid thead tr .headerSortDown, table.data-grid thead tr .headerSortUp {
 background-color: #12378B;
