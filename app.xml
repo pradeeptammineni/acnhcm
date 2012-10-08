@@ -38,7 +38,7 @@
     <Link rel="MediumIcon" href="images/icon48x48.png" /> 
     <Link rel="LargeIcon" href="images/icon128x128.png" />
   </ModulePrefs>
-  <Content view="home, canvas" type="html" href="hcmapp.html" preferred_height="500" preferred_width="800"/>
-  <Content view="embedded.html" type="html" href="hcmapp-global.html" preferred_height="500" preferred_width="800"/>
-  <Content view="embedded.json" type="html" href="hcmapp-global.html" preferred_height="500" preferred_width="800"/>
+  <Content view="home, canvas" type="html" href="hcmapp.html" preferred_height="550" preferred_width="800"/>
+  <Content view="embedded.html" type="html" href="hcmapp-global.html" preferred_height="525" preferred_width="800"/>
+  <Content view="embedded.json" type="html" href="hcmapp-global.html" preferred_height="525" preferred_width="800"/>
 </Module>
