@@ -223,21 +223,21 @@ $('a.perDocLink').click(function() {
 			empData = $.parseXML(callback.content);
 			console.log(callback.content);
 			$tempData = $(empData);
-			$docDetails = $tempData.find('Addressempkey');
+			$docDetails = $tempData.find('Ppidkey');
 			$docDetails = $docDetails.find('item');
 			dValBeg = $docDetails.children('Validbegin').text();
 			dValEnd = $docDetails.children('Validend').text();
 			gadgets.window.adjustHeight();
 			if (dValBeg != '' && dValEnd != '') {
-				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempGetdetail></soapenv:Body></soapenv:Envelope>';		
+				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmppersidGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Molga></Molga><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+PERSDOC_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:EmppersidGetdetail></soapenv:Body></soapenv:Envelope>';		
 				osapi.jive.connects.post({
 						'alias' : 'SAPHCM',
-						'href' : '/z_bapi_addressemp_getdetail/801/z_bapi_addressemp_getdetail/bind1',
+						'href' : '/z_bapi_emppersid_getdetail/801/z_bapi_emppersid_getdetail/bind1',
 						'body' : soap_envelope,
 						'format' : 'text',
 						'headers' : { 'content-type' : ['text/xml'] }
 					}).execute(function(recallback) {
-						//console.log("Response from Address 2: "+recallback.content);
+						
 						empData = $.parseXML(recallback.content);
 						$docDetails= $(empData);
 
