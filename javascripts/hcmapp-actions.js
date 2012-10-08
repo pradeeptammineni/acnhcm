@@ -242,13 +242,13 @@ $('a.perDocLink').click(function() {
 						$docDetails= $(empData);
 
 						//Populate the Document table
-						$("#docType").val($docDetails.find('Subtypetext').text());
-						$("#docNum").val($docDetails.find('Docissuenumber').text());
-						$("#docIssDate").val($docDetails.find('Personalidissuedt').text());
-						$("#docExpiryDate").val($docDetails.find('Idexpirydate').text());
-						$("#docIssPlace").val($docDetails.find('Idissuedplace').text());
-						$("#docIssCountry").val($docDetails.find('Idissuedcountry').text());
-						$("#docIssAuth").val($docDetails.find('Issuingauthority').text());
+						$("#docType").html($docDetails.find('Subtypetext').text());
+						$("#docNum").html($docDetails.find('Docissuenumber').text());
+						$("#docIssDate").html($docDetails.find('Personalidissuedt').text());
+						$("#docExpiryDate").html($docDetails.find('Idexpirydate').text());
+						$("#docIssPlace").html($docDetails.find('Idissuedplace').text());
+						$("#docIssCountry").html($docDetails.find('Idissuedcountry').text());
+						$("#docIssAuth").html($docDetails.find('Issuingauthority').text());
 						isPerFet = 1;
 						isPerFine = 1;
 						hideLoading();
