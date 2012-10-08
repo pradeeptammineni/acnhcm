@@ -250,6 +250,9 @@ $('a.perDocLink').click(function() {
 						$("#docIssCountry").val($docDetails.find('Idissuedcountry').text());
 						$("#docIssAuth").val($docDetails.find('Issuingauthority').text());
 						isPerFet = 1;
+						isPerFine = 1;
+						hideLoading();
+						gadgets.window.adjustHeight();						
 				});
 			}
 			else {
