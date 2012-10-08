@@ -219,14 +219,14 @@ $('a.perDocLink').click(function() {
 		'format' : 'text',
 		'headers' : { 'content-type' : ['text/xml'] }
 		}).execute(function(callback) {
-			var addDetails, empData, tempData = '';
+			var docDetails, empData, tempData = '';
 			empData = $.parseXML(callback.content);
 			console.log(callback.content);
 			$tempData = $(empData);
-			$addDetails = $tempData.find('Addressempkey');
-			$addDetails = $addDetails.find('item');
-			dValBeg = $addDetails.children('Validbegin').text();
-			dValEnd = $addDetails.children('Validend').text();
+			$docDetails = $tempData.find('Addressempkey');
+			$docDetails = $docDetails.find('item');
+			dValBeg = $docDetails.children('Validbegin').text();
+			dValEnd = $docDetails.children('Validend').text();
 			gadgets.window.adjustHeight();
 			if (dValBeg != '' && dValEnd != '') {
 				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:AddressempGetdetail></soapenv:Body></soapenv:Envelope>';		
@@ -239,16 +239,16 @@ $('a.perDocLink').click(function() {
 					}).execute(function(recallback) {
 						//console.log("Response from Address 2: "+recallback.content);
 						empData = $.parseXML(recallback.content);
-						$addDetails= $(empData);
-						//$addDetails = $tempData.find('n0:AddressempGetdetailResponse');
-						//Populate the address table
-						$("#addCO").html($addDetails.find('Coname').text());
-						$("#addLine1").html($addDetails.find('Streetandhouseno').text());
-						$("#addLine2").html($addDetails.find('Scndaddressline').text());
-						$("#addCity").html($addDetails.find('City').text());
-						$("#addCode").html($addDetails.find('Postalcodecity').text());
-						$("#addState").html($addDetails.find('State').text());
-						$("#addCountry").html($addDetails.find('Country').text());
+						$docDetails= $(empData);
+
+						//Populate the Document table
+						$("#docType").val($docDetails.find('Subtypetext').text());
+						$("#docNum").val($docDetails.find('Docissuenumber').text());
+						$("#docIssDate").val($docDetails.find('Personalidissuedt').text());
+						$("#docExpiryDate").val($docDetails.find('Idexpirydate').text());
+						$("#docIssPlace").val($docDetails.find('Idissuedplace').text());
+						$("#docIssCountry").val($docDetails.find('Idissuedcountry').text());
+						$("#docIssAuth").val($docDetails.find('Issuingauthority').text());
 						isPerFet = 1;
 				});
 			}
