@@ -15,6 +15,10 @@ var ua = navigator.userAgent,
 // On view load, wire up static actions and retrieve initial data
 function init() {
 	// Adjust the height of the app!
+	jive.canvas.getCanvasDimensions(function(dimensions) {
+	  gadgets.window.adjustHeight(dimensions.height);
+		console.log("Height: "+dimensions.height);
+	});
 	gadgets.window.adjustHeight();
 	//Set focus on the search criteria fields.
 	//$('#person-first-name').focus();
