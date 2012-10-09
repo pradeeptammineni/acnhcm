@@ -108,7 +108,6 @@ function onEmpSearch() {
 				console.log("Encountered an error. Error Code: "+response.error.code);
 				$('#emp-search-button').text("Search");
 				$('#emp-search-button').removeAttr('disabled');
-				gadgets.window.adjustHeight();
 			}
 		}
 		else {
@@ -133,7 +132,7 @@ function onEmpSearch() {
 				$('#emp-search-button').text("Search");
 				$('#emp-search-button').removeAttr('disabled');		
 				$("input:text:visible:first").focus();
-				gadgets.window.adjustHeight();
+				
 			}
 			else { 
 				// OK, no problem, we have some records satisfying 
@@ -199,7 +198,6 @@ function onEmpSearch() {
 					$('#search-form').hide();
 					$('#emp-search-button').text("Search");
 					$('#emp-search-button').removeAttr('disabled');					
-					gadgets.window.adjustHeight();
 				}
 				else { //Well, you have just one record, you may as well get to the form directly!
 					isSingle = 1;
@@ -216,13 +214,12 @@ function onEmpSearch() {
 					$('#emp-search-button').removeAttr('disabled');						
 					$("#search-form").hide();
 					$("#detailRecord").show();
-					showAddress();
-					gadgets.window.adjustHeight();					
+					showAddress();					
 				}
+				gadgets.window.adjustHeight();
 			}
 		}
 	});
-	gadgets.window.adjustHeight();
 }
 
 $('a.perDocLink').bind(eventHandler, function() {
@@ -272,7 +269,6 @@ $('a.perDocLink').bind(eventHandler, function() {
 			dValBeg = $docDetails.children('Validbegin').text();
 			dValEnd = $docDetails.children('Validend').text();
 			if (dValBeg != '' && dValEnd != '') {
-				gadgets.window.adjustHeight();
 				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:EmppersidGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Molga></Molga><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+PERSDOC_SUBTYPE+'</Subtype><Validitybegin>'+dValBeg+'</Validitybegin><Validityend>'+dValEnd+'</Validityend></urn:EmppersidGetdetail></soapenv:Body></soapenv:Envelope>';		
 				console.log("Personal Doc: "+soap_envelope);
 				osapi.jive.connects.post({
@@ -297,7 +293,6 @@ $('a.perDocLink').bind(eventHandler, function() {
 						isPerFet = 1;
 						isPerFine = 1;
 						hideLoading();
-						gadgets.window.adjustHeight();
 				});				
 			}
 			else {
@@ -306,11 +301,10 @@ $('a.perDocLink').bind(eventHandler, function() {
 				$('#response-status').html("<b>No Personal Document details found for the employee.</b>");
 				$('#submit-document-update').hide();
 				hideLoading();
-				gadgets.window.adjustHeight();
 			}
+			gadgets.window.adjustHeight();
 		});
 	}
-	gadgets.window.adjustHeight();
 });
 
 $('a.bankLink').bind(eventHandler, function() {
@@ -372,7 +366,6 @@ $('a.bankLink').bind(eventHandler, function() {
 					isBanFet = 1;
 					isBanFine = 1;
 					hideLoading();
-					gadgets.window.adjustHeight();
 				});
 			}
 			else {
@@ -380,11 +373,10 @@ $('a.bankLink').bind(eventHandler, function() {
 				isBanFine = 0;
 				$('#response-status').html("<b>No Bank details found for the employee.</b>");
 				hideLoading();
-				gadgets.window.adjustHeight();
 			}
+			gadgets.window.adjustHeight();
 		});
 	}
-	gadgets.window.adjustHeight();
 });
 
 $('a.annPayLink').bind(eventHandler, function() {
@@ -407,7 +399,6 @@ $('a.annPayLink').bind(eventHandler, function() {
 		gadgets.window.adjustHeight();
 	}
 	
-	gadgets.window.adjustHeight();
 	if (isPayFet == 0)
 	{
 		showLoading();
@@ -446,7 +437,6 @@ $('a.annPayLink').bind(eventHandler, function() {
 					isPayFet = 1;
 					isPayFine = 1;
 					hideLoading();
-					gadgets.window.adjustHeight();
 				});				
 			}
 			else {
@@ -454,11 +444,10 @@ $('a.annPayLink').bind(eventHandler, function() {
 				isPayFine = 0;
 				$('#response-status').html("<b>No Annual Pay details found for the employee.</b>");
 				hideLoading();
-				gadgets.window.adjustHeight();
 			}
+			gadgets.window.adjustHeight();
 		});
 	}
-	gadgets.window.adjustHeight();
 });
 
 
@@ -491,7 +480,6 @@ function showAddress() {
 		}
 	}
 	
-	gadgets.window.adjustHeight();
 	if (isAddFet == 0)
 	{
 		showLoading();
@@ -513,7 +501,6 @@ function showAddress() {
 			aValBeg = $addDetails.children('Validbegin').text();
 			aValEnd = $addDetails.children('Validend').text();
 			if (aValBeg != '' && aValEnd != '') {
-				gadgets.window.adjustHeight();
 				soap_envelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"><soapenv:Header/><soapenv:Body><urn:AddressempGetdetail><Employeenumber>'+personID+'</Employeenumber><Lockindicator></Lockindicator><Objectid></Objectid><Recordnumber></Recordnumber><Subtype>'+ADDRESS_SUBTYPE+'</Subtype><Validitybegin>'+aValBeg+'</Validitybegin><Validityend>'+aValEnd+'</Validityend></urn:AddressempGetdetail></soapenv:Body></soapenv:Envelope>';		
 				osapi.jive.connects.post({
 						'alias' : 'SAPHCM',
@@ -537,7 +524,6 @@ function showAddress() {
 						isAddFet = 1;
 						isAddFine = 1;
 						hideLoading();
-						gadgets.window.adjustHeight();
 				});				
 			}
 			else {
@@ -546,11 +532,10 @@ function showAddress() {
 				$('#response-status').html("<b>No Address details found for the employee.</b>");
 				$('#submit-address-update').hide();
 				hideLoading();
-				gadgets.window.adjustHeight();
 			}
+			gadgets.window.adjustHeight();
 		});
 	}
-	gadgets.window.adjustHeight();
 }
 
 function onAddUpdate() {
@@ -578,7 +563,6 @@ function onAddUpdate() {
 			console.log("Address updated: "+callback.content);
 			gadgets.window.adjustHeight();
 		});			
-	gadgets.window.adjustHeight();
 }
 
 function onDocUpdate() {
@@ -603,7 +587,6 @@ function onDocUpdate() {
 		}).execute(function(callback) {
 			$('#response-status').html("<b>Personal Document details successfully updated.</b>");
 			hideLoading();
-			gadgets.window.adjustHeight();
 			//console.log("Address updated: "+callback.content);
 		});			
 	gadgets.window.adjustHeight();
@@ -636,7 +619,6 @@ $('tr.rowPerson').live (eventHandler, function(){
 	$("#displayRecord").hide();
 	$("#detailRecord").show();
 	showAddress();
-	gadgets.window.adjustHeight();
 	//console.log(personID+"--"+fullName+"--"+compCode+"--"+orgText+"--"+jobText+"--"+posText+"--"+costCenter+"--"+emailID);
 });
 
@@ -729,13 +711,12 @@ function onBackDetail () {
 		$('#person-last-name').val("");
 		$('#response-message').html("");
 		$('#search-form').show();
-		gadgets.window.adjustHeight();
 	}
 	else {
 		$('#displayRecord').show();
-		gadgets.window.adjustHeight();
 	}	
-	//deQueuePerson();
+	gadgets.window.adjustHeight();
+	
 	//Clear all the form details
 	clearAll();	
 }
