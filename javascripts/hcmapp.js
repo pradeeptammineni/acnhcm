@@ -17,9 +17,7 @@ function init() {
 	// Adjust the height of the app!
 	jive.canvas.getCanvasDimensions(function(dimensions) {
 	  gadgets.window.adjustHeight(dimensions.height);
-		console.log("Height: "+dimensions.height);
 	});
-	gadgets.window.adjustHeight();
 	//Set focus on the search criteria fields.
 	//$('#person-first-name').focus();
 	$("input:text:visible:first").focus();
@@ -220,7 +218,9 @@ function onEmpSearch() {
 					$("#detailRecord").show();
 					showAddress();					
 				}
-				gadgets.window.adjustHeight();
+				jive.canvas.getCanvasDimensions(function(dimensions) {
+				  gadgets.window.adjustHeight(dimensions.height);
+				});
 			}
 		}
 	});
@@ -244,7 +244,9 @@ $('a.perDocLink').bind(eventHandler, function() {
 		if (isPerFine == 0) {
 			$('#response-status').html("<b>No Personal Document details found for the employee.</b>");
 			$('#submit-document-update').hide();
-			gadgets.window.adjustHeight();
+			jive.canvas.getCanvasDimensions(function(dimensions) {
+			  gadgets.window.adjustHeight(dimensions.height);
+			});
 		}
 		else {
 			$('#submit-document-update').show();
@@ -306,7 +308,9 @@ $('a.perDocLink').bind(eventHandler, function() {
 				$('#submit-document-update').hide();
 				hideLoading();
 			}
-			gadgets.window.adjustHeight();
+			jive.canvas.getCanvasDimensions(function(dimensions) {
+			  gadgets.window.adjustHeight(dimensions.height);
+			});
 		});
 	}
 });
@@ -328,7 +332,9 @@ $('a.bankLink').bind(eventHandler, function() {
 	$('#response-status').html("");
 	if (isBanFet == 1 && isBanFine == 0) {
 		$('#response-status').html("<b>No Bank details found for the employee.</b>");
-		gadgets.window.adjustHeight();
+		jive.canvas.getCanvasDimensions(function(dimensions) {
+		  gadgets.window.adjustHeight(dimensions.height);
+		});
 	}
 
 	if (isBanFet == 0)
@@ -378,7 +384,9 @@ $('a.bankLink').bind(eventHandler, function() {
 				$('#response-status').html("<b>No Bank details found for the employee.</b>");
 				hideLoading();
 			}
-			gadgets.window.adjustHeight();
+			jive.canvas.getCanvasDimensions(function(dimensions) {
+			  gadgets.window.adjustHeight(dimensions.height);
+			});
 		});
 	}
 });
