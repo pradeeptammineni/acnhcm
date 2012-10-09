@@ -408,7 +408,9 @@ $('a.annPayLink').bind(eventHandler, function() {
 	$('#response-status').html("");
 	if (isPayFet == 1 && isPayFine == 0) {
 		$('#response-status').html("<b>No Annual Pay details found for the employee.</b>");
-		gadgets.window.adjustHeight();
+		jive.canvas.getCanvasDimensions(function(dimensions) {
+		  gadgets.window.adjustHeight(dimensions.height);
+		});
 	}
 	
 	if (isPayFet == 0)
@@ -457,7 +459,9 @@ $('a.annPayLink').bind(eventHandler, function() {
 				$('#response-status').html("<b>No Annual Pay details found for the employee.</b>");
 				hideLoading();
 			}
-			gadgets.window.adjustHeight();
+			jive.canvas.getCanvasDimensions(function(dimensions) {
+			  gadgets.window.adjustHeight(dimensions.height);
+			});
 		});
 	}
 });
@@ -485,7 +489,9 @@ function showAddress() {
 	if (isAddFet == 1) {
 		if (isAddFine == 0) {
 			$('#response-status').html("<b>No Address details found for the employee.</b>");
-			gadgets.window.adjustHeight();
+			jive.canvas.getCanvasDimensions(function(dimensions) {
+			  gadgets.window.adjustHeight(dimensions.height);
+			});
 		}
 		else {
 			$('#submit-address-update').show();
@@ -545,7 +551,9 @@ function showAddress() {
 				$('#submit-address-update').hide();
 				hideLoading();
 			}
-			gadgets.window.adjustHeight();
+			jive.canvas.getCanvasDimensions(function(dimensions) {
+			  gadgets.window.adjustHeight(dimensions.height);
+			});
 		});
 	}
 }
@@ -573,7 +581,9 @@ function onAddUpdate() {
 			$('#response-status').html("<b>Address successfully updated.</b>");
 			hideLoading();
 			console.log("Address updated: "+callback.content);
-			gadgets.window.adjustHeight();
+			jive.canvas.getCanvasDimensions(function(dimensions) {
+			  gadgets.window.adjustHeight(dimensions.height);
+			});
 		});			
 }
 
@@ -601,7 +611,9 @@ function onDocUpdate() {
 			hideLoading();
 			//console.log("Address updated: "+callback.content);
 		});			
-	gadgets.window.adjustHeight();
+	jive.canvas.getCanvasDimensions(function(dimensions) {
+	  gadgets.window.adjustHeight(dimensions.height);
+	});
 }
 
 // On double-clicking each row, let's 
@@ -673,7 +685,9 @@ function clearAll () {
 	$('#docIssAuth').val("");
 	
 	$('#response-status').html("");
-	gadgets.window.adjustHeight();
+	jive.canvas.getCanvasDimensions(function(dimensions) {
+	  gadgets.window.adjustHeight(dimensions.height);
+	});
 }
 
 // Having "Back button in Search Results.
@@ -694,7 +708,9 @@ function onBackSearch () {
 	$("input:text:visible:first").focus();
 	
 	// Adjust height!
-	gadgets.window.adjustHeight();
+	jive.canvas.getCanvasDimensions(function(dimensions) {
+	  gadgets.window.adjustHeight(dimensions.height);
+	});
 }
 
 // On clicking Back in Detail View, 
@@ -727,7 +743,9 @@ function onBackDetail () {
 	else {
 		$('#displayRecord').show();
 	}	
-	gadgets.window.adjustHeight();
+	jive.canvas.getCanvasDimensions(function(dimensions) {
+	  gadgets.window.adjustHeight(dimensions.height);
+	});
 	
 	//Clear all the form details
 	clearAll();	
