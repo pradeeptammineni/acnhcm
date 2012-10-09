@@ -218,9 +218,7 @@ function onEmpSearch() {
 					$("#detailRecord").show();
 					showAddress();					
 				}
-				jive.canvas.getCanvasDimensions(function(dimensions) {
-				  gadgets.window.adjustHeight(dimensions.height); console.log("Height: "+dimensions.height);
-				});
+				gadgets.window.adjustHeight();
 			}
 		}
 	});
@@ -552,7 +550,7 @@ function showAddress() {
 				hideLoading();
 			}
 			jive.canvas.getCanvasDimensions(function(dimensions) {
-			  gadgets.window.adjustHeight(dimensions.height); console.log("Height: "+dimensions.height);
+			  gadgets.window.adjustHeight();
 			});
 		});
 	}
