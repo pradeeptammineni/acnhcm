@@ -13,6 +13,7 @@
     <Require feature="jquery-1.6"/>
     <Require feature="minimessage"/>
     <Require feature="osapi"/>
+    <Require feature="canvas"/>
     <Require feature="views"/>
     <Require feature="embedded-experiences" /> 
     <Require feature="actions">
