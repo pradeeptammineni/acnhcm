@@ -182,7 +182,10 @@
 						return false;
 					});
 					$(config.cssPageSize,pager).change(function() {
-						
+
+						jive.canvas.getCanvasDimensions(function(dimensions) {
+						  gadgets.window.adjustHeight(dimensions.height); console.log("Height: "+dimensions.height);
+						});						
 						setPageSize(table,parseInt($(this).val()));
 						return false;
 					});
