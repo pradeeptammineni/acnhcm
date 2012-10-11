@@ -218,9 +218,9 @@ function onEmpSearch() {
 					$('#emp-search-button').removeAttr('disabled');						
 					$("#search-form").hide();
 					$("#detailRecord").show();
+					gadgets.window.adjustHeight();
 					showAddress();					
 				}
-				gadgets.window.adjustHeight();
 			}
 		}
 	});
@@ -245,7 +245,7 @@ $('a.perDocLink').bind(eventHandler, function() {
 			$('#response-status').html("<b>No Personal Document details found for the employee.</b>");
 			$('#submit-document-update').hide();
 			jive.canvas.getCanvasDimensions(function(dimensions) {
-			  gadgets.window.adjustHeight();
+			  //gadgets.window.adjustHeight();
 			});
 		}
 		else {
@@ -299,6 +299,9 @@ $('a.perDocLink').bind(eventHandler, function() {
 						isPerFet = 1;
 						isPerFine = 1;
 						hideLoading();
+						jive.canvas.getCanvasDimensions(function(dimensions) {
+							gadgets.window.adjustHeight();
+						});
 				});				
 			}
 			else {
@@ -307,10 +310,10 @@ $('a.perDocLink').bind(eventHandler, function() {
 				$('#response-status').html("<b>No Personal Document details found for the employee.</b>");
 				$('#submit-document-update').hide();
 				hideLoading();
+				jive.canvas.getCanvasDimensions(function(dimensions) {
+					gadgets.window.adjustHeight();
+				});				
 			}
-			jive.canvas.getCanvasDimensions(function(dimensions) {
-			  gadgets.window.adjustHeight();
-			});
 		});
 	}
 });
@@ -333,7 +336,7 @@ $('a.bankLink').bind(eventHandler, function() {
 	if (isBanFet == 1 && isBanFine == 0) {
 		$('#response-status').html("<b>No Bank details found for the employee.</b>");
 		jive.canvas.getCanvasDimensions(function(dimensions) {
-		  gadgets.window.adjustHeight();
+		  //gadgets.window.adjustHeight();
 		});
 	}
 
@@ -376,6 +379,9 @@ $('a.bankLink').bind(eventHandler, function() {
 					isBanFet = 1;
 					isBanFine = 1;
 					hideLoading();
+					jive.canvas.getCanvasDimensions(function(dimensions) {
+					  gadgets.window.adjustHeight();
+					});
 				});
 			}
 			else {
@@ -383,10 +389,10 @@ $('a.bankLink').bind(eventHandler, function() {
 				isBanFine = 0;
 				$('#response-status').html("<b>No Bank details found for the employee.</b>");
 				hideLoading();
+				jive.canvas.getCanvasDimensions(function(dimensions) {
+				  gadgets.window.adjustHeight();
+				});				
 			}
-			jive.canvas.getCanvasDimensions(function(dimensions) {
-			  gadgets.window.adjustHeight();
-			});
 		});
 	}
 });
@@ -409,7 +415,7 @@ $('a.annPayLink').bind(eventHandler, function() {
 	if (isPayFet == 1 && isPayFine == 0) {
 		$('#response-status').html("<b>No Annual Pay details found for the employee.</b>");
 		jive.canvas.getCanvasDimensions(function(dimensions) {
-		  gadgets.window.adjustHeight();
+		  //gadgets.window.adjustHeight();
 		});
 	}
 	
@@ -450,6 +456,9 @@ $('a.annPayLink').bind(eventHandler, function() {
 					$("#payCurrency").val($payDetails.find('Currencyannualsalary').text());
 					isPayFet = 1;
 					isPayFine = 1;
+					jive.canvas.getCanvasDimensions(function(dimensions) {
+					  gadgets.window.adjustHeight();
+					});					
 					hideLoading();
 				});				
 			}
@@ -457,11 +466,11 @@ $('a.annPayLink').bind(eventHandler, function() {
 				isPayFet = 1;
 				isPayFine = 0;
 				$('#response-status').html("<b>No Annual Pay details found for the employee.</b>");
+				jive.canvas.getCanvasDimensions(function(dimensions) {
+				  gadgets.window.adjustHeight();
+				});					
 				hideLoading();
 			}
-			jive.canvas.getCanvasDimensions(function(dimensions) {
-			  gadgets.window.adjustHeight();
-			});
 		});
 	}
 });
@@ -490,7 +499,7 @@ function showAddress() {
 		if (isAddFine == 0) {
 			$('#response-status').html("<b>No Address details found for the employee.</b>");
 			jive.canvas.getCanvasDimensions(function(dimensions) {
-			  gadgets.window.adjustHeight();
+			  //gadgets.window.adjustHeight();
 			});
 		}
 		else {
@@ -541,6 +550,9 @@ function showAddress() {
 						$("#addCountry").val($addDetails.find('Country').text());
 						isAddFet = 1;
 						isAddFine = 1;
+						jive.canvas.getCanvasDimensions(function(dimensions) {
+						  gadgets.window.adjustHeight();
+						});										
 						hideLoading();
 				});				
 			}
@@ -549,11 +561,11 @@ function showAddress() {
 				isAddFine = 0;
 				$('#response-status').html("<b>No Address details found for the employee.</b>");
 				$('#submit-address-update').hide();
+				jive.canvas.getCanvasDimensions(function(dimensions) {
+				  gadgets.window.adjustHeight();
+				});				
 				hideLoading();
 			}
-			jive.canvas.getCanvasDimensions(function(dimensions) {
-			  gadgets.window.adjustHeight();
-			});
 		});
 	}
 }
@@ -608,12 +620,12 @@ function onDocUpdate() {
 			'headers' : { 'content-type' : ['text/xml'] }
 		}).execute(function(callback) {
 			$('#response-status').html("<b>Personal Document details successfully updated.</b>");
+			jive.canvas.getCanvasDimensions(function(dimensions) {
+			  gadgets.window.adjustHeight();
+			});			
 			hideLoading();
 			//console.log("Address updated: "+callback.content);
 		});			
-	jive.canvas.getCanvasDimensions(function(dimensions) {
-	  gadgets.window.adjustHeight();
-	});
 }
 
 // On double-clicking each row, let's 
@@ -744,7 +756,7 @@ function onBackDetail () {
 		$('#displayRecord').show();
 	}	
 	jive.canvas.getCanvasDimensions(function(dimensions) {
-	  gadgets.window.adjustHeight();
+	  //gadgets.window.adjustHeight();
 	});
 	
 	//Clear all the form details
