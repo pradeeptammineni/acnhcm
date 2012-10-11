@@ -18,7 +18,7 @@ function init() {
 	jive.canvas.getCanvasDimensions(function(dimensions) {
 	  //gadgets.window.adjustHeight(dimensions.height); console.log("Height: "+dimensions.height
 	  console.log("Height: "+dimensions.height);
-	  gadgets.window.adjustHeight();
+	  gadgets.window.adjustHeight(500);
 	});
 	//Set focus on the search criteria fields.
 	//$('#person-first-name').focus();
