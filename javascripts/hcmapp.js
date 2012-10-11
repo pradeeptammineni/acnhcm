@@ -20,6 +20,8 @@ function init() {
 	  console.log("Height: "+dimensions.height);
 	  gadgets.window.adjustHeight(525);
 	});
+	
+	xmlTable.style.width = (ua.match(/iPad/i)) ? "70%" : "90%";
 	//Set focus on the search criteria fields.
 	//$('#person-first-name').focus();
 	$("input:text:visible:first").focus();

@@ -30,7 +30,7 @@ body {
 
 /* Record display table - ID: data-grid */
 table.data-grid, table.crud, table.banner {  border:1px solid #222; margin:10px 20px 10px 20px; box-shadow:0 0 5px #888}
-table.data-grid {width:90%;/*table-layout:fixed;*/}
+/* table.data-grid {width:90%; table-layout:fixed; */
 table.data-grid thead tr th, table.crud thead tr th, table.banner thead tr th{ 
   color:white; padding:8px 15px 8px 8px; text-align:left; font-weight:bold
   }
