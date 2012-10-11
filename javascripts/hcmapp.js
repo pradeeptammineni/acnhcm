@@ -16,7 +16,8 @@ var ua = navigator.userAgent,
 function init() {
 	// Adjust the height of the app!
 	jive.canvas.getCanvasDimensions(function(dimensions) {
-	  gadgets.window.adjustHeight(dimensions.height); console.log("Height: "+dimensions.height);
+	  //gadgets.window.adjustHeight(dimensions.height); console.log("Height: "+dimensions.height
+	  gadgets.window.adjustHeight();
 	});
 	//Set focus on the search criteria fields.
 	//$('#person-first-name').focus();
@@ -243,7 +244,7 @@ $('a.perDocLink').bind(eventHandler, function() {
 			$('#response-status').html("<b>No Personal Document details found for the employee.</b>");
 			$('#submit-document-update').hide();
 			jive.canvas.getCanvasDimensions(function(dimensions) {
-			  gadgets.window.adjustHeight(dimensions.height); console.log("Height: "+dimensions.height);
+			  //gadgets.window.adjustHeight();
 			});
 		}
 		else {
@@ -307,7 +308,7 @@ $('a.perDocLink').bind(eventHandler, function() {
 				hideLoading();
 			}
 			jive.canvas.getCanvasDimensions(function(dimensions) {
-			  gadgets.window.adjustHeight(dimensions.height); console.log("Height: "+dimensions.height);
+			  //gadgets.window.adjustHeight();
 			});
 		});
 	}
@@ -331,7 +332,7 @@ $('a.bankLink').bind(eventHandler, function() {
 	if (isBanFet == 1 && isBanFine == 0) {
 		$('#response-status').html("<b>No Bank details found for the employee.</b>");
 		jive.canvas.getCanvasDimensions(function(dimensions) {
-		  gadgets.window.adjustHeight(dimensions.height); console.log("Height: "+dimensions.height);
+		  //gadgets.window.adjustHeight();
 		});
 	}
 
@@ -383,7 +384,7 @@ $('a.bankLink').bind(eventHandler, function() {
 				hideLoading();
 			}
 			jive.canvas.getCanvasDimensions(function(dimensions) {
-			  gadgets.window.adjustHeight(dimensions.height); console.log("Height: "+dimensions.height);
+			  //gadgets.window.adjustHeight();
 			});
 		});
 	}
@@ -407,7 +408,7 @@ $('a.annPayLink').bind(eventHandler, function() {
 	if (isPayFet == 1 && isPayFine == 0) {
 		$('#response-status').html("<b>No Annual Pay details found for the employee.</b>");
 		jive.canvas.getCanvasDimensions(function(dimensions) {
-		  gadgets.window.adjustHeight(dimensions.height); console.log("Height: "+dimensions.height);
+		  //gadgets.window.adjustHeight();
 		});
 	}
 	
@@ -458,7 +459,7 @@ $('a.annPayLink').bind(eventHandler, function() {
 				hideLoading();
 			}
 			jive.canvas.getCanvasDimensions(function(dimensions) {
-			  gadgets.window.adjustHeight(dimensions.height); console.log("Height: "+dimensions.height);
+			  //gadgets.window.adjustHeight();
 			});
 		});
 	}
@@ -488,7 +489,7 @@ function showAddress() {
 		if (isAddFine == 0) {
 			$('#response-status').html("<b>No Address details found for the employee.</b>");
 			jive.canvas.getCanvasDimensions(function(dimensions) {
-			  gadgets.window.adjustHeight(dimensions.height); console.log("Height: "+dimensions.height);
+			  //gadgets.window.adjustHeight();
 			});
 		}
 		else {
@@ -580,7 +581,7 @@ function onAddUpdate() {
 			hideLoading();
 			console.log("Address updated: "+callback.content);
 			jive.canvas.getCanvasDimensions(function(dimensions) {
-			  gadgets.window.adjustHeight(dimensions.height); console.log("Height: "+dimensions.height);
+			  //gadgets.window.adjustHeight();
 			});
 		});			
 }
@@ -610,7 +611,7 @@ function onDocUpdate() {
 			//console.log("Address updated: "+callback.content);
 		});			
 	jive.canvas.getCanvasDimensions(function(dimensions) {
-	  gadgets.window.adjustHeight(dimensions.height); console.log("Height: "+dimensions.height);
+	  //gadgets.window.adjustHeight();
 	});
 }
 
@@ -684,7 +685,7 @@ function clearAll () {
 	
 	$('#response-status').html("");
 	jive.canvas.getCanvasDimensions(function(dimensions) {
-	  gadgets.window.adjustHeight(dimensions.height); console.log("Height: "+dimensions.height);
+	  //gadgets.window.adjustHeight();
 	});
 }
 
@@ -707,7 +708,7 @@ function onBackSearch () {
 	
 	// Adjust height!
 	jive.canvas.getCanvasDimensions(function(dimensions) {
-	  gadgets.window.adjustHeight(dimensions.height); console.log("Height: "+dimensions.height);
+	  //gadgets.window.adjustHeight();
 	});
 }
 
@@ -742,7 +743,7 @@ function onBackDetail () {
 		$('#displayRecord').show();
 	}	
 	jive.canvas.getCanvasDimensions(function(dimensions) {
-	  gadgets.window.adjustHeight(dimensions.height); console.log("Height: "+dimensions.height);
+	  //gadgets.window.adjustHeight();
 	});
 	
 	//Clear all the form details
