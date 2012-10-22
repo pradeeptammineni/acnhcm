@@ -10,8 +10,6 @@ var SAPEMPID_LENGTH = 8;
 var ua = navigator.userAgent,
 		eventHandler = (ua.match(/iPad/i)) ? "touchstart" : "click";
 
-// $("theElement").bind(eventHandler, function(e) {//do shit here }
-
 // On view load, wire up static actions and retrieve initial data
 function init() {
 	// Adjust the height of the app!
@@ -21,6 +19,8 @@ function init() {
 	  gadgets.window.adjustHeight(525);
 	});
 	
+	// Based on the device, adjust the width -- on iPad, we may
+	// have to leave room for scrolling - hence 60% !
 	xmlTable.style.width = (ua.match(/iPad/i)) ? "60%" : "90%";
 	//Set focus on the search criteria fields.
 	//$('#person-first-name').focus();
@@ -35,6 +35,8 @@ function init() {
 	mini = new gadgets.MiniMessage();
 }
 
+// Check if person ID has 8 characters (SAPEMPID_LENGTH)
+// If it doesn't prefix 0s
 function checkPersonID(empID) {
 	var temp = empID;
 	var i=0;
@@ -45,6 +47,7 @@ function checkPersonID(empID) {
 	return empID;
 }
 
+// Show the "Mask Load"
 function showLoading() 
 {
 	$("#maskLoad").mask("Please Wait...");
